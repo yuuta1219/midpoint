@@ -1,0 +1,7 @@
+<%= form_with model: eighteen_line, url: [plot, eighteen_line], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :１８ライン説明 %>
+    <%= f.text_field :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを入力" %>
+    <%= f.submit '登録する', class: 'btn btn-ghost' %>
+</div>
+<% end %>

@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'tops#top'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'terms', to: 'tops#terms'
+  get 'privacy_policy', to: 'tops#privacy_policy'
+  get 'treatment', to: 'tops#treatment'
+  get 'my_page', to: 'tops#my_page'
+
+  get 'login', to: 'user_sessions#new'
+  post 'login', to: 'user_sessions#create'
+  get 'logout', to: 'user_sessions#destroy'
+
+  resources :users, only: %i[new create]
+  resources :plots, shallow: true do
+    resources :eighteen_lines
+    resources :cards
+  end
 end

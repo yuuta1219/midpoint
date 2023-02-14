@@ -1,0 +1,25 @@
+<div class='flex flex-wrap'>
+  <div class="dropdown">
+    <label tabindex="0" class="btn btn-ghost">メニュー</label>
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+      <li><%= link_to "plot_home", plots_path %></li>
+      <li><%= link_to "詳細１へ",:back %></li>
+    </ul>
+  </div>
+</div>
+<div class="bg-base-300">
+  <label for="my-modal" class="btn btn-ghost">new card</label>
+    <input type="checkbox" id="my-modal" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box">
+        <div class="modal-action">
+          <h3 class="font-bold text-lg">カードを登録する</h3>
+          <label for="my-modal" class="btn btn-ghost">閉じる</label>
+        </div>
+          <%= render 'cards/form' %>
+      </div>
+    </div>
+    <div class="grid grid-cols-10 ">
+    <%= render @cards %>
+  </div>
+</div>

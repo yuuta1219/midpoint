@@ -1,0 +1,7 @@
+<%= form_with model: @card, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを入力" %>
+    <%= f.submit '登録する', class: 'btn btn-ghost' %>
+  </div>
+<% end %>
