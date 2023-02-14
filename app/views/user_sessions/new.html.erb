@@ -1,0 +1,28 @@
+<%= render 'shared/login_check' %>
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <div class=''>
+        <%= form_with url: login_path, local: true do |f| %>
+          <div class="">
+            <%= f.label :メールアドレス %>
+            <%= f.text_field :email, class: 'form-control' %>
+          </div>
+          <div class="">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+          <div class="">
+            <%= f.submit 'ログイン', class: 'btn btn-outline-light' %>
+          </div>
+        <% end %>
+        <div class=''>
+          <%= link_to '登録ページへ', new_user_path, class: "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

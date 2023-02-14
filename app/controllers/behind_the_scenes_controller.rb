@@ -1,0 +1,3 @@
+class BehindTheScenesController < ApplicationController
+
+end

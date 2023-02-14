@@ -1,0 +1,34 @@
+<%= render 'shared/login_check' %>
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content">
+    <div class="max-w-md">
+      <h1 class="text-5xl">
+      プロット作成一次保管所
+      </h1>
+      <%= form_with model: @plot, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :プロット名 %>
+          <%= f.text_field :name, class: 'form-control', placeholder: "必須事項" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :テーマ %>
+          <%= f.text_field :theme, class: 'form-control', placeholder: "テーマは？" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :ログライン %>
+          <%= f.text_field :one_line, class: 'form-control', placeholder: "一行で" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :メモ %>
+          <%= f.text_field :memo, class: 'form-control', placeholder: "メモ" %>
+        </div>
+        <div class="d-grid gap-2 mt-2">
+          <%= f.submit '登録する', class: 'btn' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

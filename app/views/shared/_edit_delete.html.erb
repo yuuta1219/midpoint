@@ -1,0 +1,8 @@
+<div class="flex flex-wrap">
+  <%= link_to edit_plot_path(plot), id: "button-edit-#{plot.id}" do %>
+    <i class="bi bi-brush" style="font-size: 1rem;" ></i>
+  <% end %>
+  <%= button_to plot_path(plot), method: :delete do %>
+    <i class="bi bi-bucket" style="font-size: 1rem;" ></i>
+  <% end %>
+</div>

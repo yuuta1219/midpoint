@@ -1,0 +1,11 @@
+<div class="navbar bg-base-100">
+  <% if  logged_in? %>
+    <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), plots_path %></div>
+    <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
+  <% else %>
+    <div><%= link_to image_tag("logo.png", :size => '150x150'), root_path %></div>
+    <div><%= link_to "Sign_up",new_user_path %></div>
+    <div><%= link_to "Login", login_path %></div>
+  <% end %>
+</div>
+<%= render 'shared/flash_message' %>
