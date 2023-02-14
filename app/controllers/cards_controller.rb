@@ -2,6 +2,7 @@ class CardsController < ApplicationController
   def index
     @plot = Plot.find(params[:plot_id])
     @cards = @plot.cards.order(created_at: :asc)
+    @message = "Hello, world!"
   end
 
   def new
