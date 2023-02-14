@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Split from "react-split";
 
-function App() {
-  const [count, setCount] = useState(0)
+const menuItems = [
+  { label: "メニュー1", url: "#1" },
+  { label: "メニュー2", url: "#2" },
+  { label: "メニュー3", url: "#3" },
+  { label: "メニュー4", url: "#4" }
+];
 
+export default function App() {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Split
+      className="flex"
+      // ガターエレメントのカスタマイズ
+      gutter={(_, direction) => {
+        const gutterElement = document.createElement("div");
+        gutterElement.className = `w-[3px] bg-indigo-500 hover:cursor-col-resize hover:w-4 hover:bg-indigo-700 transition-all delay-300 duration-300 ease-in-out`;
+        return gutterElement;
+      }}
+      // デフォルトのガター幅を無効にするために指定
+      gutterStyle={() => ({})}
+      sizes={[25, 75]}
+    >
+      {/** 一つ目のコンポーネント */}
+      <ul className="bg-stone-50 p-2">
+        {menuItems.map((item) => (
+          <li key={item.url}>
+            <a href={item.url}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      {/** 二つ目のコンポーネント */}
+      <div className="bg-indigo-50 flex items-center justify-center">
+        コンテンツ
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    </Split>
+  );
 }
-
-export default App
