@@ -2,7 +2,6 @@ class CardsController < ApplicationController
   def index
     @plot = Plot.find(params[:plot_id])
     @cards = @plot.cards.order(created_at: :asc)
-    @message = "Hello, world!"
   end
 
   def new
@@ -10,17 +9,18 @@ class CardsController < ApplicationController
   end
   
   def create
+    @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
     if @card.save
-      redirect_to plot_path(@card.plot), success: "作成しました！"
+      redirect_to plot_cards_path(@plot), success: "作成しました！"
     else
-      redirect_to plot_path(@card.plot), danger: "作成できませんでした"
+      redirect_to plot_cards_path(@plot), danger: "作成できませんでした"
     end
   end
 
   private
 
   def card_params
-    params.permit(:name).merge(plot_id: params[:plot_id])
+    params.permit(:name, :time, :current_location, :point_of_view, :emotional_value, :body).merge(plot_id: params[:plot_id])
   end
 end
