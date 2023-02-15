@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :plots, shallow: true do
     resources :eighteen_lines
     resources :cards
+    resources :characters
+    resources :foreshadowings
   end
 end

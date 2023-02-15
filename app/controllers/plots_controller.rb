@@ -19,7 +19,7 @@ class PlotsController < ApplicationController
   def create
     @plot = current_user.plots.build(plot_params)
     if @plot.save
-      redirect_to new_plot_path, success: "作成しました！"
+      redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
       render :new
