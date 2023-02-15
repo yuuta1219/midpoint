@@ -1,19 +1,19 @@
 <% content_for :content do %>
 
 <div class="bg-base-300">
-  <label for="my-modal" class="btn btn-ghost">new card</label>
+  <label for="my-modal" class="btn btn-ghost">new foreshadowing</label>
     <input type="checkbox" id="my-modal" class="modal-toggle" />
     <div class="modal">
       <div class="modal-box">
         <div class="modal-action">
-          <h3 class="font-bold text-lg">カードを登録する</h3>
+          <h3 class="font-bold text-lg">伏線を登録する</h3>
           <label for="my-modal" class="btn btn-ghost">閉じる</label>
         </div>
-          <%= render 'cards/form' %>
+          <%= render 'foreshadowings/form' %>
       </div>
     </div>
-    <div class=" ">
-    <%= render @cards %>
+    <div class="grid grid-cols-10 ">
+    <%= render @foreshadowings %>
   </div>
 </div>
 

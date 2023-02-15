@@ -1,0 +1,21 @@
+<div class="drawer">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+    <div class="flex flex-wrap">
+      <label for="my-drawer" class="btn btn-ghost drawer-button">メニュー</label>
+      <p class='text-2xl p-2'>タイトル 「 <%= plot.name %> 」</p>
+    </div> 
+    <%= yield :content %>
+  </div> 
+  <div class="drawer-side">
+    <label for="my-drawer" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <li><%= link_to "plot_home", plots_path %></li>
+      <li><%= link_to "plot詳細へ", plot_path(plot) %></li>
+      <li><%= link_to "カード一覧へ", plot_cards_path(plot) %></li>
+      <li><%= link_to "伏線一覧へ", plot_foreshadowings_path(plot) %></li>
+      <li><%= link_to "登場人物一覧へ", plot_characters_path(plot) %></li>
+    </ul>
+  </div>
+</div>

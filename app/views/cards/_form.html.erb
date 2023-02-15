@@ -1,7 +1,17 @@
 <%= form_with model: @card, local: true do |f| %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを入力" %>
+    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル" %>
+    <%= f.label :time %>
+    <%= f.number_field :time, class: 'input input-ghost w-full max-w-xs', placeholder: "作中時間" %>
+    <%= f.label :current_location %>
+    <%= f.text_field :current_location, class: 'input input-ghost w-full max-w-xs', placeholder: "場所" %>
+    <%= f.label :point_of_view %>
+    <%= f.text_field :point_of_view, class: 'input input-ghost w-full max-w-xs', placeholder: "視点" %>
+    <%= f.label :emotional_value %>
+    <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値" %>
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容" %>
     <%= f.submit '登録する', class: 'btn btn-ghost' %>
   </div>
 <% end %>

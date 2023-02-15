@@ -1,12 +1,9 @@
 <div class='p-3'>
   <div class="card w-70 bg-base-100 shadow-xl">
     <div class="card-body">
-      <div class="flex flex-wrap">
-        <h2 class="card-title"><%= link_to plot.name, plot_path(plot) %></h2>
-        <%= render 'shared/edit_delete', plot: plot %>
-      </div>
-      <div class="card-actions justify-end">
-      </div>
+      <p class="text-sm card-title"><%= link_to plot.name, plot_path(plot) %></p>
+    </div>
+    <div class="card-actions justify-end">
     </div>
   </div>
 </div>
