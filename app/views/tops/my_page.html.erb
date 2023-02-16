@@ -6,7 +6,18 @@
       <h1 class="text-5xl font-bold">
       my_page
       </h1>
-      <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
+      <div>
+        <label for="my-modal-0" class="btn btn-ghost">logout</label>
+        <input type="checkbox" id="my-modal-0" class="modal-toggle" />
+        <div class="modal">
+          <div class="modal-box">
+            <div class="modal-action">
+              <label for="my-modal-0" class="btn btn-ghost">閉じる</label>
+            </div>
+            <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
+          </div>
+        </div>
+      </div>
       <p class="py-6"></p>
     </div>
   </div>

@@ -13,6 +13,7 @@
     <ul class="menu p-4 w-80 bg-base-100 text-base-content">
       <li><%= link_to "plot_home", plots_path %></li>
       <li><%= link_to "plot詳細へ", plot_path(plot) %></li>
+      <li><%= link_to "ボード", plot_boards_path(plot) %></li>
       <li><%= link_to "カード一覧へ", plot_cards_path(plot) %></li>
       <li><%= link_to "伏線一覧へ", plot_foreshadowings_path(plot) %></li>
       <li><%= link_to "登場人物一覧へ", plot_characters_path(plot) %></li>

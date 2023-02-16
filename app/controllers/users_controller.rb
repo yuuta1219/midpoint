@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, success: "アカウントを作成しました。"
+      redirect_to root_path, success: "アカウントを作成しました。"
     else
       flash.now[:danger] = "アカウトを作成できませんでした。"
       render :new
@@ -18,6 +18,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name)
+    params.permit(:email, :password, :password_confirmation, :name)
   end
 end
