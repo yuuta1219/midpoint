@@ -2,9 +2,9 @@
 
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content">
-    <div class="max-w-md">
-      <h1 class="text-5xl">
-      プロット作成一次保管所
+    <div class="max-w-md mx-auto">
+      <h1 class="text-5xl text-center mb-8">
+        プロット作成一次保管所
       </h1>
       <%= form_with model: @plot, local: true do |f| %>
         <div class="form-group">
@@ -23,9 +23,9 @@
           <%= f.label :メモ %>
           <%= f.text_field :memo, class: 'form-control', placeholder: "メモ" %>
         </div>
-        <div class="d-grid gap-2 mt-2">
+        <div class="d-grid gap-2 mt-6">
           <%= f.submit '登録する', class: 'btn' %>
-      </div>
+        </div>
       <% end %>
     </div>
   </div>
