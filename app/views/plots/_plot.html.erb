@@ -1,9 +1,4 @@
-<div class='p-3'>
-  <div class="card w-70 bg-base-100 shadow-xl">
-    <div class="card-body">
-      <p class="text-sm card-title"><%= link_to plot.name, plot_path(plot) %></p>
-    </div>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
+<div class="card m-4 w-full h-40 bg-base-100 shadow-xl">
+  <p class="text-sm card-title"><%= link_to truncate(plot.name, length: 20), plot_path(plot) %></p>
+  <p class="text-sm card-title"><%= plot.updated_at %></p>
 </div>
