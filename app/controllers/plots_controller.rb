@@ -2,7 +2,7 @@ class PlotsController < ApplicationController
 
   def index
     @q = Plot.where(user_id: [current_user.id]).ransack(params[:q])
-    @plots = @q.result(distinct: true).order(name: "DESC")
+    @plots = @q.result(distinct: true).order(created_at: :desc)
     @message = "Hello, world!"
   end
 

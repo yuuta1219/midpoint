@@ -2,12 +2,17 @@
 
 <div class="bg-base-300">
   <div class="flex">
-    <%= link_to '新規登録',new_plot_path,class: "flex-1" %>
     <h1 class="flex-1">plot一覧</h1>
   </div>
-  <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 xl:grid-cols-8">
+  <div class="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8">
     <%= render @plots %>
   </div>
+</div>
+
+<div class="fixed bottom-0 right-0 m-8">
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+    <i class="fas fa-plus"></i>
+  </button>
 </div>
 
 <%= render 'shared/footer' %>
