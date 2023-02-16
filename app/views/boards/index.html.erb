@@ -1,0 +1,21 @@
+<% content_for :content do %>
+
+  <div class="bg-base-300">
+    <label for="my-modal" class="btn btn-ghost">new card</label>
+      <input type="checkbox" id="my-modal" class="modal-toggle" />
+      <div class="modal">
+        <div class="modal-box">
+          <div class="modal-action">
+            <h3 class="font-bold text-lg">カードを登録する</h3>
+            <label for="my-modal" class="btn btn-ghost">閉じる</label>
+          </div>
+            <%= render 'cards/form' %>
+        </div>
+      </div>
+      <div class=" ">
+   
+    </div>
+  </div>
+  
+  <% end %>
+  <%= render 'shared/plot_menu', { plot: @plot } %>
