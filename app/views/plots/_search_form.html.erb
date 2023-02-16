@@ -1,0 +1,6 @@
+<%= search_form_for @q, url: plots_path do |f| %>
+  <div class="flex">
+    <%= f.search_field :name_cont, class: 'input input-ghost w-full max-w-xs', placeholder: "タイトル" %>
+    <%= f.submit 'search', class: 'btn glass' %>
+  </div>
+<% end %>
