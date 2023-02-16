@@ -37,3 +37,4 @@ gem "vite_rails", "~> 3.0"
 gem 'cssbundling-rails'
 gem 'sorcery'
 gem 'ransack'
+gem 'rails-i18n', '~> 7.0.0'
