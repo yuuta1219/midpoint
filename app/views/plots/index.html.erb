@@ -1,27 +1,12 @@
 <%= render 'shared/login_check' %>
 
 <div class="bg-base-300">
-  <h1>plot一覧</h1>
-  <div class="flex flex-wrap">
+  <div class="flex">
+    <%= link_to '新規登録',new_plot_path,class: "flex-1" %>
+    <h1 class="flex-1">plot一覧</h1>
+  </div>
+  <div class="grid gap-4 grid-cols-2 sm:grid-cols-4 xl:grid-cols-8">
     <%= render @plots %>
-    <div class='p-3'>
-      <div class="card w-70 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <div class="flex flex-wrap">
-            <h2 class="card-title">
-              <%= link_to new_plot_path do %>
-                <div class="flex flex-col text-center">
-                  <p>新規登録</p>
-                  <i class="bi bi-plus-lg"></i>
-                </div>
-              <% end %>
-            </h2>
-          </div>
-          <div class="card-actions justify-end">
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
