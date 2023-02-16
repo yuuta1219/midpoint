@@ -1,4 +1,4 @@
-<% content_for :content do %>
+<%= render 'shared/plot_menu', { plot: @plot } %>
 
 <div class="bg-base-300">
   <label for="my-modal" class="btn btn-ghost">new card</label>
@@ -16,6 +16,3 @@
     <%= render @cards %>
   </div>
 </div>
-
-<% end %>
-<%= render 'shared/plot_menu', { plot: @plot } %>

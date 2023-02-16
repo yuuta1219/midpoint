@@ -11,6 +11,7 @@ class PlotsController < ApplicationController
   end
 
   def show
+    @current_page = "tab1"
     @plot = Plot.find(params[:id])
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
