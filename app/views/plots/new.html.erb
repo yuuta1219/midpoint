@@ -1,30 +1,26 @@
 <%= render 'shared/login_check' %>
 
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content">
-    <div class="max-w-md mx-auto">
-      <h1 class="text-5xl text-center mb-8">
-        プロット作成一次保管所
-      </h1>
+<div class="bg-base-200 text-gray-700">
+ <div class="flex border-b-4 border-base-300">
+  <div class="flex-1 flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to image_tag("NewPlot.png", :size => '150x150'), new_plot_path %></div>
+  </div>
+    <div class="mx-4 ">
       <%= form_with model: @plot, local: true do |f| %>
-        <div class="form-group">
-          <%= f.label :プロット名 %>
-          <%= f.text_field :name, class: 'form-control', placeholder: "必須事項" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :テーマ %>
-          <%= f.text_field :theme, class: 'form-control', placeholder: "テーマは？" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :ログライン %>
-          <%= f.text_field :one_line, class: 'form-control', placeholder: "一行で" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :メモ %>
-          <%= f.text_field :memo, class: 'form-control', placeholder: "メモ" %>
-        </div>
-        <div class="d-grid gap-2 mt-6">
-          <%= f.submit '登録する', class: 'btn' %>
+        <div class="flex flex-col">
+          <%= f.label :プロットタイトル, class: 'my-1 text-xl' %>
+            <p class="text-sm">作品のタイトルを決めましょう。</p>
+            <p class="text-sm">思い浮かばない場合や後で決めたい場合は、仮プロットを作成することができます。</p>
+          <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-full'%>
+          <%= f.label :テーマ, class: 'my-1 text-xl' %>
+            <p class="text-sm">作品のテーマを設定し、伝えたいことは何かを考えましょう。</p>
+          <%= f.text_field :theme, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-full' %>
+          <%= f.label :ログライン, class: 'my-1 text-xl' %>
+            <p class="text-sm">作品のログライン（one line）を設定しましょう。</p>
+            <p class="text-sm">ログラインとは、作品を一行で簡潔にまとめたものです。</p>
+          <%= f.text_field :one_line, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-full'%>
+          <%= f.label :メモ, class: 'my-1 text-xl' %>
+          <%= f.text_field :memo, class: 'my-1 textarea textarea-bordered textarea-secondary textarea-md w-full max-w-full' %>
+          <%= f.submit 'プロットを作成する', class: 'mt-8 mb-3 text-white btn btn-ghost bg-neutral-500 hover:bg-neutral-600' %>
         </div>
       <% end %>
     </div>
