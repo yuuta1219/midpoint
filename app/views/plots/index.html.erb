@@ -1,13 +1,24 @@
 <%= render 'shared/login_check' %>
 
-<div class="bg-base-300">
-  <div class="flex">
-    <h1 class="flex-1 font-light mx-4 text-4xl">Plot List </h1>
-    <%= render 'search_form' %>
+<div class="bg-base-200 text-gray-700">
+  <div class="flex border-b-4 border-base-300">
+    <div class="flex-1 flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to image_tag("PlotList.png", :size => '150x150'), plots_path %></div>
+    <div class="m-2 mx-4"><%= render 'search_form' %></div>
   </div>
   <div class="overflow-x-auto">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8">
       <%= render @plots %>
+      <div class="stack">
+        <%= link_to new_plot_path, class: "card-link" do %>
+          <div class="card m-4 h-40 h-40 bg-gradient-to-b from-white to-amber-50 shadow-2xl relative flex flex-col justify-center items-center hover:rotate-6">
+            <p class="text-sm"><i class="bi bi-plus-lg " style="font-size: 2rem;"></i></p>
+          </div>
+        <% end %>
+        <div class="card m-4 h-40 h-40 bg-gradient-to-b from-white to-amber-50"></div>
+        <div class="card m-4 h-40 h-40 bg-gradient-to-t from-amber-50 to-whit rotate-3"></div>
+        <div class="card m-4 h-40 h-40 bg-gradient-to-r from-white to-amber-50 -rotate-3"></div>
+        <div class="card m-4 h-40 h-40 bg-gradient-to-r from-amber-50 to-white"></div>
+      </div>
     </div>
   </div
 </div>
