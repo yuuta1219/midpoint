@@ -23,9 +23,7 @@
           <%= f.label :メモ, class: 'my-1 text-xl' %>
             <p class="text-sm">プロットカードの色を選択できます。</p>
             <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color" }, { selected: "white" } %>
-          <div class="btn test-xl my-2 cursor-pointer">
-            <%= f.submit 'プロットを作成する' %>
-          </div>
+            <%= f.submit 'プロットを作成する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
         </div>
       <% end %>
     </div>
