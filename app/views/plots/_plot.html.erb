@@ -1,21 +1,5 @@
 <%= link_to plot_path(plot), class: "card-link" do %>
-  <div class="card m-4 h-40 h-40 
-    <%=
-    case plot.color.to_sym
-    when :amber
-      "bg-amber-50"
-    when :blue
-      "bg-cyan-100"
-    when :orange
-      "bg-orange-100"
-    when :pink
-      "bg-pink-100"
-    when :green
-      "bg-teal-100"
-    when :gray
-      "bg-slate-200"
-    end
-    %> shadow-xl relative hover:opacity-100 hover:rotate-6">
+  <div class="card m-4 h-40 h-40 shadow-xl relative hover:opacity-100 hover:rotate-6 <%= render 'plot_color', { plot: plot } %>">
     <div class="absolute inset-0 z-10 hover:opacity-0">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "pin-image absolute left-1/2 -top-2 transform -translate-x-1/2", width: '30px', height: '30px') %>
     </div>

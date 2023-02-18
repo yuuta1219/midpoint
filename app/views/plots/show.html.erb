@@ -1,17 +1,21 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
-<div class="hero screen bg-base-200">
-  <div class='grid grid-cols-6 gap-4'>
-    <div class='col-span-2'>
-      <p class='border-b-4 pb-2 border-indigo-500'>テーマ</p>
-      <p class='text-1xl pb-4'><%= @plot.theme %></p>
-      <p class='border-b-4 pb-2 border-indigo-500'>ログライン</p>
-      <p class='text-1xl pb-4'><%= @plot.one_line %></p>
-      <p class='border-b-4 pb-2 border-indigo-500'>メモ</p>
-      <p class='text-1xl pb-4'><%= @plot.memo %></p>
+
+<div class=" <%= render "plot_color", { plot: @plot } %> min-h-screen ">
+  <div class="grid grid-cols-2 gap-4">
+    <div class='mx-2'>
+      <p class='border-b border-gray-500 text-xl'>テーマ</p>
+      <p class='text-sm mb-5'><%= @plot.theme.present? ? @plot.theme : "テーマは設定されていません。" %></p>
+      <p class='border-b border-gray-500 text-xl'>ログライン</p>
+      <p class='text-sm mb-5'><%= @plot.one_line.present? ? @plot.one_line : "ログラインは設定されていません。" %></p>
+      <p class='border-b border-gray-500 text-xl'>メモ</p>
+      <p class='text-sm mb-5'><%= @plot.memo.present? ? @plot.memo : "メモはありません。" %></p>
     </div>
-    <div class='col-span-4'>
+    <div class="m-2">
       <%= render 'eighteen_lines/form', { plot: @plot, eighteen_line: @eighteen_line } %>
       <%= render @eighteen_lines %>
+    </div>
+    <div>
+    <div class=""></div>
     </div>
   </div>
 </div>
