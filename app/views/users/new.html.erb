@@ -1,0 +1,23 @@
+<div class=''>
+  <%= form_with url: users_path, local: true do |f| %>
+    <div class="">
+      <%= f.label :名前 %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="">
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <div class="">
+      <%= f.label :パスワード %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="">
+      <%= f.label :確認用パスワード %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <div class="">
+      <%= f.submit '登録する', class: 'btn' %>
+    </div>
+  <% end %>
+</div>

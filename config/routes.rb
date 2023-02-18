@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
 
+  get 'new_guest', to: 'users#new_guest'
+  
   resources :users, only: %i[new create]
   resources :plots, shallow: true do
     resources :eighteen_lines
