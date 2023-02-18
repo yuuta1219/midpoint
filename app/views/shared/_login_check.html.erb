@@ -4,6 +4,7 @@
     <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
   <% else %>
     <div><%= link_to image_tag("logo.png", :size => '150x150'), root_path %></div>
+    <div><%= button_to 'ゲストログイン', new_guest_path, method: :get %></div>
     <div>
       <label for="my-modal-1" class="btn btn-ghost">signup</label>
       <input type="checkbox" id="my-modal-1" class="modal-toggle" />
