@@ -33,10 +33,9 @@ class PlotsController < ApplicationController
   def update
     @plot = current_user.plots.find(params[:id])
     if @plot.update(plot_params)
-      redirect_to plots_path, success: "更新しました！"
+      redirect_to plot_path(@plot), success: "更新しました！"
     else
-      flash.now[:danger] = "更新できませんでした。"
-      render :edit
+      redirect_to plot_path(@plot), success: "更新できませんでした。"
     end
   end
 
