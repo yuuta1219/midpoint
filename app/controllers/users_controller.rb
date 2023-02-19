@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create new_guest]
 
   def new
     @user = User.new
@@ -8,11 +8,18 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, success: "アカウントを作成しました。"
+      auto_login(@user)
+      redirect_to root_path, success: "アカウントを作成しました🎉"
     else
       flash.now[:danger] = "アカウトを作成できませんでした。"
       render :new
     end
+  end
+
+  def new_guest
+    user = User.create_guest
+    auto_login(user)
+    redirect_to root_path, success: "ゲストユーザーとしてログインしました。"
   end
 
   private

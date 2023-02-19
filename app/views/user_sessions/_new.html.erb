@@ -1,15 +1,14 @@
-<div class=''>
+<div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">ログイン</div>
+<div class='m-2'>
   <%= form_with url: login_path, local: true do |f| %>
-    <div class="">
-      <%= f.label :メールアドレス %>
-      <%= f.text_field :email, class: 'form-control' %>
+    <div class="flex flex-col">
+      <%= f.label :メールアドレス, class: 'mb-2 text-xl' %>
+      <%= f.text_field :email, class: 'my-1 input input-bordered w-full max-w-xs', placeholder:"email" %>
     </div>
-    <div class="">
-      <%= f.label :パスワード %>
-      <%= f.password_field :password, class: 'form-control' %>
+    <div class="flex flex-col">
+      <%= f.label :パスワード, class: 'my-2 text-xl' %>
+      <%= f.password_field :password, class: 'my-1 input input-bordered w-full max-w-xs', placeholder:"password" %>
     </div>
-    <div class="">
-      <%= f.submit 'ログイン', class: 'btn btn-outline-light' %>
-    </div>
+    <%= f.submit 'ログイン', class: 'btn text-gray-100 bg-gray-900 my-2'%>
   <% end %>
 </div>

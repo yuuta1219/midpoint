@@ -1,6 +1,6 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-300">
+<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen ">
   <label for="my-modal" class="btn btn-ghost">new card</label>
     <input type="checkbox" id="my-modal" class="modal-toggle" />
     <div class="modal">

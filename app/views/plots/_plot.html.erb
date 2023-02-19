@@ -1,9 +1,13 @@
-<div class='p-3'>
-  <div class="card w-70 bg-base-100 shadow-xl">
-    <div class="card-body">
-      <p class="text-sm card-title"><%= link_to plot.name, plot_path(plot) %></p>
+<%= link_to plot_path(plot), class: "card-link" do %>
+  <div class="card m-4 h-40 h-40 shadow-xl relative hover:opacity-100 hover:rotate-6 <%= render 'plot_color', { plot: plot } %>">
+    <div class="absolute inset-0 z-10 hover:opacity-0">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "pin-image absolute left-1/2 -top-2 transform -translate-x-1/2", width: '30px', height: '30px') %>
     </div>
-    <div class="card-actions justify-end">
+    <div class="absolute inset-0 -z-10 hover:z-10">
+      <p class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-black text-2xl">.</p>
     </div>
+    <p class="text-base m-4 card-title hover:text-blue-600"><%= truncate(plot.name, length: 19, omission: '...') %></p>
+    <p class="text-sm mx-4 my-12 absolute inset-x-0 bottom-0 hover:text-gray-600"><%= truncate(plot.one_line, length: 28, omission: '...') %></p>
+    <p class="text-xs m-4 absolute inset-x-0 bottom-0 hover:text-gray-600">更新日: <%= l(plot.updated_at, format: :mini) %></p>
   </div>
-</div>
+<% end %>

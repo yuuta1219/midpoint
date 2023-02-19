@@ -1,17 +1,39 @@
+<%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
-<div class="hero screen bg-base-200">
-  <div class='grid grid-cols-6 gap-4'>
-    <div class='col-span-2'>
-      <p class='border-b-4 pb-2 border-indigo-500'>テーマ</p>
-      <p class='text-1xl pb-4'><%= @plot.theme %></p>
-      <p class='border-b-4 pb-2 border-indigo-500'>ログライン</p>
-      <p class='text-1xl pb-4'><%= @plot.one_line %></p>
-      <p class='border-b-4 pb-2 border-indigo-500'>メモ</p>
-      <p class='text-1xl pb-4'><%= @plot.memo %></p>
+
+<div class=" <%= render "plot_color", { plot: @plot } %> min-h-screen ">
+  <div class="grid grid-cols-2 gap-4 ">
+    <div class='mx-2'>
+      <p class='border-b border-gray-500 text-xl'>テーマ</p>
+      <p class='text-sm mb-5'><%= @plot.theme.present? ? @plot.theme : "テーマは設定されていません。" %></p>
+      <p class='border-b border-gray-500 text-xl'>ログライン</p>
+      <p class='text-sm mb-5'><%= @plot.one_line.present? ? @plot.one_line : "ログラインは設定されていません。" %></p>
+      <p class='border-b border-gray-500 text-xl'>メモ</p>
+      <p class='text-sm mb-5'><%= @plot.memo.present? ? @plot.memo : "メモはありません。" %></p>
     </div>
-    <div class='col-span-4'>
+    <div class="m-2">
       <%= render 'eighteen_lines/form', { plot: @plot, eighteen_line: @eighteen_line } %>
       <%= render @eighteen_lines %>
+    </div>
+    <div class="col-span-2">
+      <label for="my-modal-1" class="btn btn-ghost font-light">プロットを編集する</label>
+      <input type="checkbox" id="my-modal-1" class="modal-toggle" />
+      <div class="modal w-full">
+        <div class="modal-box w-11/12 max-w-5xl">
+          <label for="my-modal-1" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="text-xl font-bold mb-4 border-b border-gray-500">プロットを編集する</div>
+          <%= render 'form' %>
+        </div>
+      </div>
+      <label for="my-modal-2" class="btn btn-ghost font-light">プロットを削除する。</label>
+      <input type="checkbox" id="my-modal-2" class="modal-toggle" />
+      <div class="modal w-full">
+        <div class="modal-box relative">
+          <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="text-xl font-bold mb-4 border-b border-gray-500">プロットを削除する。</div>
+          <%= button_to "プロットを削除する",plot_path(@plot), method: :delete %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

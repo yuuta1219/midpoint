@@ -1,9 +1,8 @@
 class PlotsController < ApplicationController
 
   def index
-    @q = Plot.where(user_id: [current_user.id]).ransack(params[:q])
-    @plots = @q.result(distinct: true).order(name: "DESC")
-    @message = "Hello, world!"
+    @q = current_user.plots.ransack(params[:q])
+    @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -34,10 +33,9 @@ class PlotsController < ApplicationController
   def update
     @plot = current_user.plots.find(params[:id])
     if @plot.update(plot_params)
-      redirect_to plots_path, success: "更新しました！"
+      redirect_to plot_path(@plot), success: "更新しました！"
     else
-      flash.now[:danger] = "更新できませんでした。"
-      render :edit
+      redirect_to plot_path(@plot), success: "更新できませんでした。"
     end
   end
 
@@ -50,7 +48,7 @@ class PlotsController < ApplicationController
   private
 
   def plot_params
-    params.require(:plot).permit(:name, :theme, :one_line, :memo)
+    params.require(:plot).permit(:name, :theme, :one_line, :memo, :color)
   end
 
 end
