@@ -1,5 +1,5 @@
 <%= form_with model: @card, local: true do |f| %>
-  <div class="form-group">
+  <div class="grid grid-cols-2">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル" %>
     <%= f.label :time %>

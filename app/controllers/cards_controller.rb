@@ -1,8 +1,9 @@
 class CardsController < ApplicationController
   def index
-    @current_page = "tab3"
+    @current_page = "tab2"
     @plot = Plot.find(params[:plot_id])
     @cards = @plot.cards.order(created_at: :asc)
+    @cards_json = @cards.to_json(only: [:name, :emotional_value])
   end
 
   def new
