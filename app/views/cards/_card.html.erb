@@ -1,10 +1,16 @@
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <p class="card-title"><%= card.name %></p>
-    <p class="card-title"><%= card.time %></p>
-    <p class="card-title"><%= card.current_location %></p>
-    <p class="card-title"><%= card.point_of_view %></p>
-    <p class="card-title"><%= card.emotional_value %></p>
-    <p class="card-title"><%= card.body %></p>
+<div class="carousel-item bg-slate-50 card m-4 h-40 w-60 shadow-xl relative">
+  <div class="flex">
+    <div class="avatar">
+      <div class="w-10 rounded-full ring ring-black ring-offset-base-100 ring-offset-2">
+        <div><%= card.point_of_view %></div>
+      </div>
+    </div>
+    <%= content_tag :div,truncate(card.name, length: 9, omission: '...') , class: "mx-3 my-2 flex-1" %>
+    <div class="text-xl mr-2 my-1"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+  </div>
+  <div class="text-sm m-2"><%= card.body %></div>
+  <div class="absolute inset-x-0 bottom-0 m-2 flex">
+    <div class="flex-1 text-xs">場所「<%= card.current_location %>」</div>
+    <div class="flex-1 text-xs"><%= card.time %></div>
   </div>
 </div>

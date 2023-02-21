@@ -1,18 +1,25 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen ">
+<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen "後でここを消せ">
   <label for="my-modal" class="btn btn-ghost">new card</label>
-    <input type="checkbox" id="my-modal" class="modal-toggle" />
-    <div class="modal">
-      <div class="modal-box">
-        <div class="modal-action">
-          <h3 class="font-bold text-lg">カードを登録する</h3>
-          <label for="my-modal" class="btn btn-ghost">閉じる</label>
-        </div>
-          <%= render 'cards/form' %>
+  <input type="checkbox" class="toggle" checked onclick="document.getElementById('my-element').classList.toggle('hidden')"/>
+  
+  <div id="my-element" class="hidden">
+    <%= content_tag :div, "", id: "root", data: { cards: @cards_json || '[]' } %>
+    <%= vite_javascript_tag 'board.tsx' %>
+  </div>
+ 
+  <input type="checkbox" id="my-modal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box">
+      <div class="modal-action">
+        <h3 class="font-bold text-lg">カードを登録する</h3>
+        <label for="my-modal" class="btn btn-ghost">閉じる</label>
       </div>
+        <%= render 'cards/form' %>
     </div>
-    <div class=" ">
+  </div>
+  <div class="carousel rounded-box">
     <%= render @cards %>
   </div>
 </div>

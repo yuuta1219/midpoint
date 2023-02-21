@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   def index
-    @current_page = "tab5"
+    @current_page = "tab4"
     @plot = Plot.find(params[:plot_id])
     @characters = @plot.characters.order(created_at: :asc)
   end
