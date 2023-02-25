@@ -22,6 +22,9 @@ class PlotsController < ApplicationController
       40.times do |n|
         @plot.cards.create(name: "シーン#{n+1}")
       end
+      18.times do |n|
+        @plot.eighteen_lines.create(body: "プロットポイント#{n+1}を入力してください。")
+      end
       redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
