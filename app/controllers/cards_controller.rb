@@ -20,9 +20,23 @@ class CardsController < ApplicationController
     end
   end
 
+  def update
+    @card = Card.find(params[:id])
+    if @card.update(card_update_params)
+      redirect_to plot_cards_path(@card.plot), notice: 'カードを更新しました'
+    else
+      redirect_to root_path, success: "更新できませんでした。"
+    end
+  end
+
+
   private
 
   def card_params
     params.permit(:name, :time, :current_location, :point_of_view, :emotional_value, :body).merge(plot_id: params[:plot_id])
   end
+  def card_update_params
+    params.require(:card).permit(:name, :time, :current_location, :point_of_view, :emotional_value, :body).merge(plot_id: @card.plot_id)
+  end
+  
 end

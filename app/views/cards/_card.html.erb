@@ -1,16 +1,29 @@
-<div class="carousel-item bg-slate-50 card m-4 h-40 w-60 shadow-xl relative">
-  <div class="flex">
-    <div class="avatar">
-      <div class="w-10 rounded-full ring ring-black ring-offset-base-100 ring-offset-2">
-        <div><%= card.point_of_view %></div>
-      </div>
+<label for="my-modal-<%=card.id%>">
+  <div class="carousel-item bg-white card m-4 h-40 w-80 shadow-xl relative">
+    <div class="flex">
+      <%= content_tag :div,truncate(card.name, length: 9, omission: '...') , class: "mx-3 mt-1 flex-1 border-b border-slate-700" %>
+      <div class="text-xl mr-1 mt-1 border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
     </div>
-    <%= content_tag :div,truncate(card.name, length: 9, omission: '...') , class: "mx-3 my-2 flex-1" %>
-    <div class="text-xl mr-2 my-1"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+    <div class="text-sm m-1 mx-2"><%= card.body %></div>
+    <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700">
+      <div class="text-xs mr-2"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
+      <div class="text-xs mr-2"><i class="bi bi-eye"></i><%= card.point_of_view %></div>
+      <div class="text-xs mr-2"><i class="bi bi-calendar3"></i><%= card.time %></div>
+    </div>
   </div>
-  <div class="text-sm m-2"><%= card.body %></div>
-  <div class="absolute inset-x-0 bottom-0 m-2 flex">
-    <div class="flex-1 text-xs">場所「<%= card.current_location %>」</div>
-    <div class="flex-1 text-xs"><%= card.time %></div>
-  </div>
-</div>
+</label>
+<input type="checkbox" id="my-modal-<%=card.id%>" class="modal-toggle" />
+<label for="my-modal-<%=card.id%>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-<%=card.id%>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <%= form_with model: card, local: true do |f| %>
+      <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル", value: card.try(:name) || "" %>
+      <%= f.number_field :time, class: 'input input-ghost w-full max-w-xs', placeholder: "作中時間", value: card.try(:time) || "" %>
+      <%= f.text_field :current_location, class: 'input input-ghost w-full max-w-xs', placeholder: "場所", value: card.try(:current_location) || "" %>
+      <%= f.text_field :point_of_view, class: 'input input-ghost w-full max-w-xs', placeholder: "視点", value: card.try(:point_of_view) || "" %>
+      <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値", value: card.try(:emotional_value) || "" %>
+      <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容", value: card.try(:body) || "" %>
+      <%= f.submit '更新する', class: 'btn btn-ghost w-full' %>
+    <% end %>
+  </label>
+</label>
