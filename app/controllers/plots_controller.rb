@@ -5,15 +5,15 @@ class PlotsController < ApplicationController
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
 
-  def new
-    @plot = Plot.new
-  end
-
   def show
     @current_page = "tab1"
     @plot = Plot.find(params[:id])
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
+  end
+
+  def new
+    @plot = Plot.new
   end
 
   def create

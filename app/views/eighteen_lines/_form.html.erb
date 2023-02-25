@@ -1,5 +1,5 @@
 <%= form_with model: eighteen_line, url: [plot, eighteen_line], local: true do |f| %>
-  <div class="grid grid-cols-7 border-b border-gray-500 mb-2">
+  <div class="grid grid-cols-7 mx-3 my-2">
     <div class="col-span-6 mb-2"><%= f.text_field :body, class: 'input input-bordered input-secondary input-md w-full max-w-full', placeholder: "シーンを入力" %></div>
     <div class="col-span-1"> <%= f.submit '登録する', class: 'btn btn-ghost font-light' %></div>
   </div>

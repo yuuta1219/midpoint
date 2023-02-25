@@ -1,5 +1,5 @@
 <label for="my-modal-<%=card.id%>">
-  <div class="carousel-item bg-white card m-4 h-40 w-80 shadow-xl relative">
+  <div class="carousel-item  <%= render "plots/plot_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
     <div class="flex">
       <%= content_tag :div,truncate(card.name, length: 9, omission: '...') , class: "mx-3 mt-1 flex-1 border-b border-slate-700" %>
       <div class="text-xl mr-1 mt-1 border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
