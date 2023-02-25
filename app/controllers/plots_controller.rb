@@ -19,15 +19,14 @@ class PlotsController < ApplicationController
   def create
     @plot = current_user.plots.build(plot_params)
     if @plot.save
+      40.times do |n|
+        @plot.cards.create(name: "シーン#{n+1}")
+      end
       redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
       render :new
     end
-  end
-
-  def edit
-    @plot = current_user.plots.find(params[:id])
   end
   
   def update

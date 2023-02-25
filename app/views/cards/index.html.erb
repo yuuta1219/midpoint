@@ -1,6 +1,7 @@
+<%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen "後でここを消せ">
+<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen ">
   <label for="my-modal" class="btn btn-ghost">new card</label>
   <input type="checkbox" class="toggle" checked onclick="document.getElementById('my-element').classList.toggle('hidden')"/>
   
@@ -19,7 +20,25 @@
         <%= render 'cards/form' %>
     </div>
   </div>
-  <div class="carousel rounded-box">
-    <%= render @cards %>
+  <div class="m-2">
+    <% if @cards.present? %>
+      <div class="text-2xl">ACT ONE</div>
+      <div class="carousel rounded-box">
+        <%= render @cards[0..9] %>
+      </div>
+      <div class="text-2xl">ACT TWO</div>
+      <div class="carousel rounded-box">
+        <%= render @cards[10..19] if @cards.size > 10 %>
+      </div>
+      <div class="text-2xl">ACT TWO</div>
+      <div class="carousel rounded-box">
+        <%= render @cards[20..29] if @cards.size > 20 %>
+      </div>
+      <div class="text-2xl">ACT THREE</div>
+      <div class="carousel rounded-box">
+        <%= render @cards[30..100] if @cards.size > 30 %>
+      </div>
+    <% end %>
   </div>
 </div>
+
