@@ -63,7 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
   create_table "foreshadowing_cards", force: :cascade do |t|
     t.integer "foreshadowing_id"
     t.integer "card_id"
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_foreshadowing_cards_on_card_id"

@@ -10,6 +10,7 @@ class CardsController < ApplicationController
   def create
     @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
+    byebug
     if @card.save
       redirect_to plot_cards_path(@plot), success: "作成しました！"
     else
@@ -30,6 +31,6 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:scene, :time, :current_location, :point_of_view, :emotional_value, :body, :status, foreshadowing_ids: []).merge(plot_id: params[:plot_id])
+    params.require(:card).permit(:scene, :time, :current_location, :point_of_view, :emotional_value, :body, foreshadowing_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
   end
 end
