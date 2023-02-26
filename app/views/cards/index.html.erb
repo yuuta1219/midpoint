@@ -17,26 +17,26 @@
         <h3 class="font-bold text-lg">カードを登録する</h3>
         <label for="my-modal" class="btn btn-ghost">閉じる</label>
       </div>
-        <%= render 'cards/form' %>
+        <%= render 'cards/form', { card: @card } %>
     </div>
   </div>
   <div class="m-2">
     <% if @cards.present? %>
       <div class="text-2xl">ACT ONE</div>
       <div class="carousel rounded-box">
-        <%= render @cards[0..9] %>
+        <%= render @cards.where(scene: 1..10) %>
       </div>
       <div class="text-2xl">ACT TWO</div>
       <div class="carousel rounded-box">
-        <%= render @cards[10..19] if @cards.size > 10 %>
+        <%= render @cards.where(scene: 11..20) if @cards.size > 10 %>
       </div>
       <div class="text-2xl">ACT TWO</div>
       <div class="carousel rounded-box">
-        <%= render @cards[20..29] if @cards.size > 20 %>
+        <%= render @cards.where(scene: 21..30) if @cards.size > 20 %>
       </div>
       <div class="text-2xl">ACT THREE</div>
       <div class="carousel rounded-box">
-        <%= render @cards[30..100] if @cards.size > 30 %>
+        <%= render @cards.where(scene: 31..100) if @cards.size > 30 %>
       </div>
     <% end %>
   </div>

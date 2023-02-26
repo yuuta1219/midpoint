@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_120934) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
   create_table "behind_the_scenes", force: :cascade do |t|
     t.string "name"
     t.integer "time"
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_120934) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.string "name"
+    t.integer "scene"
     t.integer "time"
     t.string "current_location"
     t.string "point_of_view"
@@ -83,11 +83,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_120934) do
     t.string "name"
     t.string "theme"
     t.string "one_line"
-    t.text "memo"
+    t.integer "color", default: 0, null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "color", default: 0, null: false
     t.index ["user_id"], name: "index_plots_on_user_id"
   end
 

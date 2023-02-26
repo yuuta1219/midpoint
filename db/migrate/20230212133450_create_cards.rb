@@ -1,7 +1,7 @@
 class CreateCards < ActiveRecord::Migration[7.0]
   def change
     create_table :cards do |t|
-      t.string :name
+      t.integer :scene
       t.integer :time
       t.string :current_location
       t.string :point_of_view

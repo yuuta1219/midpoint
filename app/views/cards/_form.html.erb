@@ -1,7 +1,7 @@
-<%= form_with model: @card, local: true do |f| %>
+<%= form_with model: card, url: plot_cards_path(@plot, card),  local: true do |f| %>
   <div class="grid grid-cols-2">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル" %>
+    <%= f.label :scene %>
+    <%= f.number_field :scene, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンナンバー" %>
     <%= f.label :time %>
     <%= f.number_field :time, class: 'input input-ghost w-full max-w-xs', placeholder: "作中時間" %>
     <%= f.label :current_location %>
@@ -12,6 +12,11 @@
     <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値" %>
     <%= f.label :body %>
     <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容" %>
+    <%= f.label :foreshadowing_ids %>
+    <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name do |cb| %>
+      <%= cb.check_box(class: 'input input-ghost w-full max-w-xs') %>
+      <%= cb.label(class: 'input input-ghost w-full max-w-xs') %>
+    <% end %>
     <%= f.submit '登録する', class: 'btn btn-ghost' %>
   </div>
 <% end %>
