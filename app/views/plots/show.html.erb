@@ -1,39 +1,38 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class=" <%= render "plot_color", { plot: @plot } %> min-h-screen ">
-  <div class="grid grid-cols-2 gap-4 ">
-    <div class='mx-2'>
-      <p class='border-b border-gray-500 text-xl'>テーマ</p>
-      <p class='text-sm mb-5'><%= @plot.theme.present? ? @plot.theme : "テーマは設定されていません。" %></p>
-      <p class='border-b border-gray-500 text-xl'>ログライン</p>
-      <p class='text-sm mb-5'><%= @plot.one_line.present? ? @plot.one_line : "ログラインは設定されていません。" %></p>
-      <p class='border-b border-gray-500 text-xl'>メモ</p>
-      <p class='text-sm mb-5'><%= @plot.memo.present? ? @plot.memo : "メモはありません。" %></p>
+<div class="bg-base-200 min-h-screen">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <%= form_with model: @plot, local: true do |f| %>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "plots/plot_color", { plot: @plot } %>">
+    <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="mx-4 border-b border-gray-500 text-xl">タイトル <div class="tooltip tooltip-right" data-tip="作品のタイトルを決めましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+      <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xs'%>
+      <div class="mx-4 border-b border-gray-500 text-xl">テーマ <div class="tooltip tooltip-right" data-tip="作品のテーマを設定し、伝えたいことは何かを考えましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+      <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xs'%>
+      <div class="mx-4 border-b border-gray-500 text-xl">ログライン <div class="tooltip tooltip-right" data-tip="作品のログライン（one line）を設定しましょう。ログラインとは、作品を一行で簡潔にまとめたものです。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+      <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost textarea-sm w-full max-w-xl h-24'%>
+      <div class="mx-4 border-b border-gray-500 text-xl">カードカラー <div class="tooltip tooltip-right" data-tip="プロットカードの色を選択できます"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+      <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "ml-3 select select-ghost select-xs max-w-xs my-2" }%>
+      <div></div>
+      <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
+    <% end %>
+    <label for="my-modal-4" class="btn btn-ghost font-light">プロットを削除</label>
+      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+      <label for="my-modal-4" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+          <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
+          <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
+          <%= button_to "プロットを削除する",plot_path(@plot),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+        </label>
+      </label>
     </div>
-    <div class="m-2">
-      <%= render 'eighteen_lines/form', { plot: @plot, eighteen_line: @eighteen_line } %>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "plots/plot_color", { plot: @plot } %>">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="mx-3 text-xl border-b border-gray-500">18のプロットポイント</div>
       <%= render @eighteen_lines %>
-    </div>
-    <div class="col-span-2">
-      <label for="my-modal-1" class="btn btn-ghost font-light">プロットを編集する</label>
-      <input type="checkbox" id="my-modal-1" class="modal-toggle" />
-      <div class="modal w-full">
-        <div class="modal-box w-11/12 max-w-5xl">
-          <label for="my-modal-1" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <div class="text-xl font-bold mb-4 border-b border-gray-500">プロットを編集する</div>
-          <%= render 'form' %>
-        </div>
-      </div>
-      <label for="my-modal-2" class="btn btn-ghost font-light">プロットを削除する。</label>
-      <input type="checkbox" id="my-modal-2" class="modal-toggle" />
-      <div class="modal w-full">
-        <div class="modal-box relative">
-          <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <div class="text-xl font-bold mb-4 border-b border-gray-500">プロットを削除する。</div>
-          <%= button_to "プロットを削除する",plot_path(@plot), method: :delete %>
-        </div>
-      </div>
+      <%= render 'eighteen_lines/form', { plot: @plot, eighteen_line: @eighteen_line } %>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to root_path, success: "アカウントを作成しました🎉"
+      redirect_to plots_path, success: "アカウントを作成しました🎉"
     else
       flash.now[:danger] = "アカウトを作成できませんでした。"
       render :new
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def new_guest
     user = User.create_guest
     auto_login(user)
-    redirect_to root_path, success: "ゲストユーザーとしてログインしました。"
+    redirect_to plots_path, success: "ゲストユーザーとしてログインしました。"
   end
 
   private

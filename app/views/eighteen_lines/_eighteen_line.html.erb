@@ -1,1 +1,3 @@
-<h1><%= eighteen_line.body %></h1>
+<%= form_with model: eighteen_line, local: true do |f| %>
+  <%= f.text_area :body, class: 'ml-1 my-1 textarea textarea-ghost textarea-sm w-full max-w-xl'%>
+<% end %>

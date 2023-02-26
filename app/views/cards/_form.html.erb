@@ -1,17 +1,27 @@
-<%= form_with model: @card, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル" %>
-    <%= f.label :time %>
-    <%= f.number_field :time, class: 'input input-ghost w-full max-w-xs', placeholder: "作中時間" %>
-    <%= f.label :current_location %>
-    <%= f.text_field :current_location, class: 'input input-ghost w-full max-w-xs', placeholder: "場所" %>
-    <%= f.label :point_of_view %>
-    <%= f.text_field :point_of_view, class: 'input input-ghost w-full max-w-xs', placeholder: "視点" %>
-    <%= f.label :emotional_value %>
-    <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値" %>
-    <%= f.label :body %>
-    <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容" %>
-    <%= f.submit '登録する', class: 'btn btn-ghost' %>
+<%= form_with model: card, url: plot_cards_path(@plot, card),  local: true do |f| %>
+  <div class="grid grid-cols-1">
+    <div class="text-xl border-b border-gray-500 ">カードを登録する</div>
+    <%= f.label :シーンナンバー, class: 'my-1 text-xl' %>
+    <%= f.number_field :scene, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xs', placeholder: "シーンナンバー" %>
+    <%= f.label :作中時間, class: 'my-1 text-xl' %>
+    <%= f.number_field :time, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "作中時間" %>
+    <%= f.label :場所, class: 'my-1 text-xl' %>
+    <%= f.text_field :current_location, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "場所" %>
+    <%= f.label :視点, class: 'my-1 text-xl' %>
+    <%= f.text_field :point_of_view, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "視点" %>
+    <%= f.label :感情変動値, class: 'my-1 text-xl' %>
+    <%= f.number_field :emotional_value , class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "感情変動値" %>
+    <%= f.label :シーン内容, class: 'my-1 text-xl' %>
+    <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "シーンの内容" %>
+    <%= f.label :関連伏線, class: 'my-1 text-xl' %>
+    <div>
+      <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name do |cb| %>
+        <div class="relative">
+          <%= cb.check_box(class: 'checkbox') %>
+          <%= cb.label(class: 'ml-7 label-text absolute inset-0') %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.submit '登録する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
   </div>
 <% end %>

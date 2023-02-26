@@ -4,7 +4,7 @@ class CreatePlots < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :theme
       t.string :one_line
-      t.text   :memo
+      t.integer :color, null: false, default: 0
       t.references :user, foreign_key: true
 
       t.timestamps

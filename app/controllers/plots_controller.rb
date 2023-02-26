@@ -5,10 +5,6 @@ class PlotsController < ApplicationController
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
 
-  def new
-    @plot = Plot.new
-  end
-
   def show
     @current_page = "tab1"
     @plot = Plot.find(params[:id])
@@ -16,18 +12,24 @@ class PlotsController < ApplicationController
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
   end
 
+  def new
+    @plot = Plot.new
+  end
+
   def create
     @plot = current_user.plots.build(plot_params)
     if @plot.save
+      40.times do |n|
+        @plot.cards.create(scene: n+1 )
+      end
+      18.times do |n|
+        @plot.eighteen_lines.create(body: "プロットポイント#{n+1}を入力してください。")
+      end
       redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
       render :new
     end
-  end
-
-  def edit
-    @plot = current_user.plots.find(params[:id])
   end
   
   def update
@@ -48,7 +50,7 @@ class PlotsController < ApplicationController
   private
 
   def plot_params
-    params.require(:plot).permit(:name, :theme, :one_line, :memo, :color)
+    params.require(:plot).permit(:name, :theme, :one_line, :color)
   end
 
 end
