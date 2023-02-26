@@ -1,10 +1,54 @@
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <p class="card-title"><%= card.name %></p>
-    <p class="card-title"><%= card.time %></p>
-    <p class="card-title"><%= card.current_location %></p>
-    <p class="card-title"><%= card.point_of_view %></p>
-    <p class="card-title"><%= card.emotional_value %></p>
-    <p class="card-title"><%= card.body %></p>
+<label for="my-modal-<%=card.id%>">
+  <div class="carousel-item  <%= render "plots/plot_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+    <div class="flex">
+      <div class="mx-3 mt-1 flex-1 border-b border-slate-700">シーン<%= card.scene %></div>
+      <div class="text-xl mr-1 mt-1 border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+    </div>
+    <div class="text-sm my-2 mx-3"><%= truncate(card.body, length: 63, omission: '...') %></div>
+    <div class="absolute inset-x-0 bottom-8 mx-3" style="overflow-x: auto; white-space: nowrap;">
+      <% card.foreshadowing_cards.each do |fc| %>
+        <span class="badge badge-outline badge-sm">
+          <%= fc.foreshadowing.name %>
+        </span>
+      <% end %>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700">
+      <div class="flex-1 text-xs mr-2"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
+      <div class="flex-1 text-xs mr-2"><i class="bi bi-eye"></i><%= card.point_of_view %></div>
+      <div class="text-xs mr-2"><i class="bi bi-calendar3"></i><%= card.time %></div>
+    </div>
   </div>
-</div>
+</label>
+<input type="checkbox" id="my-modal-<%=card.id%>" class="modal-toggle" />
+<label for="my-modal-<%=card.id%>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-<%=card.id%>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <%= form_with model: card, local: true do |f| %>
+      <div class="grid grid-cols-1">
+        <div class="text-xl border-b border-gray-500 ">カードを更新する</div>
+        <%= f.label :シーンナンバー, class: 'my-1 text-xl' %>
+        <%= f.number_field :scene, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xs', placeholder: "シーンナンバー" %>
+        <%= f.label :作中時間, class: 'my-1 text-xl' %>
+        <%= f.number_field :time, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "作中時間" %>
+        <%= f.label :場所, class: 'my-1 text-xl' %>
+        <%= f.text_field :current_location, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "場所" %>
+        <%= f.label :視点, class: 'my-1 text-xl' %>
+        <%= f.text_field :point_of_view, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "視点" %>
+        <%= f.label :感情変動値, class: 'my-1 text-xl' %>
+        <%= f.number_field :emotional_value , class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "感情変動値" %>
+        <%= f.label :シーン内容, class: 'my-1 text-xl' %>
+        <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "シーンの内容" %>
+        <%= f.label :関連伏線, class: 'my-1 text-xl' %>
+        <div>
+          <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name do |cb| %>
+            <div class="relative">
+              <%= cb.check_box(class: 'checkbox') %>
+              <%= cb.label(class: 'ml-7 label-text absolute inset-0') %>
+            </div>
+          <% end %>
+        </div>
+        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
+      </div>
+    <% end %>
+  </label>
+</label>

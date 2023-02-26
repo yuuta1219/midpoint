@@ -1,38 +1,32 @@
-import Split from "react-split";
+import React from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Brush } from 'recharts';
 
-const menuItems = [
-  { label: "メニュー1", url: "#1" },
-  { label: "メニュー2", url: "#2" },
-  { label: "メニュー3", url: "#3" },
-  { label: "メニュー4", url: "#4" }
-];
-
-export default function App() {
-  return (
-    <Split
-      className="flex"
-      // ガターエレメントのカスタマイズ
-      gutter={(_, direction) => {
-        const gutterElement = document.createElement("div");
-        gutterElement.className = `w-[3px] bg-indigo-500 hover:cursor-col-resize hover:w-4 hover:bg-indigo-700 transition-all delay-300 duration-300 ease-in-out`;
-        return gutterElement;
-      }}
-      // デフォルトのガター幅を無効にするために指定
-      gutterStyle={() => ({})}
-      sizes={[25, 75]}
-    >
-      {/** 一つ目のコンポーネント */}
-      <ul className="bg-stone-50 p-2">
-        {menuItems.map((item) => (
-          <li key={item.url}>
-            <a href={item.url}>{item.label}</a>
-          </li>
-        ))}
-      </ul>
-      {/** 二つ目のコンポーネント */}
-      <div className="bg-indigo-50 flex items-center justify-center">
-        コンテンツ
-      </div>
-    </Split>
-  );
+interface DataPoint {
+  scene: number;
+  emotional_value: number;
 }
+
+interface Props {
+  data: DataPoint[];
+}
+
+const App = ({ data }: Props) => {
+  return (
+    <div>
+      <h1>感情値グラフ</h1>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={data}>
+          <XAxis dataKey="scene" />
+          <YAxis />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="emotional_value" name="感情値" stroke="#8884d8" />
+          <Tooltip label="感情値：{value}" />
+          <Legend />
+          <Brush dataKey="scene" />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+export default App;

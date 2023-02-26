@@ -6,20 +6,19 @@
       <h1 class="text-5xl font-bold">
       my_page
       </h1>
-
       <div>
-        <label for="my-modal-1" class="btn btn-ghost">Logout</label>
-        <input type="checkbox" id="my-modal-1" class="modal-toggle" />
-        <div class="modal">
-          <div class="modal-box relative">
-            <label for="my-modal-1" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <label for="my-modal-4" class="btn btn-ghost">Logout</label>
+        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+        <label for="my-modal-4" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">本当にログアウトしますか？</div>
             <% if current_user.guest? %>
               <div class="text-sm m-2 my-4">ゲストユーザーでログアウトした場合、保存したデータは全て消去されます。ご了承ください。</div>
             <% end %>
             <%= link_to 'ログアウト', logout_path, class: 'btn text-gray-100 bg-gray-900 m-2', data: { turbo_method: :delete } %>
-          </div>
-        </div>
+          </label>
+        </label>
       </div>
       <p class="py-6"></p>
     </div>

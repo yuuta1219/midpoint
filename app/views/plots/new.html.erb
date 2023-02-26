@@ -18,12 +18,10 @@
             <p class="text-sm">作品のログライン（one line）を設定しましょう。</p>
             <p class="text-sm">ログラインとは、作品を一行で簡潔にまとめたものです。</p>
           <%= f.text_field :one_line, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-full'%>
-          <%= f.label :メモ, class: 'my-1 text-xl' %>
-          <%= f.text_field :memo, class: 'my-1 textarea textarea-bordered textarea-secondary textarea-md w-full max-w-full' %>
-          <%= f.label :メモ, class: 'my-1 text-xl' %>
+          <%= f.label :プロットカラー, class: 'my-1 text-xl' %>
             <p class="text-sm">プロットカードの色を選択できます。</p>
             <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color" }, { selected: "white" } %>
-            <%= f.submit 'プロットを作成する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
+          <%= f.submit 'プロットを作成する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
         </div>
       <% end %>
     </div>
