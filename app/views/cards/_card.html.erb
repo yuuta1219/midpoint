@@ -4,10 +4,17 @@
       <div class="mx-3 mt-1 flex-1 border-b border-slate-700">シーン<%= card.scene %></div>
       <div class="text-xl mr-1 mt-1 border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
     </div>
-    <div class="text-sm m-1 mx-2"><%= card.body %></div>
+    <div class="text-sm my-2 mx-3"><%= truncate(card.body, length: 63, omission: '...') %></div>
+    <div class="absolute inset-x-0 bottom-8 mx-3" style="overflow-x: auto; white-space: nowrap;">
+      <% card.foreshadowing_cards.each do |fc| %>
+        <span class="badge badge-outline badge-sm">
+          <%= fc.foreshadowing.name %>
+        </span>
+      <% end %>
+    </div>
     <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700">
-      <div class="text-xs mr-2"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
-      <div class="text-xs mr-2"><i class="bi bi-eye"></i><%= card.point_of_view %></div>
+      <div class="flex-1 text-xs mr-2"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
+      <div class="flex-1 text-xs mr-2"><i class="bi bi-eye"></i><%= card.point_of_view %></div>
       <div class="text-xs mr-2"><i class="bi bi-calendar3"></i><%= card.time %></div>
     </div>
   </div>
@@ -23,7 +30,7 @@
       <%= f.text_field :point_of_view, class: 'input input-ghost w-full max-w-xs', placeholder: "視点", value: card.try(:point_of_view) || "" %>
       <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値", value: card.try(:emotional_value) || "" %>
       <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容", value: card.try(:body) || "" %>
-      <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name do |cb| %>
+      <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name, value: 1  do |cb| %>
         <%= cb.check_box(class: 'input input-ghost w-full max-w-xs') %>
         <%= cb.label(class: 'input input-ghost w-full max-w-xs') %>
       <% end %>

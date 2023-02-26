@@ -9,17 +9,13 @@
     <%= content_tag :div, "", id: "root", data: { cards: @cards_json || '[]' } %>
     <%= vite_javascript_tag 'board.tsx' %>
   </div>
- 
   <input type="checkbox" id="my-modal" class="modal-toggle" />
-  <div class="modal">
-    <div class="modal-box">
-      <div class="modal-action">
-        <h3 class="font-bold text-lg">カードを登録する</h3>
-        <label for="my-modal" class="btn btn-ghost">閉じる</label>
-      </div>
-        <%= render 'cards/form', { card: @card } %>
-    </div>
-  </div>
+  <label for="my-modal" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+      <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      <%= render 'cards/form', { card: @card } %>
+    </label>
+  </label>
   <div class="m-2">
     <% if @cards.present? %>
       <div class="text-2xl">ACT ONE</div>
