@@ -20,7 +20,7 @@ class PlotsController < ApplicationController
     @plot = current_user.plots.build(plot_params)
     if @plot.save
       40.times do |n|
-        @plot.cards.create(name: "シーン#{n+1}")
+        @plot.cards.create(scene: n+1 )
       end
       18.times do |n|
         @plot.eighteen_lines.create(body: "プロットポイント#{n+1}を入力してください。")
@@ -50,7 +50,7 @@ class PlotsController < ApplicationController
   private
 
   def plot_params
-    params.require(:plot).permit(:name, :theme, :one_line, :memo, :color)
+    params.require(:plot).permit(:name, :theme, :one_line, :color)
   end
 
 end

@@ -1,7 +1,7 @@
 <label for="my-modal-<%=card.id%>">
   <div class="carousel-item  <%= render "plots/plot_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
     <div class="flex">
-      <%= content_tag :div,truncate(card.name, length: 9, omission: '...') , class: "mx-3 mt-1 flex-1 border-b border-slate-700" %>
+      <div class="mx-3 mt-1 flex-1 border-b border-slate-700">シーン<%= card.scene %></div>
       <div class="text-xl mr-1 mt-1 border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
     </div>
     <div class="text-sm m-1 mx-2"><%= card.body %></div>
@@ -17,12 +17,16 @@
   <label class="modal-box relative" for="">
     <label for="my-modal-<%=card.id%>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <%= form_with model: card, local: true do |f| %>
-      <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンタイトル", value: card.try(:name) || "" %>
+      <%= f.number_field :scene, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンナンバー", value: card.try(:scene) || "" %>
       <%= f.number_field :time, class: 'input input-ghost w-full max-w-xs', placeholder: "作中時間", value: card.try(:time) || "" %>
       <%= f.text_field :current_location, class: 'input input-ghost w-full max-w-xs', placeholder: "場所", value: card.try(:current_location) || "" %>
       <%= f.text_field :point_of_view, class: 'input input-ghost w-full max-w-xs', placeholder: "視点", value: card.try(:point_of_view) || "" %>
       <%= f.number_field :emotional_value , class: 'input input-ghost w-full max-w-xs', placeholder: "感情変動値", value: card.try(:emotional_value) || "" %>
       <%= f.text_area :body, class: 'input input-ghost w-full max-w-xs', placeholder: "シーンを内容", value: card.try(:body) || "" %>
+      <%= f.collection_check_boxes :foreshadowing_ids, Foreshadowing.all, :id, :name do |cb| %>
+        <%= cb.check_box(class: 'input input-ghost w-full max-w-xs') %>
+        <%= cb.label(class: 'input input-ghost w-full max-w-xs') %>
+      <% end %>
       <%= f.submit '更新する', class: 'btn btn-ghost w-full' %>
     <% end %>
   </label>
