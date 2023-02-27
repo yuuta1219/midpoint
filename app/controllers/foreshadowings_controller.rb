@@ -3,9 +3,6 @@ class ForeshadowingsController < ApplicationController
     @current_page = "tab3"
     @plot = Plot.find(params[:plot_id])
     @foreshadowings = @plot.foreshadowings.order(created_at: :asc)
-  end
-
-  def new
     @foreshadowing = Foreshadowing.new
   end
   
@@ -19,9 +16,18 @@ class ForeshadowingsController < ApplicationController
     end
   end
 
+  def update
+    @foreshadowing  = Foreshadowing.find(params[:id])
+    if @foreshadowing.update(foreshadowing_params.merge(plot_id: @foreshadowing.plot_id))
+      redirect_to plot_foreshadowings_path(@foreshadowing.plot), notice: '更新しました'
+    else
+      redirect_to plot_foreshadowings_path(@foreshadowing.plot), success: "更新できませんでした。"
+    end
+  end
+
   private
 
   def foreshadowing_params
-    params.permit(:name, :body).merge(plot_id: params[:plot_id])
+    params.require(:foreshadowing).permit(:name, :body).merge(plot_id: params[:plot_id])
   end
 end

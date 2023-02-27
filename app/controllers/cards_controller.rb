@@ -10,7 +10,6 @@ class CardsController < ApplicationController
   def create
     @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
-    byebug
     if @card.save
       redirect_to plot_cards_path(@plot), success: "作成しました！"
     else
@@ -23,7 +22,7 @@ class CardsController < ApplicationController
     if @card.update(card_params.merge(plot_id: @card.plot_id))
       redirect_to plot_cards_path(@card.plot), notice: 'カードを更新しました'
     else
-      redirect_to root_path, success: "更新できませんでした。"
+      redirect_to plot_cards_path(@card.plot),success: "更新できませんでした。"
     end
   end
 
