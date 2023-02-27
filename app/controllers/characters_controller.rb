@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
     @current_page = "tab4"
     @plot = Plot.find(params[:plot_id])
     @characters = @plot.characters.order(created_at: :asc)
+    @character = Character.new
   end
 
   def new
@@ -19,9 +20,18 @@ class CharactersController < ApplicationController
     end
   end
 
+  def update
+    @character = Character.find(params[:id])
+    if @character.update(character_params.merge(plot_id: @character.plot_id))
+      redirect_to plot_characters_path(@character.plot), notice: '更新しました'
+    else
+      redirect_to plot_characters_path(@character.plot), success: "更新できませんでした。"
+    end
+  end
+
   private
 
   def character_params
-    params.permit(:name, :body).merge(plot_id: params[:plot_id])
+    params.require(:character).permit(:name, :body).merge(plot_id: params[:plot_id])
   end
 end
