@@ -2,6 +2,26 @@
 
 <div class="bg-base-300">
   <h1>プライバシーポリシー</h1>
+  <div id="drag" draggable="true">ドラッグする要素</div>
+<div id="dropzone" class="dropzone">ここにドロップしてください</div>
+
+<script>
+let draggedElement = null;
+
+document.getElementById("drag").addEventListener("mousedown", function(event) {
+  draggedElement = event.target;
+});
+
+document.getElementById("dropzone").addEventListener("dragover", function(event) {
+  event.preventDefault();
+});
+
+document.getElementById("dropzone").addEventListener("drop", function(event) {
+  event.preventDefault();
+  this.appendChild(draggedElement);
+});
+</script>
+
 
   </div>
 </div>
