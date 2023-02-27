@@ -1,18 +1,17 @@
+<%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class=" <%= render "plots/plot_color", { plot: @plot } %> min-h-screen ">
+<div class="bg-base-200 min-h-screen">
   <label for="my-modal" class="btn btn-ghost">new character</label>
-    <input type="checkbox" id="my-modal" class="modal-toggle" />
-    <div class="modal">
-      <div class="modal-box">
-        <div class="modal-action">
-          <h3 class="font-bold text-lg">登場人物を登録する</h3>
-          <label for="my-modal" class="btn btn-ghost">閉じる</label>
-        </div>
-          <%= render 'characters/form' %>
-      </div>
+  <input type="checkbox" id="my-modal" class="modal-toggle" />
+  <label for="my-modal" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+      <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      <%= render 'characters/form', { character: @character } %>
+    </label>
+  </label>
+    <div class="text-2xl m-3">伏線一覧</div>
+    <div class="m-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <%= render @characters %>
     </div>
-    <div class="grid grid-cols-10 ">
-    <%= render @characters %>
-  </div>
 </div>

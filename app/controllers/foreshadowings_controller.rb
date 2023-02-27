@@ -17,7 +17,7 @@ class ForeshadowingsController < ApplicationController
   end
 
   def update
-    @foreshadowing  = Foreshadowing.find(params[:id])
+    @foreshadowing = Foreshadowing.find(params[:id])
     if @foreshadowing.update(foreshadowing_params.merge(plot_id: @foreshadowing.plot_id))
       redirect_to plot_foreshadowings_path(@foreshadowing.plot), notice: '更新しました'
     else
@@ -28,6 +28,6 @@ class ForeshadowingsController < ApplicationController
   private
 
   def foreshadowing_params
-    params.require(:foreshadowing).permit(:name, :body).merge(plot_id: params[:plot_id])
+    params.require(:foreshadowing).permit(:name, :body, card_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
   end
 end

@@ -1,10 +1,10 @@
 <label for="my-modal-<%= foreshadowing.id %>">
-  <div class="carousel-item <%= render "plots/plot_color", { plot: @plot } %> card m-2 h-40 h-40 shadow-xl ">
+  <div class="carousel-item <%= render "plots/plot_color", { plot: @plot } %> card m-2 shadow-xl ">
     <div class="grid grid-cols-1">
       <div class="mx-3 mt-1 font-semibold border-b border-slate-700"><%= foreshadowing.name  %></div>
-      <div class="text-sm my-2 ml-4 mx-3"><%= foreshadowing.body %></div>
+      <div class="text-sm mb-12 mt-2 ml-4 mx-3"><%= simple_format(h(foreshadowing.body)) %></div>
     </div>
-    <div class="absolute inset-x-0 bottom-0 m-3 flex border-t border-slate-700" style="overflow-x: auto; white-space: nowrap;">
+    <div class="absolute inset-x-0 bottom-0 mx-3 flex " style="overflow-x: auto; white-space: nowrap;">
       <% foreshadowing.foreshadowing_cards.each do |fc| %>
         <span class="badge badge-outline badge-sm my-2 mr-2">
           scene<%= fc.card.scene %>
@@ -26,6 +26,14 @@
         <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl', placeholder: "伏線タイトルを入力" %>
         <%= f.label :伏線の内容, class: 'my-1 text-xl' %>
         <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md h-40 w-full max-w-xl',  placeholder: "内容を入力" %>
+        <div class="flex flex-wrap flex-row">
+          <%= f.collection_check_boxes :card_ids, @plot.cards.all, :id, :scene do |cb| %>
+            <div class="relative flex my-1">
+              <%= cb.check_box(class: 'checkbox mr-16') %>
+              <div class="ml-7 label-text absolute inset-0">scene<%= cb.label%></div>
+            </div>
+          <% end %>
+        </div>
         <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
       </div>
     <% end %>
