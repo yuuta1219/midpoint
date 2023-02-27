@@ -1,9 +1,10 @@
-<%= form_with model: @foreshadowing, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'input input-ghost w-full max-w-xs', placeholder: "伏線タイトルを入力" %>
-    <%= f.label :body %>
-    <%= f.text_field :body, class: 'input input-ghost w-full max-w-xs', placeholder: "内容を入力" %>
-    <%= f.submit '登録する', class: 'btn btn-ghost' %>
+<%= form_with model: foreshadowing, url: plot_foreshadowings_path(@plot, foreshadowing), local: true do |f| %>
+  <div class="text-xl border-b border-gray-500 ">伏線を追加する</div>
+  <div class="grid grid-cols-1">
+    <%= f.label :タイトル, class: 'my-1 text-xl' %>
+    <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl', placeholder: "伏線タイトルを入力" %>
+    <%= f.label :伏線の内容, class: 'my-1 text-xl' %>
+    <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md h-40 w-full max-w-xl',  placeholder: "内容を入力" %>
+    <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
   </div>
 <% end %>
