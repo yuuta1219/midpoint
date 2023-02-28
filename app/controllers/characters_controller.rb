@@ -29,6 +29,12 @@ class CharactersController < ApplicationController
     end
   end
 
+  def destroy
+    @character = Character.find(params[:id])
+    @character.destroy!
+    redirect_to plot_characters_path(@character.plot), status: :see_other, success: "削除しました！"
+  end
+
   private
 
   def character_params
