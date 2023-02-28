@@ -4,4 +4,5 @@ class Card < ApplicationRecord
   has_many  :foreshadowings, through: :foreshadowing_cards 
   has_many  :character_knows, dependent: :destroy
   has_many  :characters, through: :character_knows
+
 end
