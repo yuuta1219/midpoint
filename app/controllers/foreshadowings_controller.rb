@@ -25,6 +25,12 @@ class ForeshadowingsController < ApplicationController
     end
   end
 
+  def destroy
+    @foreshadowing = Foreshadowing.find(params[:id])
+    @foreshadowing.destroy!
+    redirect_to plot_foreshadowings_path(@foreshadowing.plot), status: :see_other, success: "削除しました！"
+  end
+
   private
 
   def foreshadowing_params
