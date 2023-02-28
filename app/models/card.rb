@@ -5,8 +5,4 @@ class Card < ApplicationRecord
   has_many  :character_knows, dependent: :destroy
   has_many  :characters, through: :character_knows
   
-  def chart_data
-    card = Card.find(params[:id])
-    render json: card.as_chart_data
-  end
 end
