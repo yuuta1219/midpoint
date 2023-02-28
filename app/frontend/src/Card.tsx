@@ -1,11 +1,20 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
+interface DataPoint {
+  scene: number;
+  foreshadowing_id: number;
+  name: string;
+}
+
+interface Props {
+  data: DataPoint[];
+}
 
 const randomColor = () => `rgb(${Math.floor(Math.random() * 156) + 100},${Math.floor(Math.random() * 156) + 100},${Math.floor(Math.random() * 156) + 100})`;
 
-const Card  ({ date }) => {
-  const uniqueIds = [...new Set(data.map((d) => d.id))];
+const Card  = ({ data }: Props) => {
+  const uniqueIds = [...new Set(data.map((d) => d.foreshadowing_id))];
   const colors = uniqueIds.map(randomColor);
 
   return (
@@ -18,38 +27,43 @@ const Card  ({ date }) => {
           left: 20,
           bottom: 5,
         }}
-        style={{ backgroundColor: 'transparent' }} // 背景を透過するためにstyleプロパティを追加する
+        style={{ backgroundColor: 'transparent' }}
       >
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis type="number" dataKey="scene" />
-        <YAxis type="number"/>
+        <YAxis type="number" />
         <Tooltip
           content={({ active, payload }) => {
             if (active && payload && payload.length) {
-              const { scene, id } = payload[0].payload;
-              return `Scene: ${scene}, ID: ${id}`;
+              const { scene, foreshadowing_id } = payload[0].payload;
+              const foreshadowingName = data.find((d) => d.foreshadowing_id === foreshadowing_id)?.name;
+              return `Scene: ${scene}, ${foreshadowingName}`;
             }
             return null;
           }}
         />
         <Legend />
-        {uniqueIds.map((id, index) => (
-          <Line
-            key={id}
-            type="linear"
-            dataKey="id"
-            stroke={colors[index]}
-            strokeWidth={2}
-            isAnimationActive={false}
-            dot={false}
-            legendType="line"
-            data={data.filter((d) => d.id === id)}
-          />
-        ))}
+        {uniqueIds.map((id, index) => {
+          const dataSubset = data.filter((d) => d.foreshadowing_id === id);
+          const name = dataSubset[0].name;
+          return (
+            <Line
+              key={id}
+              type="linear"
+              dataKey="foreshadowing_id"
+              name={name}
+              stroke={colors[index]}
+              strokeWidth={2}
+              isAnimationActive={false}
+              dot={false}
+              legendType="line"
+              data={dataSubset}
+            />
+          );
+        })}
       </LineChart>
     </ResponsiveContainer>
   );
 };
 
 export default Card;
-
