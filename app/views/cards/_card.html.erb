@@ -47,6 +47,7 @@
           <% end %>
         </div>
         <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
+        <%= button_to "カードを削除する",card_path(card),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
       </div>
     <% end %>
   </label>
