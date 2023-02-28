@@ -19,6 +19,7 @@
         <%= f.label :登場人物の内容, class: 'my-1 text-xl' %>
         <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md h-40 w-full max-w-xl',  placeholder: "内容を入力" %>
         <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
+        <%= button_to "カードを削除する",character_path(character),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %> 
       </div>
     <% end %>
   </label>
