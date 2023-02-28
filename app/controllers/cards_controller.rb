@@ -2,9 +2,10 @@ class CardsController < ApplicationController
   def index
     @current_page = "tab2"
     @plot = Plot.find(params[:plot_id])
+    @card = Card.new
     @cards = @plot.cards.order(scene: :asc)
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
-    @card = Card.new
+    @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name,foreshadowing_id').to_json
   end
   
   def create
