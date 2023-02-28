@@ -26,6 +26,11 @@ class CardsController < ApplicationController
     end
   end
 
+  def destroy
+    @card = Card.find(params[:id])
+    @card.destroy!
+    redirect_to plot_cards_path(@card.plot), status: :see_other, success: "削除しました！"
+  end
 
   private
 
