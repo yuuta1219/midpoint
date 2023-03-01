@@ -22,22 +22,13 @@
   </label>
   <div class="m-2">
     <% if @cards.present? %>
-      <div class="text-2xl">ACT ONE</div>
-      <div class="carousel rounded-box">
-        <%= render @cards.where(scene: 1..10) %>
-      </div>
-      <div class="text-2xl">ACT TWO</div>
-      <div class="carousel rounded-box">
-        <%= render @cards.where(scene: 11..20) if @cards.size > 10 %>
-      </div>
-      <div class="text-2xl">ACT TWO</div>
-      <div class="carousel rounded-box">
-        <%= render @cards.where(scene: 21..30) if @cards.size > 20 %>
-      </div>
-      <div class="text-2xl">ACT THREE</div>
-      <div class="carousel rounded-box">
-        <%= render @cards.where(scene: 31..100) if @cards.size > 30 %>
-      </div>
+      <% cards_by_act = @cards.group_by { |card| card.scene > 30 ? "ACT THREE" : card.scene > 20 ? "ACT TWO 2" : card.scene > 10 ? "ACT TWO 1" : "ACT ONE" } %>
+      <% cards_by_act.each do |act, cards| %>
+        <div class="text-2xl"><%= act %></div>
+        <div class="carousel rounded-box">
+          <%= render partial: "cards/card", collection: cards %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
