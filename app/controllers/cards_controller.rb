@@ -3,7 +3,9 @@ class CardsController < ApplicationController
     @current_page = "tab2"
     @plot = Plot.find(params[:plot_id])
     @card = Card.new
-    @cards = @plot.cards.order(scene: :asc)
+    @cards = @plot.cards.includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
+    @foreshadowing_cards = @plot.foreshadowings.all
+
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name,foreshadowing_id').to_json
   end
