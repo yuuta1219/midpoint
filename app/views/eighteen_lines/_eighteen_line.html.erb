@@ -1,7 +1,8 @@
-<label for="my-modal-<%=eighteen_line.id%>" class="cursor-pointer">
-  <div class="mx-4 text-xl border-b border-gray-500"><%= eighteen_line.name %></div>
-  <div class="mx-4 mt-1 mb-5 text-ms font-light"><%= eighteen_line.body.nil? ? "シーンの内容を入力してください。" : eighteen_line.body %></div>
+<label for="my-modal-<%=eighteen_line.id%>", class="cursor-pointer">
+  <div class="mx-4 text-xl border-b border-gray-500 <%= render "shared/plot_card_color", { plot: @plot } %>"><%= eighteen_line.name %></div>
+  <div class="mx-4 mt-1 mb-5 text-ms font-light <%= render "shared/plot_card_color", { plot: @plot } %>"><%= eighteen_line.body.nil? ? "シーンの内容を入力してください。" : eighteen_line.body %></div>
 </label>
+
 <input type="checkbox" id="my-modal-<%=eighteen_line.id%>" class="modal-toggle" />
 <label for="my-modal-<%=eighteen_line.id%>" class="modal cursor-pointer">
   <label class="modal-box relative" for="">
