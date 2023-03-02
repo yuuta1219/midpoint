@@ -15,7 +15,7 @@
     <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "シーンの内容" %>
     <%= f.label :関連伏線, class: 'my-1 text-xl' %>
     <div>
-      <%= f.collection_check_boxes :foreshadowing_ids, @plot.foreshadowings.all, :id, :name do |cb| %>
+      <%= f.collection_check_boxes :foreshadowing_ids, @foreshadowing_cards, :id, :name do |cb| %>
         <div class="relative">
           <%= cb.check_box(class: 'checkbox') %>
           <%= cb.label(class: 'ml-7 label-text absolute inset-0') %>
