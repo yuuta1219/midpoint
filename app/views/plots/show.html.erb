@@ -7,9 +7,9 @@
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "plots/plot_color", { plot: @plot } %>">
     <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
       <div class="mx-4 border-b border-gray-500 text-xl">タイトル <div class="tooltip tooltip-right" data-tip="作品のタイトルを決めましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
-      <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xs'%>
+      <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xl'%>
       <div class="mx-4 border-b border-gray-500 text-xl">テーマ <div class="tooltip tooltip-right" data-tip="作品のテーマを設定し、伝えたいことは何かを考えましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
-      <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xs'%>
+      <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xl'%>
       <div class="mx-4 border-b border-gray-500 text-xl">ログライン <div class="tooltip tooltip-right" data-tip="作品のログライン（one line）を設定しましょう。ログラインとは、作品を一行で簡潔にまとめたものです。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
       <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost textarea-sm w-full max-w-xl h-24'%>
       <div class="mx-4 border-b border-gray-500 text-xl">カードカラー <div class="tooltip tooltip-right" data-tip="プロットカードの色を選択できます"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
@@ -30,9 +30,15 @@
     </div>
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "plots/plot_color", { plot: @plot } %>">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
-      <div class="mx-3 text-xl border-b border-gray-500">18のプロットポイント</div>
       <%= render @eighteen_lines %>
-      <%= render 'eighteen_lines/form', { plot: @plot, eighteen_line: @eighteen_line } %>
+      <label for="my-modal" class="btn btn-ghost">new plot point</label>
+      <input type="checkbox" id="my-modal" class="modal-toggle" />
+      <label for="my-modal" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+          <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <%= render 'eighteen_lines/form', { eighteen_line: @eighteen_line } %>
+        </label>
+      </label>
     </div>
   </div>
 </div>

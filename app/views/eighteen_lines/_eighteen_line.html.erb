@@ -1,3 +1,21 @@
-<%= form_with model: eighteen_line, local: true do |f| %>
-  <%= f.text_area :body, class: 'ml-1 my-1 textarea textarea-ghost textarea-sm w-full max-w-xl'%>
-<% end %>
+<label for="my-modal-<%=eighteen_line.id%>" class="cursor-pointer">
+  <div class="mx-4 text-xl border-b border-gray-500"><%= eighteen_line.name %></div>
+  <div class="mx-4 mt-1 mb-5 text-ms font-light"><%= eighteen_line.body.nil? ? "シーンの内容を入力してください。" : eighteen_line.body %></div>
+</label>
+<input type="checkbox" id="my-modal-<%=eighteen_line.id%>" class="modal-toggle" />
+<label for="my-modal-<%=eighteen_line.id%>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-<%=eighteen_line.id%>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <%= form_with model: eighteen_line, local: true do |f| %>
+      <div class="grid grid-cols-1">
+        <div class="text-xl border-b border-gray-500 ">プロットポイントを更新する</div>
+        <%= f.label :場所, class: 'my-1 text-xl' %>
+        <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl', placeholder: "タイトルを入力してください。" %>
+         <%= f.label :シーン内容, class: 'my-1 text-xl' %>
+        <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl h-24', placeholder: "シーンの内容を入力してください。" %>
+        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
+      </div>
+    <% end %>
+    <%= button_to "プロットポイントを削除する",eighteen_line_path(eighteen_line),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %> 
+  </label>
+</label>

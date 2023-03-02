@@ -1,6 +1,10 @@
-<%= form_with model: eighteen_line, url: [plot, eighteen_line], local: true do |f| %>
-  <div class="grid grid-cols-7 mx-3 my-2">
-    <div class="col-span-6 mb-2"><%= f.text_field :body, class: 'input input-bordered input-secondary input-md w-full max-w-full', placeholder: "シーンを入力" %></div>
-    <div class="col-span-1"> <%= f.submit '登録する', class: 'btn btn-ghost font-light' %></div>
+<%= form_with model: eighteen_line, url: plot_eighteen_lines_path(@plot, eighteen_line), local: true do |f| %>
+  <div class="grid grid-cols-1">
+    <div class="text-xl border-b border-gray-500 ">プロットポイントを追加する。</div>
+    <%= f.label :プロットポイント, class: 'my-1 text-xl' %>
+    <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl', placeholder: "タイトルを入力してください。" %>
+     <%= f.label :シーン内容, class: 'my-1 text-xl' %>
+    <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xl h-24', placeholder: "シーンの内容を入力してください。" %>
+    <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
   </div>
 <% end %>
