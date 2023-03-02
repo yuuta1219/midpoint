@@ -13,7 +13,6 @@ interface Props {
 const App = ({ data }: Props) => {
   return (
     <div>
-      <h1>感情値グラフ</h1>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
           <XAxis dataKey="scene" />

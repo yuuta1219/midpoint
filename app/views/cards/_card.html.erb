@@ -1,5 +1,5 @@
-<label for="my-modal-<%=card.id%>">
-  <div class="carousel-item <%= render "plots/plot_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+<label for="my-modal-<%=card.id%>", class="cursor-pointer">
+  <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
     <div class="flex">
       <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700">scene <%= card.scene %><i class="bi bi-eye ml-2 text-xs not-italic"><%= card.point_of_view %></i></div>
       <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>

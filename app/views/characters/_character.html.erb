@@ -1,5 +1,5 @@
-<label for="my-modal-<%= character.id %>">
-  <div class="carousel-item <%= render "plots/plot_color", { plot: @plot } %> card m-2 shadow-xl ">
+<label for="my-modal-<%= character.id %>" , class="cursor-pointer">
+  <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-2 shadow-xl ">
     <div class="grid grid-cols-1">
       <div class="mx-3 mt-1 font-semibold border-b border-slate-700"><%= character.name  %></div>
       <div class="text-sm mb-12 mt-2 ml-4 mx-3"><%= simple_format(h(character.body)) %></div>
