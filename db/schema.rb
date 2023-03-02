@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
   end
 
   create_table "eighteen_lines", force: :cascade do |t|
+    t.string "name"
     t.string "body"
     t.integer "plot_id"
     t.datetime "created_at", null: false

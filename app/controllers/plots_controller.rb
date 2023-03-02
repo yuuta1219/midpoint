@@ -22,8 +22,9 @@ class PlotsController < ApplicationController
       40.times do |n|
         @plot.cards.create(scene: n+1 )
       end
-      18.times do |n|
-        @plot.eighteen_lines.create(body: "プロットポイント#{n+1}を入力してください。")
+      names = ["オープニング","セットアップ","きっかけ","悩みの時","第一ターニングポイント","サブプロット開始","お楽しみ","ミッドポイント","迫り来る悪い奴ら","全てを失って","心の暗闇","第二ターニングポイント","フィナーレ","エンディング"]
+      names.each_with_index do |name, index|
+        @plot.eighteen_lines.create(name: name)
       end
       redirect_to plot_path(@plot), success: "作成しました！"
     else
