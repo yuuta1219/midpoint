@@ -1,5 +1,6 @@
 class PlotsController < ApplicationController
-
+  include PlotsHelper
+  
   def index
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
@@ -19,13 +20,7 @@ class PlotsController < ApplicationController
   def create
     @plot = current_user.plots.build(plot_params)
     if @plot.save
-      40.times do |n|
-        @plot.cards.create(scene: n+1 )
-      end
-      names = ["オープニング","セットアップ","きっかけ","悩みの時","第一ターニングポイント","サブプロット開始","お楽しみ","ミッドポイント","迫り来る悪い奴ら","全てを失って","心の暗闇","第二ターニングポイント","フィナーレ","エンディング"]
-      names.each_with_index do |name, index|
-        @plot.eighteen_lines.create(name: name)
-      end
+      create_cards(@plot)
       redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
