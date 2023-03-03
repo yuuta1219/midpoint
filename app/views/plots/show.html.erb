@@ -2,7 +2,7 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
 <div class="bg-base-200 min-h-screen">
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2">
     <%= form_with model: @plot, local: true do |f| %>
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
     <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
@@ -28,7 +28,7 @@
         </label>
       </label>
     </div>
-    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
       <%= render @eighteen_lines %>
       <label for="my-modal" class="btn btn-ghost">new plot point</label>

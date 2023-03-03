@@ -9,7 +9,4 @@ class TopsController < ApplicationController
 
   def treatment; end
 
-  def my_page
-    @user
-  end
 end
