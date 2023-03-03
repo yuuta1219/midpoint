@@ -3,19 +3,50 @@
 
 <div class="bg-base-200 min-h-screen">
   <div class="grid grid-cols-1">
-    <div class="m-2 col-span-1 grid grid-cols-3 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-      <label for="my-modal" class="btn btn-ghost col-span-1 ">new card</label>
-      <div class="flex col-span-1 ">
+    <div class="m-2 col-span-1 grid grid-cols-7 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
+      <label for="my-modal" class="btn btn-ghost col-span-1">new card</label>
+      <div class="flex col-span-1">
         <label class="label cursor-pointer">
-          <span class="label-text">感情値グラフ</span> 
-          <input type="checkbox" class="toggle" checked onclick="document.getElementById('card').classList.toggle('hidden')"/>
+          <span class="label-text mr-1 hidden md:block">感情グラフ</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('card').classList.toggle('hidden')"/>
         </label>
       </div>
-      <div class="flex col-span-1 ">
+      <div class="flex col-span-1">
         <label class="label cursor-pointer">
-          <span class="label-text">伏線グラフ</span> 
-          <input type="checkbox" class="toggle" checked onclick="document.getElementById('foreshadowing').classList.toggle('hidden')"/>
+          <span class="label-text mr-1 hidden md:block">伏線グラフ</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('foreshadowing').classList.toggle('hidden')"/>
         </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT ONE</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT ONE').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT TWO I</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT TWO I').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT TWO II</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT TWO II').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT THREE</span> 
+          <input type="checkbox" class="toggle"checked onclick="document.getElementById('ACT THREE').classList.toggle('hidden')"/>
+        </label>
+      </div>
+    </div>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <div id="card" class="hidden col-span-1">
+      <div class="text-2xl m-2">感情値グラフ</div>
+        <%= content_tag :div, "", id: "root", data: { cards: @cards_json || '[]' } %>
+        <%= vite_javascript_tag 'board.tsx' %>
       </div>
     </div>
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
@@ -24,13 +55,6 @@
         <%= content_tag :div, "", id: "graph", data: { foreshadowings: @cards_json_foreshadowing || '[]' } %>
         <%= vite_javascript_tag 'card.tsx' %>
       </div> 
-    </div>
-    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-      <div id="card" class="hidden col-span-1">
-      <div class="text-2xl m-2">感情値グラフ</div>
-        <%= content_tag :div, "", id: "root", data: { cards: @cards_json || '[]' } %>
-        <%= vite_javascript_tag 'board.tsx' %>
-      </div>
     </div>
   </div>
 
@@ -43,11 +67,13 @@
   </label>
   <div class="m-2">
     <% if @cards.present? %>
-      <% cards_by_act = @cards.group_by { |card| card.scene > 30 ? "ACT THREE" : card.scene > 20 ? "ACT TWO 2" : card.scene > 10 ? "ACT TWO 1" : "ACT ONE" } %>
+      <% cards_by_act = @cards.group_by { |card| card.scene > 30 ? "ACT THREE" : card.scene > 20 ? "ACT TWO II" : card.scene > 10 ? "ACT TWO I" : "ACT ONE" } %>
       <% cards_by_act.each do |act, cards| %>
-        <div class="text-2xl"><%= act %></div>
-        <div class="carousel rounded-box">
-          <%= render partial: "cards/card", collection: cards %>
+        <div id="<%= act %>">
+          <div class="text-2xl"><%= act %></div>
+          <div class="carousel rounded-box">
+            <%= render partial: "cards/card", collection: cards %>
+          </div>
         </div>
       <% end %>
     <% end %>

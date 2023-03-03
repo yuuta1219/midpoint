@@ -6,8 +6,8 @@
     <div class="absolute inset-0 -z-10 hover:z-10">
       <p class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-black text-2xl">.</p>
     </div>
-    <p class="text-base m-4 card-title hover:text-blue-600 border-b border-gray-500"><%= truncate(plot.name, length: 19, omission: '...') %></p>
-    <p class="text-sm mx-4 my-14 absolute inset-x-0 bottom-0 hover:text-gray-600"><%= truncate(plot.one_line, length: 28, omission: '...') %></p>
+    <p class="text-base m-4 card-title hover:text-blue-600 border-b border-gray-500"><%= truncate(plot.name, length: 18, omission: '...') %></p>
+    <p class="text-sm mx-4 my-14 absolute inset-x-0 bottom-0 hover:text-gray-600"><%= truncate(plot.one_line, length: 38, omission: '...') %></p>
     <p class="text-xs m-4 absolute inset-x-0 bottom-0 hover:text-gray-600">更新日: <%= l(plot.updated_at, format: :mini) %></p>
   </div>
 <% end %>
