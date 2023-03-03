@@ -2,7 +2,11 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
 <div class="bg-base-200 min-h-screen">
-  <label for="my-modal" class="btn btn-ghost">new foreshadowing</label>
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 grid grid-cols-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <label for="my-modal" class="btn btn-ghost">new foreshadowing</label>
+    </div>
+  </div>
   <input type="checkbox" id="my-modal" class="modal-toggle" />
   <label for="my-modal" class="modal cursor-pointer">
     <label class="modal-box relative" for="">

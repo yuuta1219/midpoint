@@ -34,6 +34,6 @@ class ForeshadowingsController < ApplicationController
   private
 
   def foreshadowing_params
-    params.require(:foreshadowing).permit(:name, :body, card_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
+    params.require(:foreshadowing).permit(:number, :name, :body, :explanation, card_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
   end
 end
