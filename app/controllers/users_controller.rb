@@ -22,6 +22,16 @@ class UsersController < ApplicationController
     redirect_to plots_path, success: "ゲストユーザーとしてログインしました。"
   end
 
+  def my_page
+    @user = current_user
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path, notice: "アカウントを削除しました。"
+  end
+
   private
 
   def user_params

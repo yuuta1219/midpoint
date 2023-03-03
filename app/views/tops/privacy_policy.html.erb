@@ -1,30 +1,29 @@
 <%= render 'shared/login_check' %>
 
-<div class="bg-base-300">
-  <h1>プライバシーポリシー</h1>
-  <div id="drag" draggable="true">ドラッグする要素</div>
-<div id="dropzone" class="dropzone">ここにドロップしてください</div>
-
-<script>
-let draggedElement = null;
-
-document.getElementById("drag").addEventListener("mousedown", function(event) {
-  draggedElement = event.target;
-});
-
-document.getElementById("dropzone").addEventListener("dragover", function(event) {
-  event.preventDefault();
-});
-
-document.getElementById("dropzone").addEventListener("drop", function(event) {
-  event.preventDefault();
-  this.appendChild(draggedElement);
-});
-</script>
-
-
+<div class="bg-base-200 min-h-screen">
+  <div class="grid grid-cols-1 ">
+    <div class="m-4 col-span-1 shadow-xl bg-white">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="mx-4 mb-4  border-b border-gray-500 text-4xl">プライバシーポリシー</div>
+      <div class="mx-4 mt-1 mb-4 text-md">このプライバシーポリシー（以下，「本規約」といいます。）は，「Midpoint」（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">お客様から取得する情報</div>
+      <div class="mx-4 mt-1 mb-4 text-md">当社は、お客様から以下の情報を取得します</br>・氏名(ニックネームやペンネームも含む)</br>・メールアドレス</br>・Cookie(クッキー)を用いて生成された識別情報</br>・OSが生成するID、端末の種類、端末識別子等のお客様が利用するOSや端末に関する情報</br>・当社ウェブサイトの滞在時間、入力履歴、購買履歴等の当社ウェブサイトにおけるお客様の行動履歴</br>・当社アプリの起動時間、入力履歴、購買履歴等の当社アプリの利用履歴</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">お客様の情報を利用する目的</div>
+      <div class="mx-4 mt-1 mb-4 text-md">当社は、お客様から取得した情報を、以下の目的のために利用します。</br>・当社サービスに関する登録の受付、お客様の本人確認、認証のため</br>・お客様の当社サービスの利用履歴を管理するため</br>・当社サービスにおけるお客様の行動履歴を分析し、当社サービスの維持改善に役立てるため</br>・お客様からのお問い合わせに対応するため</br>・当社の規約や法令に違反する行為に対応するため</br>・以上の他、当社サービスの提供、維持、保護及び改善のため</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">安全管理のために講じた措置</div>
+      <div class="mx-4 mt-1 mb-4 text-md">当社が、お客様から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">第三者提供</div>
+      <div class="mx-4 mt-1 mb-4 text-md">当社は、お客様から取得する情報のうち、個人データ（個人情報保護法第２条第６項）に該当するものついては、あらかじめお客様の同意を得ずに、第三者（日本国外にある者を含みます。）に提供しません。</br>但し、次の場合は除きます。</br>・個人データの取扱いを外部に委託する場合</br>・当社や当社サービスが買収された場合</br>・事業パートナーと共同利用する場合（具体的な共同利用がある場合は、その内容を別途公表します。）</br>・その他、法律によって合法的に第三者提供が許されている場合</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">アクセス解析ツール</div>
+      <div class="mx-4 mt-1 mb-4 text-md">当社は、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。Googleアナリティクスについて、詳しくは以下からご確認ください。</br>https://marketingplatform.google.com/about/analytics/terms/jp/</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">プライバシーポリシーの変更</div>    
+      <div class="mx-4 mt-1 mb-4 text-md">当社は、必要に応じて、このプライバシーポリシーの内容を変更します。この場合、変更後のプライバシーポリシーの施行時期と内容を適切な方法により周知または通知します。</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">お問い合わせ</div>
+      <div class="mx-4 mt-1 mb-4 text-md">お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、以下のメールアドレスにご連絡ください。</br>e-mail</br>Twitterでお願いします。https://twitter.com/yuu_pppppp</br>この場合、必ず、運転免許証のご提示等当社が指定する方法により、ご本人からのご請求であることの確認をさせていただきます。なお、情報の開示請求については、開示の有無に関わらず、ご申請時に一件あたり1,000円の事務手数料を申し受けます。</div>
+      <div class="mx-4 border-b border-gray-500 text-2xl">事業者の氏名</div>
+      <div class="mx-4 mt-1 mb-4 text-md">yuuta</div>
+      <div class="mx-4 mt-1 mb-4 text-md">以上。2023年3月15日制定。</div>
+    </div>
   </div>
 </div>
-
-
 <%= render 'shared/footer' %>

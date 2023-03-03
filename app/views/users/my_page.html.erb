@@ -1,0 +1,51 @@
+<%= render 'shared/login_check' %>
+
+
+
+<div class="bg-base-200 min-h-screen">
+  <div class="grid grid-cols-1 ">
+    <div class="m-4 col-span-1 shadow-xl bg-white">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="mx-4 mb-4 border-b border-gray-500 text-2xl">マイページ</div>
+      <div class="mx-4 border-b border-gray-500 text-xl">ご登録情報</div>
+      <div class="mx-4 mt-1 mb-4 text-md">名前 <%= @user.name %></div>
+      <div class="mx-4 mt-1 mb-4 text-md">メールアドレス <%= @user.email %></div>
+      <div class="mx-4 border-b border-gray-500 text-xl">ログアウト</div>
+      <div class="mx-4 mt-1 mb-4 text-sm">ログアウトする場合は、下記のボタンを押してください。</div>
+      <% if current_user.guest? %>
+        <label for="my-modal-4" class="mx-4 mb-2 btn text-gray-100 bg-gray-900">Logout</label>
+      <% else %>
+        <%= link_to 'ログアウト', logout_path, class: 'btn text-gray-100 bg-gray-900 mx-4 mb-2' %>
+      <% end %>
+      <div class="mx-4 border-b border-gray-500 text-xl">アカウント削除</div>
+      <div class="mx-4 mt-1 mb-4 text-sm">アカウントを削除する場合は、下記のボタンを押してください。</br>アカウントを削除すると、アカウントに関連するすべてのデータが削除されます。削除されたデータは回復できません。</div>
+      <label for="my-modal-5" class="mx-4 mb-2 btn btn-error">アカウント削除</label>
+
+      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+      <label for="my-modal-4" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+          <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">本当にログアウトしますか？</div>
+          <% if current_user.guest? %>
+            <div class="text-sm m-2 my-4">ゲストユーザーでログアウトした場合、保存したデータは全て消去されます。ご了承ください。</div>
+          <% end %>
+          <%= button_to 'ログアウトする', user_path(@user), class: 'btn text-gray-100 bg-gray-900 m-2', method: :delete %>
+        </label>
+      </label>
+      <input type="checkbox" id="my-modal-5" class="modal-toggle" />
+      <label for="my-modal-5" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+          <label for="my-modal-5" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">本当にアカウントを削除しますか？</div>
+            <div class="text-sm m-2 my-4">アカウント削除後のデータの復旧はできませんのでご了承ください。</div>
+            <%= button_to 'アカウントを削除する', user_path(@user), class: 'btn text-gray-100 bg-gray-900 m-2', method: :delete %>
+        </label>
+      </label>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>
+
+
+
