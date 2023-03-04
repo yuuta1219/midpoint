@@ -1,7 +1,7 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 min-h-screen">
+<div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <label for="my-modal" class="btn btn-ghost">new foreshadowing</label>
@@ -14,8 +14,8 @@
       <%= render 'foreshadowings/form', { foreshadowing: @foreshadowing } %>
     </label>
   </label>
-    <div class="text-2xl m-3">伏線一覧</div>
-    <div class="m-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-      <%= render @foreshadowings %>
-    </div>
+  <div class="text-2xl m-3">伏線一覧</div>
+  <div class="m-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    <%= render @foreshadowings %>
+  </div>
 </div>
