@@ -26,17 +26,17 @@
       <div class="grid grid-cols-1">
         <div class="text-xl border-b border-gray-500 ">カードを更新する</div>
         <%= f.label :シーンナンバー, class: 'my-1 text-xl' %>
-        <%= f.number_field :scene, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xs', placeholder: "シーンナンバー" %>
+        <%= f.number_field :scene, class: 'my-1 input input-bordered input-secondary md:input-sm input-lgw-full max-w-full', placeholder: "シーンナンバー" %>
         <%= f.label :作中時間, class: 'my-1 text-xl' %>
-        <%= f.number_field :time, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "作中時間" %>
+        <%= f.number_field :time, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "作中時間" %>
         <%= f.label :場所, class: 'my-1 text-xl' %>
-        <%= f.text_field :current_location, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "場所" %>
+        <%= f.text_field :current_location, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "場所" %>
         <%= f.label :視点, class: 'my-1 text-xl' %>
-        <%= f.text_field :point_of_view, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "視点" %>
+        <%= f.text_field :point_of_view, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "視点" %>
         <%= f.label :感情変動値, class: 'my-1 text-xl' %>
-        <%= f.number_field :emotional_value , class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "感情変動値" %>
+        <%= f.number_field :emotional_value , class: 'my-1 input input-bordered input-secondary md:input-sm input-lgw-full max-w-full', placeholder: "感情変動値" %>
         <%= f.label :シーン内容, class: 'my-1 text-xl' %>
-        <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "シーンの内容" %>
+        <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-sm textarea-lg w-full max-w-full h-24', placeholder: "シーンの内容" %>
         <%= f.label :関連伏線, class: 'my-1 text-xl' %>
         <div>
           <%= f.collection_check_boxes :foreshadowing_ids, @foreshadowing_cards, :id, :name do |cb| %>
