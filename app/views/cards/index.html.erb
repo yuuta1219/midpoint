@@ -1,7 +1,7 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 min-h-screen">
+<div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-7 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
       <label for="my-modal" class="btn btn-ghost col-span-1">new card</label>
