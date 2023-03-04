@@ -2,13 +2,13 @@
   <div class="grid grid-cols-1">
     <div class="text-xl border-b border-gray-500 ">プロットポイントを更新する</div>
     <%= f.label :シーンナンバー, class: 'my-1 text-xl' %>
-    <%= f.number_field :number, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-xs', placeholder: "シーンナンバー" %>
+    <%= f.number_field :number, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "シーンナンバー" %>
     <%= f.label :プロットポイント, class: 'my-1 text-xl' %>
-    <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "タイトルを入力してください。" %>
+    <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "タイトルを入力してください。" %>
     <%= f.label :解説, class: 'my-1 text-xl' %>
-    <%= f.text_field :explanation, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm', placeholder: "タイトルを入力してください。" %>
+    <%= f.text_field :explanation, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "タイトルを入力してください。" %>
     <%= f.label :シーン内容, class: 'my-1 text-xl' %>
-    <%= f.text_area :body, class: 'my-1 input input-bordered input-secondary input-md w-full max-w-sm h-24', placeholder: "シーンの内容を入力してください。" %>
+    <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-sm textarea-lg w-full max-w-full h-24', placeholder: "シーンの内容を入力してください。" %>
     <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
   </div>
 <% end %>
