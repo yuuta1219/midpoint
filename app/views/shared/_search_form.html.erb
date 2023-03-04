@@ -1,8 +1,8 @@
 <%= search_form_for @q, url: url do |f| %>
   <div class="form-group">
-    <%= f.search_field :name, class: 'form-control', placeholder: "例　.class" %>
+    <%= f.search_field :name, class: 'input input-ghost input-sm w-full max-w-sm', placeholder: "例　.class" %>
   </div>
   <div class="d-grid gap-2 ">
-    <%= f.submit '調べてもらう！', class: 'btn' %>
+    <%= f.submit '調べる', class: 'btn' %>
   </div>
 <% end %>
