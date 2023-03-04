@@ -1,17 +1,17 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 min-h-screen">
+<div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1 md:grid-cols-2">
     <%= form_with model: @plot, local: true do |f| %>
     <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
         <div class="mx-4 border-b border-gray-500 text-xl">タイトル <div class="tooltip tooltip-right" data-tip="作品のタイトルを決めましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
-        <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xl'%>
-        <div class="mx-4 border-b border-gray-500 text-xl">テーマ <div class="tooltip tooltip-right" data-tip="作品のテーマを設定し、伝えたいことは何かを考えましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
-        <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-xl'%>
-        <div class="mx-4 border-b border-gray-500 text-xl">ログライン <div class="tooltip tooltip-right" data-tip="作品のログライン（one line）を設定しましょう。ログラインとは、作品を一行で簡潔にまとめたものです。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
-        <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost textarea-sm w-full max-w-xl h-24'%>
+        <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-sm'%>
+        <div class="mx-4 border-b border-gray-500 text-xl">テーマ <div class="tooltip tooltip-right" data-tip="作品で伝えたいことを決めましょう。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+        <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost input-sm w-full max-w-sm'%>
+        <div class="mx-4 border-b border-gray-500 text-xl">ログライン <div class="tooltip tooltip-bottom" data-tip="　　ログラインとは、作品を一行で簡潔にまとめたものです。"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
+        <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost textarea-sm w-full max-w-sm h-24'%>
         <div class="mx-4 border-b border-gray-500 text-xl">カードカラー <div class="tooltip tooltip-right" data-tip="プロットカードの色を選択できます"><i class="text-xs bi bi-question-circle-fill"></i></div></div>
         <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "ml-3 select select-ghost select-xs max-w-xs my-2" }%>
         <div></div>
