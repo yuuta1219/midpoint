@@ -1,13 +1,13 @@
 <%= link_to plot_path(plot), class: "card-link" do %>
-  <div class="card m-4 h-40 h-40 shadow-xl relative hover:opacity-100 hover:rotate-6 <%= render 'shared/plot_color', { plot: plot } %>">
+  <div class="card m-2 sm:m-4 h-40 h-40 shadow-xl relative hover:opacity-100 hover:rotate-6 <%= render 'shared/plot_color', { plot: plot } %>">
     <div class="absolute inset-0 z-10 hover:opacity-0">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "pin-image absolute left-1/2 -top-2 transform -translate-x-1/2", width: '30px', height: '30px') %>
     </div>
     <div class="absolute inset-0 -z-10 hover:z-10">
       <p class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-black text-2xl">.</p>
     </div>
-    <p class="text-base m-4 card-title hover:text-blue-600 border-b border-gray-500"><%= truncate(plot.name, length: 13, omission: '...') %></p>
-    <p class="text-sm mx-4 my-14 absolute inset-x-0 bottom-0 hover:text-gray-600"><%= truncate(plot.one_line, length: 38, omission: '...') %></p>
-    <p class="text-xs m-4 absolute inset-x-0 bottom-0 hover:text-gray-600">更新日: <%= l(plot.updated_at, format: :mini) %></p>
+    <p class="text-base my-1 mx-2 sm:mx-4 sm:mt-4 xl:m-4 card-title hover:text-blue-600 border-b border-gray-500"><%= truncate(plot.name, length: 20, omission: '...') %></p>
+    <p class="text-sm mx-2 sm:mx-4 xl:m-4 hover:text-gray-600"><%= truncate(plot.one_line, length: 41, omission: '...') %></p>
+    <p class="text-xs m-2 sm:mx-4 xl:m-4 absolute inset-x-0 bottom-0 hover:text-gray-600">更新日: <%= l(plot.updated_at, format: :mini) %></p>
   </div>
 <% end %>
