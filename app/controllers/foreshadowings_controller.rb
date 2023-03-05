@@ -1,6 +1,6 @@
 class ForeshadowingsController < ApplicationController
   def index
-    @current_page = "tab3"
+    @current_page = "tab4"
     @plot = Plot.find(params[:plot_id])
     @foreshadowings = @plot.foreshadowings.order(created_at: :asc)
     @foreshadowing = Foreshadowing.new
