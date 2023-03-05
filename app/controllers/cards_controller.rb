@@ -10,6 +10,12 @@ class CardsController < ApplicationController
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name,foreshadowing_id').to_json
   end
   
+  def edit
+    @card = Card.find(params[:id])
+    @plot = @card.plot
+    @foreshadowing_cards = @plot.foreshadowings.all
+  end
+
   def create
     @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
