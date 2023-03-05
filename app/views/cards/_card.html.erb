@@ -1,54 +1,51 @@
-<label for="my-modal-<%=card.id%>", class="cursor-pointer">
-  <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+<label class="swap swap-flip">
+  
+  <!-- this hidden checkbox controls the state -->
+  <input type="checkbox" />
+
+
+<div class="swap-on">
+  <div class="-rotate-6 carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
     <div class="flex">
-      <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700">scene <%= card.scene %><i class="bi bi-eye ml-2 text-xs not-italic"><%= card.point_of_view %></i></div>
-      <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+      <div class="mx-3 mt-1 flex-1 border-b border-slate-700">scene <%= card.scene %></div>
     </div>
-    <div class="text-sm my-2 ml-4 mx-3"><%= truncate(card.body, length: 60, omission: '...') %></div>
-    <div class="absolute inset-x-0 bottom-8 ml-4 mx-3" style="overflow-x: auto; white-space: nowrap;">
-      <% card.foreshadowing_cards.each do |fc| %>
-        <span class="badge badge-outline badge-sm">
-          <%= fc.foreshadowing.name %>
-        </span>
+    <div class="text-xl ml-20 my-2">Edit? or Delete!</div>
+    <div class="absolute bottom-0 my-4 mx-14 flex">
+      <%= link_to edit_card_path(card), class: "flex-1 hover:animate-pulse animate-bounce" do %>
+        <i class="bi bi-pencil-square text-6xl"></i>
       <% end %>
-    </div>
-    <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700">
-      <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= card.time %></div>
-      <div class="text-xs"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
+      <label for="my-modal-<%=card.id%>", class="ml-20 bi bi-trash text-6xl hover:animate-pulse animate-bounce hover:cursor-pointer">
     </div>
   </div>
+</div>
+  
+<div class="swap-off">
+    <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+      <div class="flex">
+        <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700">scene <%= card.scene %><i class="bi bi-eye ml-2 text-xs not-italic"><%= card.point_of_view %></i></div>
+        <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+      </div>
+      <div class="text-sm my-2 ml-4 mx-3"><%= truncate(card.body, length: 60, omission: '...') %></div>
+      <div class="absolute inset-x-0 bottom-8 ml-4 mx-3" style="overflow-x: auto; white-space: nowrap;">
+        <% card.foreshadowing_cards.each do |fc| %>
+          <span class="badge badge-outline badge-sm">
+            <%= fc.foreshadowing.name %>
+          </span>
+        <% end %>
+      </div>
+      <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700">
+        <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= card.time %></div>
+        <div class="text-xs"><i class="bi bi-geo-alt"></i><%= card.current_location %></div>
+      </div>
+    </div>
+</div>
 </label>
 <input type="checkbox" id="my-modal-<%=card.id%>" class="modal-toggle" />
 <label for="my-modal-<%=card.id%>" class="modal cursor-pointer">
   <label class="modal-box relative" for="">
     <label for="my-modal-<%=card.id%>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <%= form_with model: card, local: true do |f| %>
-      <div class="grid grid-cols-1">
-        <div class="text-xl border-b border-gray-500 ">カードを更新する</div>
-        <%= f.label :シーンナンバー, class: 'my-1 text-xl' %>
-        <%= f.number_field :scene, class: 'my-1 input input-bordered input-secondary md:input-sm input-lgw-full max-w-full', placeholder: "シーンナンバー" %>
-        <%= f.label :作中時間, class: 'my-1 text-xl' %>
-        <%= f.number_field :time, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "作中時間" %>
-        <%= f.label :場所, class: 'my-1 text-xl' %>
-        <%= f.text_field :current_location, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "場所" %>
-        <%= f.label :視点, class: 'my-1 text-xl' %>
-        <%= f.text_field :point_of_view, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "視点" %>
-        <%= f.label :感情変動値, class: 'my-1 text-xl' %>
-        <%= f.number_field :emotional_value , class: 'my-1 input input-bordered input-secondary md:input-sm input-lgw-full max-w-full', placeholder: "感情変動値" %>
-        <%= f.label :シーン内容, class: 'my-1 text-xl' %>
-        <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-sm textarea-lg w-full max-w-full h-24', placeholder: "シーンの内容" %>
-        <%= f.label :関連伏線, class: 'my-1 text-xl' %>
-        <div>
-          <%= f.collection_check_boxes :foreshadowing_ids, @foreshadowing_cards, :id, :name do |cb| %>
-            <div class="relative">
-              <%= cb.check_box(class: 'checkbox') %>
-              <%= cb.label(class: 'ml-7 label-text absolute inset-0') %>
-            </div>
-          <% end %>
-        </div>
-        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
-      </div>
-    <% end %>
+    <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">scene <%= card.scene %>カードを削除。</div>
+    <div class="text-sm m-2 my-4">カードのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
     <%= button_to "カードを削除する",card_path(card),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
   </label>
 </label>

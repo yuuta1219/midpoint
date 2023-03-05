@@ -1,4 +1,4 @@
-<div class="mx-4 text-xl border-b border-gray-500"><%= eighteen_line.number %> <%= eighteen_line.name %> <i class="text-xs bi bi-question-circle-fill" onclick="document.getElementById('<%= eighteen_line.id %>').classList.toggle('hidden')"></i></div>
+<div class="mx-4 text-xl border-b border-gray-500"><%= eighteen_line.number %> <%= eighteen_line.name %> <div class="tooltip tooltip-right" data-tip="クリックで詳細な説明が表示されます。"><i class="text-xs bi bi-question-circle-fill hover:cursor-pointer" onclick="document.getElementById('<%= eighteen_line.id %>').classList.toggle('hidden')"></i></div></div>
 <div class="mx-4 text-xs hidden" id="<%= eighteen_line.id %>"><%= eighteen_line.explanation %></div>
 
 <label for="my-modal-<%=eighteen_line.id%>", class="cursor-pointer">
