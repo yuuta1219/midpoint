@@ -108,15 +108,15 @@
 
 <script>
   window.addEventListener('DOMContentLoaded', function() {
-    const scrollableElement = document.querySelector('.overflow-x-auto');
-
-    scrollableElement.addEventListener('wheel', (event) => {
-      event.preventDefault();
-
-      const scrollDistance = 200;
-      const delta = Math.sign(event.deltaY);
-
-      scrollableElement.scrollLeft += delta * scrollDistance;
+    const scrollableElements = document.querySelectorAll('.overflow-x-auto');
+    
+    scrollableElements.forEach(scrollableElement => {
+      scrollableElement.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const scrollDistance = 200;
+        const delta = Math.sign(event.deltaY);
+        scrollableElement.scrollLeft += delta * scrollDistance;
+      });
     });
   });
 </script>
