@@ -109,11 +109,11 @@
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     const scrollableElements = document.querySelectorAll('.overflow-x-auto');
-    
+
     scrollableElements.forEach(scrollableElement => {
       scrollableElement.addEventListener('wheel', (event) => {
         // Check if the event is from a mouse
-        if(event.sourceCapabilities.firesTouchEvents !== true) {
+        if (event.sourceCapabilities?.pointerType === 'mouse') {
           event.preventDefault();
           const scrollDistance = 200;
           const delta = Math.sign(event.deltaY);
@@ -123,4 +123,3 @@
     });
   });
 </script>
-
