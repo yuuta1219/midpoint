@@ -5,4 +5,6 @@ class Card < ApplicationRecord
   has_many  :character_knows, dependent: :destroy
   has_many  :characters, through: :character_knows
   
+  enum scene_type: { explicit: 0, implicit: 1}
+
 end

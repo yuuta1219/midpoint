@@ -19,6 +19,6 @@ Rails.application.routes.draw do
     resources :cards
     resources :characters
     resources :foreshadowings
-    resources :boards
+    resources :timelines
   end
 end
