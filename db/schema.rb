@@ -11,23 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
-  create_table "behind_the_scenes", force: :cascade do |t|
-    t.string "name"
-    t.integer "time"
-    t.text "body"
-    t.integer "plot_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plot_id"], name: "index_behind_the_scenes_on_plot_id"
-  end
-
   create_table "cards", force: :cascade do |t|
-    t.integer "scene"
+    t.integer "scene", default: 0, null: false
     t.integer "time"
     t.string "current_location"
     t.string "point_of_view"
     t.integer "emotional_value"
     t.text "body"
+    t.integer "scene_type", default: 0, null: false
     t.integer "plot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,7 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "behind_the_scenes", "plots"
   add_foreign_key "cards", "plots"
   add_foreign_key "character_knows", "cards"
   add_foreign_key "character_knows", "characters"

@@ -3,7 +3,7 @@
 
 <div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
-    <div class="m-2 col-span-1 grid grid-cols-7 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
+    <div class="m-2 col-span-1 grid grid-cols-8 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
       <label for="my-modal" class="btn btn-ghost col-span-1">new card</label>
       <div class="flex col-span-1">
         <label class="label cursor-pointer">
@@ -15,6 +15,12 @@
         <label class="label cursor-pointer">
           <span class="label-text mr-1 hidden md:block">伏線グラフ</span> 
           <input type="checkbox" class="toggle" onclick="document.getElementById('foreshadowing').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">時系列表</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('timeline').classList.toggle('hidden')"/>
         </label>
       </div>
       <div class="flex col-span-1">
@@ -56,6 +62,26 @@
         <%= vite_javascript_tag 'card.tsx' %>
       </div> 
     </div>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <div id="timeline" class="hidden col-span-1">  
+        <div class="text-2xl m-2">時系列表</div>
+        <div class="h-80 m-2 overflow-y-auto overscroll-none">
+          <table class="w-full">
+            <thead class="sticky top-0 bg-neutral text-neutral-content">
+              <tr>
+                <th>時間</th>
+                <th>シーン</th>
+                <th>シーン内容</th>
+                <th>シーンタイプ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "cards/timeline", collection: @timelines %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <input type="checkbox" id="my-modal" class="modal-toggle" />
@@ -71,7 +97,7 @@
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
-          <div class="carousel rounded-box">
+          <div class="overflow-x-auto flex snap-x">
             <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
@@ -80,3 +106,17 @@
   </div>
 </div>
 
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    const scrollableElement = document.querySelector('.overflow-x-auto');
+
+    scrollableElement.addEventListener('wheel', (event) => {
+      event.preventDefault();
+
+      const scrollDistance = 200;
+      const delta = Math.sign(event.deltaY);
+
+      scrollableElement.scrollLeft += delta * scrollDistance;
+    });
+  });
+</script>
