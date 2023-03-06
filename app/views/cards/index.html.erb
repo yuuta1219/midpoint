@@ -97,7 +97,7 @@
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
-          <div class="overflow-x-auto flex snap-x">
+          <div class="overflow-x-auto flex">
             <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
@@ -112,11 +112,15 @@
     
     scrollableElements.forEach(scrollableElement => {
       scrollableElement.addEventListener('wheel', (event) => {
-        event.preventDefault();
-        const scrollDistance = 200;
-        const delta = Math.sign(event.deltaY);
-        scrollableElement.scrollLeft += delta * scrollDistance;
+        // Check if the event is from a mouse
+        if(event.sourceCapabilities.firesTouchEvents !== true) {
+          event.preventDefault();
+          const scrollDistance = 200;
+          const delta = Math.sign(event.deltaY);
+          scrollableElement.scrollLeft += delta * scrollDistance;
+        }
       });
     });
   });
 </script>
+
