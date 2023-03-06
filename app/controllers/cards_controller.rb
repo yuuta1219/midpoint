@@ -3,7 +3,8 @@ class CardsController < ApplicationController
     @current_page = "tab2"
     @plot = Plot.find(params[:plot_id])
     @card = Card.new
-    @cards = @plot.cards.includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
+    @cards = @plot.cards.where(scene_type: :explicit).includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
+    @timelines = @plot.cards.includes(:foreshadowing_cards, :foreshadowings).order(time: :desc)
     @foreshadowing_cards = @plot.foreshadowings.all
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
