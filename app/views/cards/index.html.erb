@@ -105,7 +105,7 @@
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
-          <div class="overflow-x-auto flex">
+          <div class="overflow-x-auto flex py-2">
             <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
@@ -113,7 +113,7 @@
     <% end %>
     <div id="implicit">
       <div class="text-2xl">implicit scene</div>
-      <div class="overflow-x-auto flex">
+      <div class="overflow-x-auto flex py-2">
         <%= render @implicit_cards  %>
       </div>
     </div>
