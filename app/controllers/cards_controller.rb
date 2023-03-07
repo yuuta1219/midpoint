@@ -4,11 +4,12 @@ class CardsController < ApplicationController
     @plot = Plot.find(params[:plot_id])
     @card = Card.new
     @cards = @plot.cards.where(scene_type: :explicit).includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
-    @timelines = @plot.cards.includes(:foreshadowing_cards, :foreshadowings).order(time: :desc)
+    @implicit_cards = @plot.cards.where(scene_type: :implicit).includes(:foreshadowing_cards, :foreshadowings).order(time_start: :asc)
+    @timelines = @plot.cards.order(time_start: :asc)
     @foreshadowing_cards = @plot.foreshadowings.all
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
-    @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name,foreshadowing_id').to_json
+    @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name, foreshadowing_id').to_json
   end
   
   def edit
@@ -45,6 +46,6 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:scene, :time, :current_location, :point_of_view, :emotional_value, :body, foreshadowing_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
+    params.require(:card).permit(:scene, :time_start, :time_end, :title, :current_location, :scene_type, :point_of_view, :emotional_value, :body, foreshadowing_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
   end
 end

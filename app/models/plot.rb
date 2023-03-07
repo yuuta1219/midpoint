@@ -1,9 +1,9 @@
 class Plot < ApplicationRecord
   belongs_to :user
-  has_many  :eighteen_lines , dependent: :destroy
-  has_many  :foreshadowings , dependent: :destroy
-  has_many  :cards , dependent: :destroy
-  has_many  :characters , dependent: :destroy
+  has_many  :eighteen_lines, dependent: :destroy
+  has_many  :foreshadowings, dependent: :destroy
+  has_many  :cards, dependent: :destroy
+  has_many  :characters, dependent: :destroy
 
   enum color: { ホワイト: 0, ブルー: 1, オレンジ: 2, ピンク: 3, グリーン: 4, グレイ: 5 }
 
