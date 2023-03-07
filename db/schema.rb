@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_001147) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
-    t.integer "time"
     t.string "current_location"
     t.string "point_of_view"
     t.integer "emotional_value"
@@ -22,6 +21,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_134416) do
     t.integer "plot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "time_start"
+    t.datetime "time_end"
+    t.string "title"
     t.index ["plot_id"], name: "index_cards_on_plot_id"
   end
 
