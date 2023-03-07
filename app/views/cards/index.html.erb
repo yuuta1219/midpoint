@@ -1,9 +1,8 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
-
 <div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
-    <div class="m-2 col-span-1 grid grid-cols-8 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
+    <div class="m-2 col-span-1 grid grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
       <label for="my-modal" class="btn btn-ghost col-span-1">new card</label>
       <div class="flex col-span-1">
         <label class="label cursor-pointer">
@@ -20,7 +19,7 @@
       <div class="flex col-span-1">
         <label class="label cursor-pointer">
           <span class="label-text mr-1 hidden md:block">時系列表</span> 
-          <input type="checkbox" class="toggle" onclick="document.getElementById('timeline').classList.toggle('hidden')"/>
+          <input type="checkbox" class="toggle" onclick="document.getElementById('timelines').classList.toggle('hidden')"/>
         </label>
       </div>
       <div class="flex col-span-1">
@@ -47,6 +46,12 @@
           <input type="checkbox" class="toggle"checked onclick="document.getElementById('ACT THREE').classList.toggle('hidden')"/>
         </label>
       </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">implicit</span> 
+          <input type="checkbox" class="toggle"checked onclick="document.getElementById('implicit').classList.toggle('hidden')"/>
+        </label>
+      </div>
     </div>
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <div id="card" class="hidden col-span-1">
@@ -63,14 +68,17 @@
       </div> 
     </div>
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-      <div id="timeline" class="hidden col-span-1">  
+      <div id="timelines" class="hidden col-span-1">  
         <div class="text-2xl m-2">時系列表</div>
+        <%= content_tag :div, "", id: "timeline", data: { timelines: @cards_timelines || '[]' } %>
+        <%= vite_javascript_tag 'timelines.tsx' %>
         <div class="h-80 m-2 overflow-y-auto overscroll-none">
           <table class="w-full">
             <thead class="sticky top-0 bg-neutral text-neutral-content">
               <tr>
                 <th>時間</th>
                 <th>シーン</th>
+                <th>シーンタイトル</th>
                 <th>シーン内容</th>
                 <th>シーンタイプ</th>
               </tr>
@@ -97,29 +105,17 @@
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
-          <div class="overflow-x-auto flex">
+          <div class="overflow-x-auto flex py-2">
             <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
     <% end %>
+    <div id="implicit">
+      <div class="text-2xl">implicit scene</div>
+      <div class="overflow-x-auto flex py-2">
+        <%= render @implicit_cards  %>
+      </div>
+    </div>
   </div>
 </div>
-
-<script>
-  window.addEventListener('DOMContentLoaded', function() {
-    const scrollableElements = document.querySelectorAll('.overflow-x-auto');
-
-    scrollableElements.forEach(scrollableElement => {
-      scrollableElement.addEventListener('wheel', (event) => {
-        // Check if the event is from a mouse
-        if (event.sourceCapabilities?.pointerType === 'mouse') {
-          event.preventDefault();
-          const scrollDistance = 200;
-          const delta = Math.sign(event.deltaY);
-          scrollableElement.scrollLeft += delta * scrollDistance;
-        }
-      });
-    });
-  });
-</script>

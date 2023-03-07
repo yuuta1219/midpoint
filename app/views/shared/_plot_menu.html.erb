@@ -2,7 +2,6 @@
   <%= link_to "ホーム", plots_path, class: "flex-1" %> 
   <%= link_to "詳細", plot_path(plot), class: "#{' active' if @current_page == 'tab1'} flex-1"  %> 
   <%= link_to "カード", plot_cards_path(plot), class: "#{' active' if @current_page == 'tab2'} flex-1"  %> 
-  <%= link_to "時系列", plot_timelines_path(plot), class: "#{' active' if @current_page == 'tab3'} flex-1"  %> 
   <%= link_to "伏線", plot_foreshadowings_path(plot), class: "#{' active' if @current_page == 'tab4'} flex-1"  %> 
   <%= link_to "人物", plot_characters_path(plot), class: "#{' active' if @current_page == 'tab5'} flex-1"  %> 
   </div>

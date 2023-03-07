@@ -1,6 +1,11 @@
-<tr class="border-b border-gray-500">
-  <td class="border-l border-gray-500"><%= timeline.time %></td>
+<% if timeline.implicit? %>
+<tr class="border-b border-gray-500 bg-slate-700 text-gray-100 hover:bg-slate-800 transition-colors duration-300">
+<% else %>
+<tr class="border-b border-gray-500 <%= render "shared/plot_card_color", { plot: @plot } %>">
+<% end %>  
+  <td class="border-l border-gray-500"><%= l(timeline.time_start, format: :normal) if timeline.time_start.present? %> ~ <%= l(timeline.time_end, format: :normal) if timeline.time_start.present? %></td>
   <td class="border-l border-gray-500">scene<%= timeline.scene %></td>
+  <td class="border-l border-gray-500"><%= timeline.title %></td>
   <td class="border-l border-gray-500"><%= timeline.body %></td>
   <td class="border-x border-gray-500"><%= timeline.scene_type %></td>
 </tr>

@@ -2,3 +2,5 @@ ja:
   time:
     formats:
       mini: ! '%Y年%-m月%-d日(%a)'
+      normal: ! '%Y/%-m/%-d/%H:%m'
+      deluxe: ! '%Y年%-m月%-d日%H時%m分'
