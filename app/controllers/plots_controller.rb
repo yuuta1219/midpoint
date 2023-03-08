@@ -46,7 +46,7 @@ class PlotsController < ApplicationController
   private
 
   def plot_params
-    params.require(:plot).permit(:name, :theme, :one_line, :color)
+    params.require(:plot).permit(:name, :theme, :one_line, :color, :length, :time, :person)
   end
 
 end
