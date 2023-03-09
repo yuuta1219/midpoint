@@ -3,8 +3,8 @@
 <div class="bg-neutral text-neutral-content relative">
   <%= render 'shared/login_check' %>
   <div class="relative">
-    <%= image_tag "top_image1.jpg", class: "h-500 w-full" %>
-    <div class="ml-2 font-fancy text-neutral text-xl  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
+    <%= image_tag "top_image3.jpg", class: "h-500 w-full" %>
+    <div class="ml-2 font-fancy text-md  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
       <div id="top"></div>
       <%= vite_javascript_tag 'top.tsx' %>
     </div>
@@ -12,13 +12,18 @@
 </div>
 
 <script>
+setTimeout(() => {
+  const elements = document.querySelectorAll('.my-text');
+  elements.forEach((element) => {
+    const firstLetter = element.innerHTML.charAt(0);
+    element.classList.remove('my-text');
+    element.classList.add('animate-ping');
+  });
   setTimeout(() => {
-    const elements = document.querySelectorAll('.my-text');
     elements.forEach((element) => {
-      const firstLetter = element.innerHTML.charAt(0);
-      element.classList.remove('my-text');
-      element.classList.add('t');
+      element.classList.add('hidden');
     });
-  }, 5300);
+  }, 600);
+}, 13000);
 </script>
 <%= render 'shared/footer' %>
