@@ -1,15 +1,24 @@
-<%= render 'shared/login_check' %>
 <%= render 'shared/flash_message' %>
 
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content">
-    <div class="max-w-md">
-      <h1 class="text-5xl font-bold">
-      TOPページ
-      </h1>
-      <p class="py-6"></p>
+<div class="bg-neutral text-neutral-content relative">
+  <%= render 'shared/login_check' %>
+  <div class="relative">
+    <%= image_tag "top_image1.jpg", class: "h-500 w-full" %>
+    <div class="ml-2 font-fancy text-neutral text-xl  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
+      <div id="top"></div>
+      <%= vite_javascript_tag 'top.tsx' %>
     </div>
   </div>
 </div>
 
+<script>
+  setTimeout(() => {
+    const elements = document.querySelectorAll('.my-text');
+    elements.forEach((element) => {
+      const firstLetter = element.innerHTML.charAt(0);
+      element.classList.remove('my-text');
+      element.classList.add('t');
+    });
+  }, 5300);
+</script>
 <%= render 'shared/footer' %>

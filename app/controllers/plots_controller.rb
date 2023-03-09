@@ -2,6 +2,7 @@ class PlotsController < ApplicationController
   include PlotsHelper
   
   def index
+    @color = "normal"
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
@@ -14,6 +15,7 @@ class PlotsController < ApplicationController
   end
 
   def new
+    @color = "normal"
     @plot = Plot.new
   end
 
