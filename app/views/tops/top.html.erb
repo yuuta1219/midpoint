@@ -2,13 +2,9 @@
 
 <div class="bg-neutral text-neutral-content relative">
   <%= render 'shared/login_check' %>
-  <div class="relative">
-    <%= image_tag "top_image3.jpg", class: "h-500 w-full" %>
-    <div class="ml-2 font-fancy text-md  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
-      <div id="top"></div>
-      <%= vite_javascript_tag 'top.tsx' %>
-    </div>
-  </div>
+  <%= image_tag "top_image3.jpg", class: "h-500 w-full" %>
+  <div id="top"></div>
+  <%= vite_javascript_tag 'top.tsx' %>
 </div>
 
 <script>

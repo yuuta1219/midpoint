@@ -119,16 +119,19 @@ function Top() {
 
   return (
     <>
-    <div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 pr-3 backdrop-brightness-50"></div>
-    <div ref={myElement2} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>
-    <div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>
-    <div ref={myElement4} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>
-    <div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>  
-    <div ref={myElement6} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>  
-    <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>  
-    <div ref={myElement8} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000  backdrop-brightness-50"></div>  
-    <div ref={myElement9} style={{ whiteSpace: 'pre' }} className="text-neutral-content transition duration-1000 text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl backdrop-brightness-50"></div>  
-    
+    <div className="relative">
+      <div className="ml-2 font-fancy text-md sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
+        <div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 pr-3"></div>
+        <div ref={myElement2} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement4} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement6} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement8} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement9} style={{ whiteSpace: 'pre' }} className="text-neutral-content transition duration-1000 text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-8xl backdrop-brightness-50"></div>  
+      </div>
+    </div>
     </>
   );
 }
