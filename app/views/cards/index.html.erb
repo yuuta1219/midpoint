@@ -70,8 +70,6 @@
     <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <div id="timelines" class="hidden col-span-1">  
         <div class="text-2xl m-2">時系列表</div>
-        <%= content_tag :div, "", id: "timeline", data: { timelines: @cards_timelines || '[]' } %>
-        <%= vite_javascript_tag 'timelines.tsx' %>
         <div class="h-80 m-2 overflow-y-auto overscroll-none">
           <table class="w-full">
             <thead class="sticky top-0 bg-neutral text-neutral-content">
