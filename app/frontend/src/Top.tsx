@@ -12,6 +12,8 @@ function Top() {
   const myElement5 = useRef(null);
   const myElement6 = useRef(null);
   const myElement7 = useRef(null);
+  const myElement8 = useRef(null);
+  const myElement9 = useRef(null);
 
   useEffect(() => {
     gsap.from(myElement1.current, {
@@ -31,7 +33,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement2.current, {
           duration: 1,
-          text: '彼らは、見せかけの勝利を収めた。',
+          text: '彼には、死者の声が聞こえた。',
         });
       },
     });
@@ -42,7 +44,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement3.current, {
           duration: 1,
-          text: '刑務所を、レコードの音色が包んだ。',
+          text: 'この地は、地球であるとを悟った。',
         });
       },
     });
@@ -53,7 +55,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement4.current, {
           duration: 1,
-          text: '彼は、死者の声が聞こえた。',
+          text: 'ヒーロー達は、見せかけの勝利を収めた。',
         });
       },
     });
@@ -64,7 +66,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement5.current, {
           duration: 1,
-          text: '二人は、重機に襲われた。',
+          text: '刑務所の中では、レコードの音楽が響き渡った。',
         });
       },
     });
@@ -75,7 +77,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement6.current, {
           duration: 1,
-          text: 'その時、地球だと知った。',
+          text: '絆を深めた二人は、人間の操作する重機に襲われた。',
         });
       },
     });
@@ -86,7 +88,29 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement7.current, {
           duration: 1,
-          text: 'ミッドポイントは、作品を変えてしまう力を持っている。',
+          text: 'これらはミッドポイントに起きた出来事だ。',
+        });
+      },
+    });
+
+    gsap.from(myElement8.current, {
+      duration: 11,
+      text: '',
+      onComplete: () => {
+        gsap.to(myElement8.current, {
+          duration: 1,
+          text: 'ミッドポイントは作品を変えてしまう力を持っている。',
+        });
+      },
+    });
+
+    gsap.from(myElement9.current, {
+      duration: 14.5,
+      text: '',
+      onComplete: () => {
+        gsap.to(myElement9.current, {
+          duration: 0.1,
+          text: 'さあ。貴方も、<br></br>ミッドポイントで<br></br>物語を作ろう。',
         });
       },
     });
@@ -95,13 +119,19 @@ function Top() {
 
   return (
     <>
-    <div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 pr-3"></div>
-    <div ref={myElement2} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
-    <div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
-    <div ref={myElement4} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
-    <div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
-    <div ref={myElement6} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
-    <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+    <div className="relative">
+      <div className="ml-2 font-fancy text-md sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl absolute bottom-2">
+        <div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 pr-3"></div>
+        <div ref={myElement2} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement4} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+        <div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement6} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement8} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+        <div ref={myElement9} style={{ whiteSpace: 'pre' }} className="text-neutral-content transition duration-1000 text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-8xl backdrop-brightness-50"></div>  
+      </div>
+    </div>
     </>
   );
 }

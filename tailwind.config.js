@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        fancy: ["Cardo display"],
+        fancy: ["Sawarabi Mincho"],
       },
     },
   },
