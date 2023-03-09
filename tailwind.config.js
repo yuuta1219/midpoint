@@ -1,4 +1,5 @@
 module.exports = {
+  
   content: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
@@ -7,6 +8,13 @@ module.exports = {
     './app/frontend/entrypoints/*.{js,ts,jsx,tsx}',
     './app/frontend/src/*.{js,ts,jsx,tsx}',
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        fancy: ["Cardo display"],
+      },
+    },
+  },
   plugins: [require("daisyui")],
   daisyui: { 
     themes: ["corporate"],

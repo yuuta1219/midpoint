@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @color = 'normal'
   end
 
   def create
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
+    @color = 'normal'
   end
 
   def destroy

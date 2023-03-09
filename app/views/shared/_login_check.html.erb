@@ -1,4 +1,4 @@
-<div class="navbar bg-neutral border-b border-gray-500 text-neutral-content">
+<div class="z-30 <%='bg-neutral border-b border-gray-500' if @color == 'normal'%> navbar text-neutral-content top-0 sticky backdrop-blur-sm">
   <% if  logged_in? %>
     <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), plots_path %></div>
     <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
@@ -7,22 +7,22 @@
     <div><%= link_to "SignUp",new_user_path, class: "btn btn-ghost btn-sm" %></div>
     <div><label for="my-modal-1" class="btn btn-ghost btn-sm">Guest</label></div>
     <div><label for="my-modal-2" class="btn btn-ghost btn-sm">Login</label></div>
-
-    <input type="checkbox" id="my-modal-1" class="modal-toggle" />
-    <label for="my-modal-1" class="modal cursor-pointer">
-      <label class="modal-box relative" for="">
-        <label for="my-modal-1" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500 text-gray-700">ゲストログインについて</div>
-        <div class="text-sm m-2 my-4 text-gray-700">ゲストユーザーでログインした場合、一部の機能が制限されることがあります。また、ゲストユーザーは一時的な利用を想定しており、データの保存が行われません。ご了承いただいた上でご利用ください。</div>
-        <%= link_to 'Guest Login', new_guest_path,class: "btn test-xl m-2", method: :get, disabled: false %>
-      </label>
-    </label>
-    <input type="checkbox" id="my-modal-2" class="modal-toggle" />
-    <label for="my-modal-2" class="modal cursor-pointer">
-      <label class="modal-box relative" for="">
-        <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <%= render 'user_sessions/new' %>   
-      </label>
-    </label>
   <% end %>
 </div>
+<input type="checkbox" id="my-modal-1" class="modal-toggle" />
+<label for="my-modal-1" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-1" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500 text-gray-700">ゲストログインについて</div>
+    <div class="text-sm m-2 my-4 text-gray-700">ゲストユーザーでログインした場合、一部の機能が制限されることがあります。また、ゲストユーザーは一時的な利用を想定しており、データの保存が行われません。ご了承いただいた上でご利用ください。</div>
+    <%= link_to 'Guest Login', new_guest_path,class: "btn test-xl m-2", method: :get, disabled: false %>
+  </label>
+</label>
+<input type="checkbox" id="my-modal-2" class="modal-toggle" />
+<label for="my-modal-2" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <%= render 'user_sessions/new' %>   
+  </label>
+</label>
+
