@@ -8,7 +8,7 @@ const Explanation = () => {
       <div className="m-10 col-span-1 shadow-xl bg-white text-neutral">
         <img src={pushpin} alt="pin icon" className="mx-auto" width="30px" height="30px" />
 
-        <div>ああああああああああ</div>
+        <div>ああああああああああa</div>
       </div>
     </div>
   );
