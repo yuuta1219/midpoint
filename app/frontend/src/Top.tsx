@@ -12,17 +12,6 @@ function Top() {
   const myElement5 = useRef(null);
   const myElement6 = useRef(null);
   const myElement7 = useRef(null);
-  const myElement8 = useRef(null);
-  const myElement9 = useRef(null);
-  const myElement10 = useRef(null);
-  const myElement11 = useRef(null);
-  const myElement12 = useRef(null);
-  const myElement13 = useRef(null);
-  const myElement14 = useRef(null);
-  const myElement15 = useRef(null);
-  const myElement16 = useRef(null);
-
-
 
   useEffect(() => {
     gsap.from(myElement1.current, {
@@ -30,171 +19,74 @@ function Top() {
       text: '            ',
       onComplete: () => {
         gsap.to(myElement1.current, {
-          duration: 0.1,
-          text: 'M',
+          duration: 1,
+          text: '船は、氷山に衝突した。',
         });
       },
     });
 
     gsap.from(myElement2.current, {
-      duration: 0.2,
+      duration: 1.5,
       text: '',
       onComplete: () => {
         gsap.to(myElement2.current, {
-          duration: 0.5,
-          text: 'OMENTUM ',
+          duration: 1,
+          text: '彼らは、見せかけの勝利を収めた。',
         });
       },
     });
 
     gsap.from(myElement3.current, {
-      duration: 0.8,
+      duration: 3,
       text: '',
       onComplete: () => {
         gsap.to(myElement3.current, {
-          duration: 0.1,
-          text: 'I',
+          duration: 1,
+          text: '刑務所を、レコードの音色が包んだ。',
         });
       },
     });
 
     gsap.from(myElement4.current, {
-      duration: 0.9,
+      duration: 4.5,
       text: '',
       onComplete: () => {
         gsap.to(myElement4.current, {
-          duration: 0.5,
-          text: 'NCREASES',
+          duration: 1,
+          text: '彼は、死者の声が聞こえた。',
         });
       },
     });
 
     gsap.from(myElement5.current, {
-      duration: 1.5,
+      duration: 6,
       text: '',
       onComplete: () => {
         gsap.to(myElement5.current, {
-          duration: 0.1,
-          text: 'D',
+          duration: 1,
+          text: '二人は、重機に襲われた。',
         });
       },
     });
 
     gsap.from(myElement6.current, {
-      duration: 1.6,
+      duration: 7.5,
       text: '',
       onComplete: () => {
         gsap.to(myElement6.current, {
-          duration: 0.5,
-          text: 'RAMATIC',
+          duration: 1,
+          text: 'その時、地球だと知った。',
         });
       },
     });
 
     gsap.from(myElement7.current, {
-      duration: 2.2,
+      duration: 9,
       text: '',
       onComplete: () => {
         gsap.to(myElement7.current, {
-          duration: 0.1,
-          text: 'P',
-        });
-      },
-    });
-    gsap.from(myElement8.current, {
-      duration: 2.3,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement8.current, {
-          duration: 0.5,
-          text: 'ROGRESSION',
-        });
-      },
-    });
-
-    gsap.from(myElement9.current, {
-      duration: 2.9,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement9.current, {
-          duration: 0.1,
-          text: 'O',
-        });
-      },
-    });
-
-    gsap.from(myElement10.current, {
-      duration: 3,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement10.current, {
-          duration: 0.1,
-          text: 'F',
-        });
-      },
-    });
-
-    gsap.from(myElement11.current, {
-      duration: 3.1,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement11.current, {
-          duration: 0.1,
-          text: 'I',
-        });
-      },
-    });
-
-    gsap.from(myElement12.current, {
-      duration: 3.2,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement12.current, {
-          duration: 0.5,
-          text: 'NTRIGUING',
-        });
-      },
-    });
-
-    gsap.from(myElement13.current, {
-      duration: 3.8,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement13.current, {
-          duration: 0.1,
-          text: 'N',
-        });
-      },
-    });
-
-    gsap.from(myElement14.current, {
-      duration: 3.9,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement14.current, {
-          duration: 0.5,
-          text: 'ARRATIVES',
-        });
-      },
-    });
-
-    gsap.from(myElement15.current, {
-      duration: 4.5,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement15.current, {
-          duration: 0.1,
-          text: 'T',
-        });
-      },
-    });
-    gsap.from(myElement16.current, {
-      duration: 4.6,
-      text: '',
-      onComplete: () => {
-        gsap.to(myElement16.current, {
-          duration: 0.5,
-          text: 'HROUGH',
+          duration: 1,
+          text: 'ミッドポイントは、作品を変えてしまう力を持っている。',
         });
       },
     });
@@ -203,14 +95,13 @@ function Top() {
 
   return (
     <>
-      <div className="flex backdrop-brightness-50 pr-3"><div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement2} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement4} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement6} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement8} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement9} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement10} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement11} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement12} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement13} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement14} style={{ whiteSpace: 'pre' }}></div></div>
-      <div className="flex backdrop-brightness-50"><div ref={myElement15} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div><div className="text-hide" ref={myElement16} style={{ whiteSpace: 'pre' }}></div></div>
+    <div ref={myElement1} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 pr-3"></div>
+    <div ref={myElement2} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+    <div ref={myElement3} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+    <div ref={myElement4} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>
+    <div ref={myElement5} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+    <div ref={myElement6} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
+    <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000"></div>  
     </>
   );
 }
