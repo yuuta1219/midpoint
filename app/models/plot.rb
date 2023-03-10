@@ -8,7 +8,6 @@ class Plot < ApplicationRecord
   validates :name, length: { maximum: 255 }
   validates :theme, length: { maximum: 255 }
   validates :one_line, length: { maximum: 255 }
-  validates :length, numericality: { only_integer: true }
 
   enum color: { ホワイト: 0, ブルー: 1, オレンジ: 2, ピンク: 3, グリーン: 4, グレイ: 5 }
   enum length: { "長編": 0, "中編": 1, "短編": 2 }

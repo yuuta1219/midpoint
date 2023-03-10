@@ -8,7 +8,6 @@ class Card < ApplicationRecord
   validates :scene, numericality: { only_integer: true }
   validates :current_location, length: { maximum: 255 }
   validates :point_of_view, length: { maximum: 255 }
-  validates :emotional_value, numericality: { only_integer: true }
   validates :body, length: { maximum: 65_535 }
   validates :title, length: { maximum: 255 }
   
