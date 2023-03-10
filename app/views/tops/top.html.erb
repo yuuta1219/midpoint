@@ -1,6 +1,6 @@
 <%= render 'shared/flash_message' %>
 
-<div class="bg-neutral text-neutral-content relative">
+<div class="bg-neutral text-neutral-content relative font-fancy">
   <%= render 'shared/login_check' %>
   <%= image_tag "top_image3.jpg", class: "h-500 w-full" %>
   <div id="top"></div>
@@ -21,5 +21,13 @@ setTimeout(() => {
     });
   }, 600);
 }, 13000);
+
+setTimeout(() => {
+  const elements = document.querySelectorAll('.my-text-second');
+  elements.forEach((element) => {
+    const firstLetter = element.innerHTML.charAt(0);
+    element.classList.remove('hidden');
+  });
+}, 13800);
 </script>
 <%= render 'shared/footer' %>
