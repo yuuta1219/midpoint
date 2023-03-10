@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'new_guest', to: 'users#new_guest'
   
   resources :users, only: %i[new create destroy]
-  resources :plots,  shallow: true do
+  resources :plots, shallow: true do
     resources :eighteen_lines, only: %i[create update destroy]
     resources :cards, only: %i[index edit new create update destroy]
     resources :characters, only: %i[index new create update destroy]
