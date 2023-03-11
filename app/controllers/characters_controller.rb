@@ -4,6 +4,8 @@ class CharactersController < ApplicationController
     @plot = Plot.find(params[:plot_id])
     @characters = @plot.characters.order(created_at: :asc)
     @character = Character.new
+
+    redirect_to root_path unless @plot.user == current_user
   end
 
   def new

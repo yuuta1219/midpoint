@@ -4,6 +4,8 @@ class ForeshadowingsController < ApplicationController
     @plot = Plot.find(params[:plot_id])
     @foreshadowings = @plot.foreshadowings.order(created_at: :asc)
     @foreshadowing = Foreshadowing.new
+
+    redirect_to root_path unless @plot.user == current_user
   end
   
   def create
