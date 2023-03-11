@@ -28,8 +28,8 @@ class PlotsController < ApplicationController
       create_cards(@plot)
       redirect_to plot_path(@plot), success: "作成しました！"
     else
-      flash.now[:error] = "作成できませんでした。"
-      render 'new'
+      flash.now[:danger] = "作成できませんでした。"
+      render :new
     end
   end
   
