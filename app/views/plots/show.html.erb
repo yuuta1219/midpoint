@@ -7,19 +7,19 @@
     <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
         <div class="mx-4 border-b border-gray-500 text-xl">タイトル<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost md:input-sm input-lg w-full max-w-full'%>
+        <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
         <div class="mx-4 border-b border-gray-500 text-xl">テーマ<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost md:input-sm input-lg w-full max-w-full'%>
+        <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
         <div class="mx-4 border-b border-gray-500 text-xl">ログライン<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost md:textarea-sm textarea-lg w-full max-w-full h-24'%>
+        <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost md:textarea-md textarea-lg w-full max-w-full h-24'%>
         <div class="mx-4 border-b border-gray-500 text-xl">カードカラー<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "ml-3 select select-ghost select-sm max-w-xs my-2" }%>
+        <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }%>
         <div class="mx-4 border-b border-gray-500 text-x">作品の長さ<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.collection_select :length, Plot.lengths.keys, :to_s, :to_s, { prompt: "長編" }, { class: "ml-3 select select-ghost select-sm max-w-xs my-2" } %>
+        <%= f.collection_select :length, Plot.lengths.keys, :to_s, :to_s, { prompt: "長編" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" } %>
         <div class="mx-4 border-b border-gray-500 text-x">作中時間<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.datetime_field :time, { class: "ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+        <%= f.datetime_field :time, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
         <div class="mx-4 border-b border-gray-500 text-x">人称<i class="text-xs bi bi-question-circle-fill"></i></div>
-        <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+        <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
         <div></div>
         <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
       <% end %>

@@ -20,16 +20,16 @@
           <%= f.text_area :one_line, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24'%>
           <%= f.label :プロットカラー, class: 'my-1 text-xl' %>
             <p class="text-sm">プロットカードの色を選択できます。</p>
-          <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color" }, { selected: "white" } %>
+          <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color" }, { class: "select select-secondary select-lg md:select-md font-light" } %>
           <%= f.label :作品の長さ, class: 'my-1 text-xl' %>
             <p class="text-sm">作品の長さ。</p>
-          <%= f.collection_select :length, Plot.lengths.keys, :to_s, :to_s, { prompt: "長編" }, { selected: "長編" }  %>
+          <%= f.collection_select :length, Plot.lengths.keys, :to_s, :to_s, { prompt: "長編" }, { class: "select select-secondary select-lg md:select-md font-light" }  %>
           <%= f.label :作中時期, class: 'my-1 text-xl' %>
             <p class="text-sm">作品の長さ。</p>
-          <%= f.datetime_field :time, class: 'form-control' %>
+          <%= f.datetime_field :time, class: 'select select-secondary select-lg md:select-md font-light' %>
           <%= f.label :基本人称, class: 'my-1 text-xl' %>
             <p class="text-sm">作品の長さ。</p>
-          <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { selected: "三人称" }  %>
+          <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "select select-secondary select-lg md:select-md font-light" }  %>
           <%= f.submit 'プロットを作成する', class: 'btn text-gray-100 bg-gray-900 my-2' %>
         </div>
       <% end %>
