@@ -10,17 +10,21 @@ class CardsController < ApplicationController
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name, foreshadowing_id').to_json
+    
+    redirect_to root_path unless @plot.user == current_user
   end
   
   def edit
     @card = Card.find(params[:id])
     @plot = @card.plot
     @foreshadowing_cards = @plot.foreshadowings.all
+    redirect_to root_path unless @plot.user == current_user
   end
 
   def create
     @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
+    redirect_to root_path unless @plot.user == current_user
     if @card.save
       redirect_to plot_cards_path(@plot), success: "作成しました！"
     else
@@ -39,8 +43,12 @@ class CardsController < ApplicationController
 
   def destroy
     @card = Card.find(params[:id])
-    @card.destroy!
-    redirect_to plot_cards_path(@card.plot), status: :see_other, success: "削除しました！"
+    if @card.plot.user == current_user
+      @card.destroy!
+      redirect_to plot_cards_path(@card.plot), status: :see_other, success: "削除しました！"
+    else # カードを作成したユーザーでない場合
+      redirect_to root_path
+    end
   end
 
   private

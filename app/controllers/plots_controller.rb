@@ -12,6 +12,7 @@ class PlotsController < ApplicationController
     @plot = Plot.find(params[:id])
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
+    redirect_to root_path unless @plot.user == current_user
   end
 
   def new
