@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: clf3dxt4c005zagp5b6nv0gwp
+  username: clf3dxt4b005xagp5egax56h7
+  password: <%= ENV['MIDPOINT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
