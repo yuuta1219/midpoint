@@ -1,3 +1,18 @@
 <% flash.each do |message_type, message| %>
-  <p class="text2"><%= message %></p>
+  <p class="bg-white text-neutral font-fancy shadow-lg text-xl p-3 flash fixed top-17 right-5"><%= message %></p>
 <% end %>
+
+<script>
+setTimeout(() => {
+  const elements = document.querySelectorAll('.flash');
+  elements.forEach((element) => {
+    const firstLetter = element.innerHTML.charAt(0);
+    element.classList.add('animate-ping');
+  });
+  setTimeout(() => {
+    elements.forEach((element) => {
+      element.classList.add('hidden');
+    });
+  }, 400);
+}, 4000);
+</script>
