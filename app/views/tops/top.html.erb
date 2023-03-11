@@ -7,6 +7,11 @@
   <%= vite_javascript_tag 'top.tsx' %>
 </div>
 
+<div class="fixed bottom-10 right-0 m-8 z-20">
+  <div class="sm:hidden"><%= link_to "SignUp",new_user_path, class: "btn btn-neutral btn-xl " %></div>
+</div>
+
+
 <script>
 setTimeout(() => {
   const elements = document.querySelectorAll('.my-text');
