@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'dashboards/index'
+  end
   root 'tops#top'
 
   get 'terms', to: 'tops#terms'
@@ -19,5 +22,9 @@ Rails.application.routes.draw do
     resources :cards, only: %i[index edit new create update destroy]
     resources :characters, only: %i[index new create update destroy]
     resources :foreshadowings, only: %i[index create update destroy]
+  end
+  namespace :admin do
+    root to: 'dashboards#index'
+    resources :users, only: %i[index edit update show destroy]
   end
 end

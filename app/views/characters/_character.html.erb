@@ -15,9 +15,9 @@
       <div class="text-xl border-b border-gray-500 ">登場人物を更新する</div>
       <div class="grid grid-cols-1">
         <%= f.label :名前, class: 'my-1 text-xl' %>
-        <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary md:input-sm input-lg w-full max-w-full', placeholder: "名前を入力" %>
+        <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full', placeholder: "名前を入力" %>
         <%= f.label :登場人物の内容, class: 'my-1 text-xl' %>
-        <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-sm textarea-lg w-full max-w-full h-24',  placeholder: "内容を入力" %>
+        <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "内容を入力" %>
         <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
         </div>
     <% end %>

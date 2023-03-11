@@ -1,0 +1,23 @@
+<thead class="sticky top-0 bg-neutral text-neutral-content">
+  <table>
+    <tr>
+      <th>user_id</th>
+      <th>名前</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "admin/dashboards/user", collection: @users %>
+  </tbody>
+</table>
+
+<thead class="sticky top-0 bg-neutral text-neutral-content">
+  <table>
+    <tr>
+      <th>plot_id</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <%= render partial: "admin/dashboards/plot", collection: @plots %>
+  </tbody>
+</table>
