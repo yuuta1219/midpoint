@@ -1,5 +1,6 @@
 class PlotsController < ApplicationController
   include PlotsHelper
+  add_flash_types :success, :info, :warning, :danger
   
   def index
     @color = "normal"
@@ -21,13 +22,14 @@ class PlotsController < ApplicationController
   end
 
   def create
+    @color = "normal"
     @plot = current_user.plots.build(plot_params)
     if @plot.save
       create_cards(@plot)
       redirect_to plot_path(@plot), success: "作成しました！"
     else
-      flash.now[:danger] = "作成できませんでした。"
-      render :new
+      flash.now[:error] = "作成できませんでした。"
+      render 'new'
     end
   end
   
