@@ -1,8 +1,8 @@
 <label for="my-modal-<%= foreshadowing.id %>", class="cursor-pointer">
   <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-2 shadow-xl ">
     <div class="grid grid-cols-1">
-      <div class="mx-3 mt-1 font-semibold border-b border-slate-700"><%= foreshadowing.name  %></div>
-      <div class="text-sm mb-12 mt-2 ml-4 mx-3"><%= simple_format(h(foreshadowing.body)) %></div>
+      <div class="mx-3 mt-1 font-semibold border-b border-slate-700 break-all"><%= foreshadowing.name  %></div>
+      <div class="text-sm mb-12 mt-2 ml-4 mx-3 break-all"><%= simple_format(h(foreshadowing.body)) %></div>
     </div>
     <div class="absolute inset-x-0 bottom-0 mx-3 flex " style="overflow-x: auto; white-space: nowrap;">
       <% foreshadowing.foreshadowing_cards.each do |fc| %>
