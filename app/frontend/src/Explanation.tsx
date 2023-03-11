@@ -76,7 +76,10 @@ const Explanation = () => {
         トグルを利用することで、画面上に表示したいものを自由に選択できます。
         </Fade>
       </div>
-      <div className="col-span-2 mt-10 mx-2 drop-shadow-2xl">
+      <div className="col-span-2 sm:col-span-4 border-b border-neutral-700 text-neutral text-2xl xl:text-5xl mt-10 mx-2 drop-shadow-2xl">
+        <a href="https://midpoint.magia.runteq.jp/users/new" rel="noopener noreferrer">
+        アカウント登録はこの文章をクリック
+        </a>
       </div>
       <div className="col-span-2 mt-10 mx-2 drop-shadow-2xl">
       </div>
