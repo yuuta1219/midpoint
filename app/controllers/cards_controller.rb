@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   def index
-    @current_page = "tab2"
+    @current_page = "tab3"
     @plot = Plot.find(params[:plot_id])
     @card = Card.new
     @cards = @plot.cards.where(scene_type: :explicit).includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)

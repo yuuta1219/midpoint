@@ -1,0 +1,18 @@
+<%= render 'shared/flash_message' %>
+<%= render 'shared/plot_menu', { plot: @plot } %>
+
+<div class="bg-base-200 min-h-screen pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+    <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+    <%= render @eighteen_lines %>
+    <label for="my-modal" class="btn btn-ghost">new plot point</label>
+    <input type="checkbox" id="my-modal" class="modal-toggle" />
+    <label for="my-modal" class="modal cursor-pointer">
+      <label class="modal-box relative" for="">
+        <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <%= render 'eighteen_lines/form', { eighteen_line: @eighteen_line } %>
+      </label>
+    </label>
+  </div>
+</div>

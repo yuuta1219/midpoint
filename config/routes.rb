@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   
   resources :users, only: %i[new create destroy]
   resources :plots, shallow: true do
-    resources :eighteen_lines, only: %i[create update destroy]
+    resources :eighteen_lines, only: %i[index create update destroy]
     resources :cards, only: %i[index edit new create update destroy]
     resources :characters, only: %i[index new create update destroy]
     resources :foreshadowings, only: %i[index create update destroy]
