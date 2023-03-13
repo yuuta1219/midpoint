@@ -6,6 +6,7 @@ class PlotsController < ApplicationController
     @color = "normal"
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @notifications = @plots
   end
 
   def show

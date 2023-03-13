@@ -1,6 +1,12 @@
 <div class="z-30 font-fancy <%='bg-neutral border-b border-gray-500 text-neutral-content' if @color == 'normal'%> navbar top-0 sticky backdrop-blur backdrop-brightness-50">
   <% if  logged_in? %>
     <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), plots_path %></div>
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" class="bi bi-bell text-xl mr-6 hover:cursor-pointer"></label>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 text-neutral rounded-box w-52">
+        <%= render partial: "notifications/notification", collection: @notifications %>
+      </ul>
+    </div>
     <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
   <% else %>
     <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), root_path %></div>

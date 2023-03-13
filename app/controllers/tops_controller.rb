@@ -1,7 +1,9 @@
 class TopsController < ApplicationController
   skip_before_action :require_login, only: %i[top terms privacy_policy treatment]
 
-  def top;end
+  def top
+    @notifications = Notification.all
+  end
 
   def terms
     @color = "normal"
