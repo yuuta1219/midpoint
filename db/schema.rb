@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_232942) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_083544) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -72,6 +72,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_232942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plot_id"], name: "index_foreshadowings_on_plot_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "name"
+    t.text "message"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "plots", force: :cascade do |t|
