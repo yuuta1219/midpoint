@@ -1,0 +1,14 @@
+<%= render 'shared/login_check' %>
+<%= render 'shared/flash_message' %>
+
+<div class="bg-base-200 min-h-screen pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 pb-5 col-span-1 shadow-xl bg-white font-fancy">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="m-4 text-4xl border-b-2 border-gray-500"><%= @notification.title %></div>
+      <div class="m-4 text-2xl">著者：<%= @notification.name %></div>
+      <div class="m-4 break-all"><%= simple_format(h(@notification.message )) %></div>
+      <%= link_to "お知らせ一覧へ", notifications_path,class:"m-4 border-b border-gray-500" %>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_232942) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_083758) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -74,6 +74,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_232942) do
     t.index ["plot_id"], name: "index_foreshadowings_on_plot_id"
   end
 
+  create_table "notification_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "notification_id", null: false
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notification_id"], name: "index_notification_users_on_notification_id"
+    t.index ["user_id"], name: "index_notification_users_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "title"
+    t.string "name"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plots", force: :cascade do |t|
     t.string "name"
     t.string "theme"
@@ -107,5 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_232942) do
   add_foreign_key "foreshadowing_cards", "cards"
   add_foreign_key "foreshadowing_cards", "foreshadowings"
   add_foreign_key "foreshadowings", "plots"
+  add_foreign_key "notification_users", "notifications"
+  add_foreign_key "notification_users", "users"
   add_foreign_key "plots", "users"
 end
