@@ -6,8 +6,7 @@ class NotificationsController < ApplicationController
     @notifications = Notification.all
   end
 
-  def show
-  end
+  def show;end
 
   def new
     @notification = Notification.new
@@ -15,7 +14,6 @@ class NotificationsController < ApplicationController
 
   def create
     @notification = Notification.new(notification_params)
-
     if @notification.save
       redirect_to @notification, notice: "お知らせを作成しました"
     else
@@ -50,6 +48,6 @@ class NotificationsController < ApplicationController
   end
 
   def notification_params
-    params.require(:notification).permit(:name, :message)
+    params.require(:notification).permit(:name, :message, :title)
   end
 end

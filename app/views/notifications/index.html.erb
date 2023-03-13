@@ -1,2 +1,15 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<%= render 'shared/login_check' %>
+<%= render 'shared/flash_message' %>
+
+<div class="bg-base-200 text-gray-700">
+  <div class="flex border-b-4 border-base-300">
+    <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "お知らせ一覧", notifications_path, class: "text-3xl" %></div>
+  </div>
+  <div class="">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <%= render @notifications %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

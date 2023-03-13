@@ -4,7 +4,7 @@
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="bi bi-bell text-xl mr-6 hover:cursor-pointer"></label>
       <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 text-neutral rounded-box w-52">
-        <%= render partial: "notifications/notification", collection: @notifications %>
+        <%= render partial: "shared/message", collection: @notifications, as: :notification %>
       </ul>
     </div>
     <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
