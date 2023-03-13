@@ -3,10 +3,13 @@ class NotificationsController < ApplicationController
   before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    @color = "normal"
     @notifications = Notification.all
   end
 
-  def show;end
+  def show
+    @color = "normal"
+  end
 
   def new
     @notification = Notification.new
