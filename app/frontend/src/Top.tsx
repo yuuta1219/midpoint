@@ -44,7 +44,7 @@ function Top() {
       onComplete: () => {
         gsap.to(myElement3.current, {
           duration: 1,
-          text: 'この地は、地球であるとを悟った。',
+          text: 'この地は、地球であるのだと悟った。',
         });
       },
     });
