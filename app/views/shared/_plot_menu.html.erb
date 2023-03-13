@@ -1,7 +1,9 @@
-<div class="btm-nav btm-nav-xs flex fixed inset-x-0 bottom-0 bg-white z-10">
-  <%= link_to "ホーム", plots_path, class: "flex-1" %> 
-  <%= link_to "詳細", plot_path(plot), class: "#{' active' if @current_page == 'tab1'} flex-1"  %> 
-  <%= link_to "カード", plot_cards_path(plot), class: "#{' active' if @current_page == 'tab2'} flex-1"  %> 
-  <%= link_to "伏線", plot_foreshadowings_path(plot), class: "#{' active' if @current_page == 'tab4'} flex-1"  %> 
-  <%= link_to "人物", plot_characters_path(plot), class: "#{' active' if @current_page == 'tab5'} flex-1"  %> 
-  </div>
+<div class="btm-nav btm-nav-xs flex fixed inset-x-0 bottom-0 bg-neutral-700 text-neutral-content z-10">
+  <%= link_to "ホーム", plots_path, class: "flex-1 border-r border-color-white place-self-center" %> 
+  <%= link_to "詳細", plot_path(plot), class: "#{'bg-neutral-900' if @current_page == 'tab1'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "プロット", plot_eighteen_lines_path(plot), class: "#{' bg-neutral-900' if @current_page == 'tab2'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "カード", plot_cards_path(plot), class: "#{'bg-neutral-900' if @current_page == 'tab3'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "伏線", plot_foreshadowings_path(plot), class: "#{'bg-neutral-900' if @current_page == 'tab4'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "人物", plot_characters_path(plot), class: "#{'bg-neutral-900' if @current_page == 'tab5'} flex-1"  %> 
+</div>
+

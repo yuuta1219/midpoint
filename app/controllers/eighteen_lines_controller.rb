@@ -1,4 +1,13 @@
 class EighteenLinesController < ApplicationController
+  def index
+    @current_page = "tab2"
+    @plot = Plot.find(params[:plot_id])
+    @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
+    @eighteen_line = EighteenLine.new
+
+    redirect_to root_path unless @plot.user == current_user
+  end
+
   def create
     eighteen_line = EighteenLine.new(eighteen_line_params)
     if eighteen_line.save
