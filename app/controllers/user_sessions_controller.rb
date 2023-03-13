@@ -3,10 +3,12 @@ class UserSessionsController < ApplicationController
 
   def new
     @color = "normal"
+    @notifications = Notification.all
   end
 
   def create
     @color = "normal"
+    @notifications = Notification.all
     @user = login(params[:email], params[:password])
     if @user
       redirect_back_or_to plots_path, success: "ログインしました。"

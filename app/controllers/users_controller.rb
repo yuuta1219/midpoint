@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   def my_page
     @user = current_user
     @color = 'normal'
+    @notifications = Notification.all
   end
 
   def destroy
