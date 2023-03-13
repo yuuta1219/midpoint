@@ -2,7 +2,7 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
 <div class="bg-base-200 min-h-screen pb-10">
-  <div class="grid grid-cols-1 md:grid-cols-2">
+  <div class="grid grid-cols-1">
     <%= form_with model: @plot, local: true do |f| %>
     <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
@@ -38,18 +38,6 @@
           <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
           <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
           <%= button_to "プロットを削除する",plot_path(@plot),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
-        </label>
-      </label>
-    </div>
-    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
-      <%= render @eighteen_lines %>
-      <label for="my-modal" class="btn btn-ghost">new plot point</label>
-      <input type="checkbox" id="my-modal" class="modal-toggle" />
-      <label for="my-modal" class="modal cursor-pointer">
-        <label class="modal-box relative" for="">
-          <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <%= render 'eighteen_lines/form', { eighteen_line: @eighteen_line } %>
         </label>
       </label>
     </div>
