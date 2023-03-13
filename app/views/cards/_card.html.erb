@@ -1,67 +1,65 @@
 <label class="swap swap-flip">
-  
-  <!-- this hidden checkbox controls the state -->
   <input type="checkbox" />
-
-
-<div class="swap-on">
-<% if card.implicit? %>
-  <div class="-rotate-6 text-gray-100 bg-slate-800 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
-<% else %>
-  <div class="-rotate-6 <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
-<% end %>
-    <div class="flex">
-      <div class="mx-3 mt-1 flex-1 border-b border-slate-700">Edit? or Delete!</div>
-    </div>
-    <div class="absolute bottom-0 my-6 mx-14 z-10 flex">
-      <%= link_to edit_card_path(card), class: "flex-1 hover:animate-pulse animate-bounce" do %>
-        <i class="bi bi-pencil-square text-6xl"></i>
-      <% end %>
-      <label for="my-modal-<%=card.id%>", class="ml-20 bi bi-trash text-6xl hover:animate-pulse animate-bounce hover:cursor-pointer">
-    </div>
-    <% if card.scene == 20 %>
-      <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
-    <% elsif card.implicit? %>
-      <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
-    <% else %>
-      <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
-     </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="swap-off">
-<% if card.implicit? %>
-  <div class="bg-slate-800 text-gray-100 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
-<% else %>
-  <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
-<% end %>
-    <div class="flex">
-      <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700 break-all"><%= truncate(card.title, length: 16, omission: '..') %></div>
-      <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
-    </div>
-    <div class="text-sm my-2 ml-4 mx-3 break-all"><%= truncate(card.body, length: 60, omission: '...') %></div>
-    <div class="absolute inset-x-0 bottom-8 ml-3 mx-3" style="overflow-x: auto; white-space: nowrap;">
-      <% card.foreshadowing_cards.each do |fc| %>
-        <span class="badge badge-outline badge-sm">
-          <%= fc.foreshadowing.name %>
-        </span>
+  
+  <div class="swap-on">
+  <% if card.implicit? %>
+    <div class="-rotate-6 text-gray-100 bg-slate-800 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
+  <% else %>
+    <div class="-rotate-6 <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+  <% end %>
+      <div class="flex">
+        <div class="mx-3 mt-1 flex-1 border-b border-slate-700">Edit? or Delete!</div>
+      </div>
+      <div class="absolute bottom-0 my-6 mx-14 z-10 flex">
+        <%= link_to edit_card_path(card), class: "flex-1 hover:animate-pulse animate-bounce" do %>
+          <i class="bi bi-pencil-square text-6xl"></i>
+        <% end %>
+        <label for="my-modal-<%=card.id%>", class="ml-20 bi bi-trash text-6xl hover:animate-pulse animate-bounce hover:cursor-pointer">
+      </div>
+      <% if card.scene == 20 %>
+        <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
+      <% elsif card.implicit? %>
+        <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
+      <% else %>
+        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
+      </div>
       <% end %>
     </div>
-    <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700 style="overflow-x: auto; white-space: nowrap;">
-      <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= l(card.time_start, format: :deluxe) if card.time_start.present? %>~<%= l(card.time_end, format: :deluxe) if card.time_start.present? %></div>
-    </div>
-    <% if @plot.length == "長編" && card.scene == 20 %>
-      <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
-    <% elsif card.implicit? %>
-      <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
-    <% else %>
-      <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
-     </div>
-    <% end %>
   </div>
-</div>
+
+  <div class="swap-off">
+  <% if card.implicit? %>
+    <div class="bg-slate-800 text-gray-100 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
+  <% else %>
+    <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
+  <% end %>
+      <div class="flex">
+        <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700 break-all"><%= truncate(card.title, length: 16, omission: '..') %></div>
+        <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
+      </div>
+      <div class="text-sm my-2 ml-4 mx-3 break-all"><%= truncate(card.body, length: 60, omission: '...') %></div>
+      <div class="absolute inset-x-0 bottom-8 ml-3 mx-3" style="overflow-x: auto; white-space: nowrap;">
+        <% card.foreshadowing_cards.each do |fc| %>
+          <span class="badge badge-outline badge-sm">
+            <%= fc.foreshadowing.name %>
+          </span>
+        <% end %>
+      </div>
+      <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700 style="overflow-x: auto; white-space: nowrap;">
+        <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= l(card.time_start, format: :deluxe) if card.time_start.present? %>~<%= l(card.time_end, format: :deluxe) if card.time_start.present? %></div>
+      </div>
+      <% if @plot.length == "長編" && card.scene == 20 %>
+        <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
+      <% elsif card.implicit? %>
+        <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
+      <% else %>
+        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </label>
+
 <input type="checkbox" id="my-modal-<%=card.id%>" class="modal-toggle" />
 <label for="my-modal-<%=card.id%>" class="modal cursor-pointer">
   <label class="modal-box relative" for="">
