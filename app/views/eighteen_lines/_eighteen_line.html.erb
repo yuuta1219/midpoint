@@ -2,7 +2,7 @@
 <div class="mx-4 text-xs hidden" id="<%= eighteen_line.id %>"><%= eighteen_line.explanation %></div>
 
 <label for="my-modal-<%=eighteen_line.id%>", class="cursor-pointer">
-  <div class="mx-4 mt-1 mb-5 text-ms font-light <%= render "shared/plot_card_color", { plot: @plot } %>"><%= eighteen_line.body.nil? ? "シーンの内容を入力してください。" : eighteen_line.body %></div>
+  <div class="mx-4 mt-1 mb-5 text-ms font-light break-all <%= render "shared/plot_card_color", { plot: @plot } %>"><%= eighteen_line.body.nil? ? "シーンの内容を入力してください。" : eighteen_line.body %></div>
 </label>
 
 <input type="checkbox" id="my-modal-<%=eighteen_line.id%>" class="modal-toggle" />
