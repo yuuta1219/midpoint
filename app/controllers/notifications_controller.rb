@@ -9,6 +9,7 @@ class NotificationsController < ApplicationController
 
   def show
     @color = "normal"
+    @notifications = Notification.all
   end
 
   def new
