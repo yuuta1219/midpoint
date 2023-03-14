@@ -10,12 +10,7 @@ class NotificationsController < ApplicationController
   def show
     @color = "normal"
     @notifications = Notification.all
-    @user_id = current_user.id
-    @notification_id = @notification.id
-    @notification_user = NotificationUser.where(user_id: @user_id, notification_id: @notification_id).first
-    unless @notification_user.present?
-      @notification_user = NotificationUser.create(user_id: @user_id, notification_id: @notification_id)
-    end
+    @notification_user = NotificationUser.find_or_create_by(user_id: current_user.id, notification_id: @notification.id)
   end
 
   def new
