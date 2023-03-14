@@ -10,6 +10,12 @@ class NotificationsController < ApplicationController
   def show
     @color = "normal"
     @notifications = Notification.all
+    @user_id = current_user.id
+    @notification_id = @notification.id
+    @notification_user = NotificationUser.where(user_id: @user_id, notification_id: @notification_id).first
+    unless @notification_user.present?
+      @notification_user = NotificationUser.create(user_id: @user_id, notification_id: @notification_id)
+    end
   end
 
   def new
@@ -41,6 +47,7 @@ class NotificationsController < ApplicationController
     redirect_to notifications_url, notice: "お知らせを削除しました"
   end
 
+  
   private
 
   def set_notification
