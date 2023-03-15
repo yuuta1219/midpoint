@@ -5,12 +5,14 @@ class NotificationsController < ApplicationController
   def index
     @color = "normal"
     @notifications = Notification.all
+    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
 
   def show
     @color = "normal"
     @notifications = Notification.all
     @notification_user = NotificationUser.find_or_create_by(user_id: current_user.id, notification_id: @notification.id)
+    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
 
   def new

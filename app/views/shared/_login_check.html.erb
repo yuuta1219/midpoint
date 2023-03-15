@@ -2,7 +2,10 @@
   <% if  logged_in? %>
     <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), plots_path %></div>
     <div class="dropdown dropdown-end">
-      <label tabindex="0" class="bi bi-bell text-xl mr-6 hover:cursor-pointer"></label>
+      <div class="indicator">
+      <% unless @read_confirmation %><span class="indicator-item indicator-center p-1 rounded-full bg-sky-500 animate-pulse opacity-75"></span><% end %>
+        <label tabindex="0" class="bi bi-bell text-xl mr-6 hover:cursor-pointer relative flex "></label>
+      </div>
       <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 text-neutral rounded-box w-52">
         <%= render partial: "shared/message", collection: @notifications, as: :notification %>
       </ul>
