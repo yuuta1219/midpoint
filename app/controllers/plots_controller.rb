@@ -7,6 +7,7 @@ class PlotsController < ApplicationController
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
     @notifications = Notification.all
+    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count
   end
 
   def show

@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = current_user
     @color = 'normal'
     @notifications = Notification.all
+    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
 
   def destroy
