@@ -2,11 +2,7 @@
   <input type="checkbox" />
   
   <div class="swap-on">
-  <% if card.implicit? %>
-    <div class="-rotate-6 text-gray-100 bg-slate-800 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
-  <% else %>
     <div class="-rotate-6 <%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
-  <% end %>
       <div class="flex">
         <div class="mx-3 mt-1 flex-1 border-b border-slate-700">Edit? or Delete!</div>
       </div>
@@ -18,21 +14,14 @@
       </div>
       <% if card.scene == 20 %>
         <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
-      <% elsif card.implicit? %>
-        <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
       <% else %>
-        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
-      </div>
+        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %></div>
       <% end %>
     </div>
   </div>
 
   <div class="swap-off">
-  <% if card.implicit? %>
-    <div class="bg-slate-800 text-gray-100 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
-  <% else %>
     <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card m-4 h-40 w-80 shadow-xl relative">
-  <% end %>
       <div class="flex">
         <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700 break-all"><%= truncate(card.title, length: 16, omission: '..') %></div>
         <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= card.emotional_value %></div>
@@ -50,11 +39,8 @@
       </div>
       <% if @plot.length == "長編" && card.scene == 20 %>
         <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
-      <% elsif card.implicit? %>
-        <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
       <% else %>
-        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %>
-      </div>
+        <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %></div>
       <% end %>
     </div>
   </div>
