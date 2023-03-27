@@ -3,7 +3,6 @@ class PlotsController < ApplicationController
   add_flash_types :success, :info, :warning, :danger
   
   def index
-    @color = "normal"
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
     @notifications = Notification.all
@@ -19,12 +18,10 @@ class PlotsController < ApplicationController
   end
 
   def new
-    @color = "normal"
     @plot = Plot.new
   end
 
   def create
-    @color = "normal"
     @plot = current_user.plots.build(plot_params)
     if @plot.save
       create_cards(@plot)

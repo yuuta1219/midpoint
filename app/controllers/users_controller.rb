@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @color = 'normal'
   end
 
   def create
@@ -25,7 +24,6 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
-    @color = 'normal'
     @notifications = Notification.all
     @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
