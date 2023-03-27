@@ -1,30 +1,26 @@
 class PlotsController < ApplicationController
   include PlotsHelper
   add_flash_types :success, :info, :warning, :danger
+  before_action :set_notifications, only: [:index, :new, :create]
   
   def index
-    @color = "normal"
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count
   end
 
   def show
     @current_page = "tab1"
     @plot = Plot.find(params[:id])
+    check_plot_owner
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
-    redirect_to root_path unless @plot.user == current_user
   end
 
   def new
-    @color = "normal"
     @plot = Plot.new
   end
 
   def create
-    @color = "normal"
     @plot = current_user.plots.build(plot_params)
     if @plot.save
       create_cards(@plot)

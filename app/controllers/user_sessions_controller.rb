@@ -1,16 +1,10 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
+  before_action :set_notifications, only: [:new, :create]
 
-  def new
-    @color = "normal"
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
-  end
+  def new; end
 
   def create
-    @color = "normal"
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
     @user = login(params[:email], params[:password])
     if @user
       redirect_back_or_to plots_path, success: "ログインしました。"

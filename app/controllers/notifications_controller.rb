@@ -1,15 +1,11 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
   before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_notifications, only: [:index]
 
-  def index
-    @color = "normal"
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
-  end
+  def index; end
 
   def show
-    @color = "normal"
     @notifications = Notification.all
     @notification_user = NotificationUser.find_or_create_by(user_id: current_user.id, notification_id: @notification.id)
     @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
@@ -28,8 +24,7 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @notification.update(notification_params)

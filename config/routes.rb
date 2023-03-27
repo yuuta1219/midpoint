@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
-  namespace :admin do
-    get 'dashboards/index'
-  end
   root 'tops#top'
 
   get 'terms', to: 'tops#terms'

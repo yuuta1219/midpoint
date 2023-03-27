@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create new_guest]
+  before_action :set_notifications, only: [:my_page]
 
   def new
     @user = User.new
-    @color = 'normal'
   end
 
   def create
@@ -25,9 +25,6 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
-    @color = 'normal'
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
 
   def destroy
