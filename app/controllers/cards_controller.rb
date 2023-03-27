@@ -2,6 +2,7 @@ class CardsController < ApplicationController
   before_action :plot_find, only: [:index, :create]
   before_action :card_and_plot_find, only: [:edit, :update, :destroy]
   before_action :check_plot_owner
+  before_action :foreshadowing_cards, only: [:index, :edit]
 
   def index
     @current_page = "tab3"
@@ -9,15 +10,12 @@ class CardsController < ApplicationController
     @cards = @plot.cards.where(scene_type: :explicit).includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
     @implicit_cards = @plot.cards.where(scene_type: :implicit).includes(:foreshadowing_cards, :foreshadowings).order(time_start: :asc)
     @timelines = @plot.cards.order(time_start: :asc)
-    @foreshadowing_cards = @plot.foreshadowings.all
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name, foreshadowing_id').to_json
   end
   
-  def edit
-    @foreshadowing_cards = @plot.foreshadowings.all
-  end
+  def edit; end
 
   def create
     @card = Card.new(card_params)
@@ -50,5 +48,9 @@ class CardsController < ApplicationController
   def card_and_plot_find
     @card = Card.find(params[:id])
     @plot = @card.plot
+  end
+
+  def foreshadowing_cards
+    @foreshadowing_cards = @plot.foreshadowings.all
   end
 end
