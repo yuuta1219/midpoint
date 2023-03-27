@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
+  before_action :plot_find, only: [:index, :create]
+
   def index
     @current_page = "tab3"
-    @plot = Plot.find(params[:plot_id])
     @card = Card.new
     @cards = @plot.cards.where(scene_type: :explicit).includes(:foreshadowing_cards, :foreshadowings).order(scene: :asc)
     @implicit_cards = @plot.cards.where(scene_type: :implicit).includes(:foreshadowing_cards, :foreshadowings).order(time_start: :asc)
@@ -22,7 +23,6 @@ class CardsController < ApplicationController
   end
 
   def create
-    @plot = Plot.find(params[:plot_id])
     @card = Card.new(card_params)
     redirect_to root_path unless @plot.user == current_user
     if @card.save

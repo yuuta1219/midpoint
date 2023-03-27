@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     @notifications = Notification.all
     @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
+
+  def plot_find
+    @plot = Plot.find(params[:plot_id])
+  end
 end

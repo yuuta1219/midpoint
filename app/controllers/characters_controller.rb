@@ -1,7 +1,8 @@
 class CharactersController < ApplicationController
+  before_action :plot_find, only: [:index, :create]
+
   def index
     @current_page = "tab5"
-    @plot = Plot.find(params[:plot_id])
     @characters = @plot.characters.order(created_at: :asc)
     @character = Character.new
 
@@ -13,7 +14,6 @@ class CharactersController < ApplicationController
   end
   
   def create
-    @plot = Plot.find(params[:plot_id])
     @character = Character.new(character_params)
     if @character.save
       redirect_to plot_characters_path(@plot), success: "作成しました！"

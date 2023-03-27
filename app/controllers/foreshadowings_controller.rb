@@ -1,7 +1,8 @@
 class ForeshadowingsController < ApplicationController
+  before_action :plot_find, only: [:index, :create]
+
   def index
     @current_page = "tab4"
-    @plot = Plot.find(params[:plot_id])
     @foreshadowings = @plot.foreshadowings.order(created_at: :asc)
     @foreshadowing = Foreshadowing.new
 
@@ -9,7 +10,6 @@ class ForeshadowingsController < ApplicationController
   end
   
   def create
-    @plot = Plot.find(params[:plot_id])
     @foreshadowing = Foreshadowing.new(foreshadowing_params)
     if @foreshadowing.save
       redirect_to plot_foreshadowings_path(@plot), success: "作成しました！"

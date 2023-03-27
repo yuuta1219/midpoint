@@ -1,7 +1,8 @@
 class EighteenLinesController < ApplicationController
+  before_action :plot_find, only: [:index, :create]
+
   def index
     @current_page = "tab2"
-    @plot = Plot.find(params[:plot_id])
     @eighteen_lines = @plot.eighteen_lines.order(number: :asc)
     @eighteen_line = EighteenLine.new
 
@@ -13,7 +14,6 @@ class EighteenLinesController < ApplicationController
   end
 
   def create
-    @plot = Plot.find(params[:plot_id])
     @eighteen_line = EighteenLine.new(eighteen_line_params)
     if eighteen_line.save
       redirect_to plot_eighteen_lines_path(@eighteen_line.plot), success: "作成しました！"

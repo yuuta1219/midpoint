@@ -24,8 +24,7 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @notification.update(notification_params)
