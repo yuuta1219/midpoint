@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_path
   end
+
+  def set_notifications
+    @notifications = Notification.all
+    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
+  end
 end

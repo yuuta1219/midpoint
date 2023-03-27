@@ -1,12 +1,11 @@
 class PlotsController < ApplicationController
   include PlotsHelper
   add_flash_types :success, :info, :warning, :danger
+  before_action :set_notifications, only: [:index, :new, :create]
   
   def index
     @q = current_user.plots.ransack(params[:q])
     @plots = @q.result(distinct: true).includes(:user).order(created_at: :desc)
-    @notifications = Notification.all
-    @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count
   end
 
   def show
