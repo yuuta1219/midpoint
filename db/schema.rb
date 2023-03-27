@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_205514) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_214956) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -42,6 +42,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_205514) do
     t.integer "plot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "appearance"
+    t.string "occupation"
+    t.text "personality"
+    t.text "motivation"
+    t.text "relationship"
+    t.string "role"
+    t.string "avatar"
     t.index ["plot_id"], name: "index_characters_on_plot_id"
   end
 
