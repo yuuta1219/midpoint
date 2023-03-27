@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_113611) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_205514) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -86,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_113611) do
   create_table "notifications", force: :cascade do |t|
     t.string "title"
     t.string "name"
-    t.text "message"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -99,8 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_113611) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "length", default: 0, null: false
-    t.datetime "time"
+    t.integer "length_type", default: 0, null: false
+    t.datetime "timeline"
     t.integer "person", default: 0, null: false
     t.index ["user_id"], name: "index_plots_on_user_id"
   end
