@@ -40,7 +40,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :body).merge(plot_id: params[:plot_id])
+    params.require(:character).permit(:name, :body, :age, :appearance, :occupation, :personality, :motivation, :relationship, :role, :avatar).merge(plot_id: params[:plot_id])
   end
 
   def character_and_plot_find
