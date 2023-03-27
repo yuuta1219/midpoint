@@ -3,8 +3,34 @@
   <div class="grid grid-cols-1">
     <%= f.label :名前, class: 'my-1 text-xl' %>
     <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full', placeholder: "名前を入力" %>
+    
     <%= f.label :キャラクターの内容, class: 'my-1 text-xl' %>
     <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "内容を入力" %>
+    
+    <%= f.label :年齢, class: 'my-1 text-xl' %>
+    <%= f.number_field :age, class: 'my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full', placeholder: "年齢を入力" %>
+    
+    <%= f.label :外見の特徴, class: 'my-1 text-xl' %>
+    <%= f.text_area :appearance, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "外見の特徴を入力" %>
+    
+    <%= f.label :職業・地位, class: 'my-1 text-xl' %>
+    <%= f.text_field :occupation, class: 'my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full', placeholder: "職業・地位を入力" %>
+    
+    <%= f.label :性格・性格の特徴, class: 'my-1 text-xl' %>
+    <%= f.text_area :personality, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "性格・性格の特徴を入力" %>
+    
+    <%= f.label :目的・モチベーション, class: 'my-1 text-xl' %>
+    <%= f.text_area :motivation, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "目的・モチベーションを入力" %>
+    
+    <%= f.label :関係性, class: 'my-1 text-xl' %>
+    <%= f.text_area :relationship, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "関係性を入力" %>
+    
+    <%= f.label :役割, class: 'my-1 text-xl' %>
+    <%= f.text_area :role, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "役割を入力" %>
+    
+    <%= f.label :アバター画像, class: 'my-1 text-xl' %>
+    <%= f.file_field :avatar, class: 'my-1', accept: 'image/*' %>
+
     <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
   </div>
 <% end %>

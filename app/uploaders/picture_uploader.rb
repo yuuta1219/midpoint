@@ -7,12 +7,10 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumb do
-    process resize_to_fit: [50, 50]
-  end
+  process resize_and_pad: [500, 500, background=:transparent, gravity='Center']
 
   version :medium do
-    process resize_to_fit: [200, 200]
+    process resize_to_fill: [1080, 1080]
   end
 
   def extension_whitelist

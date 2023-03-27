@@ -1,6 +1,7 @@
 <%= link_to edit_character_path(character), class: "card-link" do %>
-  <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card h-40 w-72 shadow-xl relative">
-   <div class="absolute inset-x-0 bottom-0 flex">
+  <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card h-40 w-40 shadow-xl relative">
+    <%= image_tag character.avatar.url if character.avatar? %>
+    <div class="absolute inset-x-0 bottom-0 flex">
       <div class="font-semibold flex-1 text-gray-100 bg-slate-700 border border-slate-700 break-all"><%= truncate(character.name, length: 14, omission: '...') %></div>
     </div>
   </div>
