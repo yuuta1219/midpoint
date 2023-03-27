@@ -1,13 +1,15 @@
 class CharactersController < ApplicationController
   before_action :plot_find, only: [:index, :create]
-  before_action :character_and_plot_find, only: [:update, :destroy]
+  before_action :character_and_plot_find, only: [:show, :update, :destroy]
   before_action :check_plot_owner
 
   def index
     @current_page = "tab5"
     @characters = @plot.characters.order(created_at: :asc)
     @character = Character.new
+  end
 
+  def show
   end
   
   def create
