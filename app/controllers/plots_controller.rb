@@ -11,9 +11,9 @@ class PlotsController < ApplicationController
   def show
     @current_page = "tab1"
     @plot = Plot.find(params[:id])
+    check_plot_owner
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
-    redirect_to root_path unless @plot.user == current_user
   end
 
   def new

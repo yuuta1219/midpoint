@@ -1,15 +1,11 @@
 class EighteenLinesController < ApplicationController
   before_action :plot_find, only: [:index, :create]
+  before_action :eighteen_line_and_plot_find, only: [:update, :destroy]
+  before_action :check_plot_owner
 
   def index
     @current_page = "tab2"
     @eighteen_lines = @plot.eighteen_lines.order(number: :asc)
-    @eighteen_line = EighteenLine.new
-
-    redirect_to root_path unless @plot.user == current_user
-  end
-
-  def new
     @eighteen_line = EighteenLine.new
   end
 
@@ -23,7 +19,6 @@ class EighteenLinesController < ApplicationController
   end
 
   def update
-    @eighteen_line = EighteenLine.find(params[:id])
     if @eighteen_line.update(eighteen_line_params.merge(plot_id: @eighteen_line.plot_id))
       redirect_to plot_eighteen_lines_path(@eighteen_line.plot), notice: '更新しました'
     else
@@ -32,7 +27,6 @@ class EighteenLinesController < ApplicationController
   end
 
   def destroy
-    @eighteen_line = EighteenLine.find(params[:id])
     @eighteen_line.destroy!
     redirect_to plot_eighteen_lines_path(@eighteen_line.plot), status: :see_other, success: "削除しました！"
   end
@@ -42,5 +36,9 @@ class EighteenLinesController < ApplicationController
   def eighteen_line_params
     params.require(:eighteen_line).permit(:number, :body, :explanation, :name).merge(plot_id: params[:plot_id])
   end
-  
+
+  def eighteen_line_and_plot_find
+    @eighteen_line = EighteenLine.find(params[:id])
+    @plot = @eighteen_line.plot
+  end
 end

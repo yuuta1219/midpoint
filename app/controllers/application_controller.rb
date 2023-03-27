@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   def plot_find
     @plot = Plot.find(params[:plot_id])
   end
+
+  def check_plot_owner
+    redirect_to root_path unless @plot.user == current_user
+  end
 end

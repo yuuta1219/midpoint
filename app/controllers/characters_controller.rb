@@ -1,16 +1,13 @@
 class CharactersController < ApplicationController
   before_action :plot_find, only: [:index, :create]
+  before_action :character_and_plot_find, only: [:update, :destroy]
+  before_action :check_plot_owner
 
   def index
     @current_page = "tab5"
     @characters = @plot.characters.order(created_at: :asc)
     @character = Character.new
 
-    redirect_to root_path unless @plot.user == current_user
-  end
-
-  def new
-    @character = Character.new
   end
   
   def create
@@ -23,7 +20,6 @@ class CharactersController < ApplicationController
   end
 
   def update
-    @character = Character.find(params[:id])
     if @character.update(character_params.merge(plot_id: @character.plot_id))
       redirect_to plot_characters_path(@character.plot), notice: '更新しました'
     else
@@ -32,7 +28,6 @@ class CharactersController < ApplicationController
   end
 
   def destroy
-    @character = Character.find(params[:id])
     @character.destroy!
     redirect_to plot_characters_path(@character.plot), status: :see_other, success: "削除しました！"
   end
@@ -41,5 +36,10 @@ class CharactersController < ApplicationController
 
   def character_params
     params.require(:character).permit(:name, :body).merge(plot_id: params[:plot_id])
+  end
+
+  def character_and_plot_find
+    @character = Character.find(params[:id])
+    @plot = @character.plot
   end
 end
