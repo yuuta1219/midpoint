@@ -2,7 +2,6 @@ class PlotsController < ApplicationController
   include PlotsHelper
   add_flash_types :success, :info, :warning, :danger
   before_action :set_notifications, only: [:index, :new, :create]
-  before_action :plot_find, only: [:show]
   
   def index
     @q = current_user.plots.ransack(params[:q])
@@ -11,6 +10,7 @@ class PlotsController < ApplicationController
 
   def show
     @current_page = "tab1"
+    @plot = Plot.find(params[:id])
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
     redirect_to root_path unless @plot.user == current_user

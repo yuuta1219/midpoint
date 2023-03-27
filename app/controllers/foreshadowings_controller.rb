@@ -1,5 +1,5 @@
 class ForeshadowingsController < ApplicationController
-  before_action :plot_find, only: [:index, :create]
+  before_action :plot_find, only: [:index, :show, :create]
 
   def index
     @current_page = "tab4"

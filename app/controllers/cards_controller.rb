@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :plot_find, only: [:index, :create]
+  before_action :plot_find, only: [:index, :create,]
+  before_action :card_find, only: [:edit, :update, :destroy]
 
   def index
     @current_page = "tab3"
@@ -16,7 +17,6 @@ class CardsController < ApplicationController
   end
   
   def edit
-    @card = Card.find(params[:id])
     @plot = @card.plot
     @foreshadowing_cards = @plot.foreshadowings.all
     redirect_to root_path unless @plot.user == current_user
@@ -33,7 +33,6 @@ class CardsController < ApplicationController
   end
 
   def update
-    @card = Card.find(params[:id])
     if @card.update(card_params.merge(plot_id: @card.plot_id))
       redirect_to plot_cards_path(@card.plot), notice: 'カードを更新しました'
     else
@@ -42,7 +41,6 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card = Card.find(params[:id])
     if @card.plot.user == current_user
       @card.destroy!
       redirect_to plot_cards_path(@card.plot), status: :see_other, success: "削除しました！"
@@ -55,5 +53,9 @@ class CardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(:scene, :time_start, :time_end, :title, :current_location, :scene_type, :point_of_view, :emotional_value, :body, foreshadowing_ids: [],foreshadowing_cards: [:status]).merge(plot_id: params[:plot_id])
+  end
+
+  def card_find
+    @card = Card.find(params[:id])
   end
 end
