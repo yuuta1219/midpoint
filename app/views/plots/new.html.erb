@@ -24,10 +24,10 @@
           <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color" }, { class: "select select-secondary select-lg md:select-md font-light" } %>
           <%= f.label :作品の長さ, class: 'my-1 text-xl' %>
             <p class="text-sm">作品の長さを決めましょう。</p>
-          <%= f.collection_select :length, Plot.lengths.keys, :to_s, :to_s, { prompt: "長編" }, { class: "select select-secondary select-lg md:select-md font-light" }  %>
+          <%= f.collection_select :length_type, Plot.length_types.keys, :to_s, :to_s,{}, { class: "select select-secondary select-lg md:select-md font-light" }  %>
           <%= f.label :作中時期, class: 'my-1 text-xl' %>
             <p class="text-sm">作品の開始時間を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
-          <%= f.datetime_field :time, class: 'select select-secondary select-lg md:select-md font-light' %>
+          <%= f.datetime_field :timeline, class: 'select select-secondary select-lg md:select-md font-light' %>
           <%= f.label :基本人称, class: 'my-1 text-xl' %>
             <p class="text-sm">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
           <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "select select-secondary select-lg md:select-md font-light" }  %>

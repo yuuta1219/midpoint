@@ -1,13 +1,19 @@
 class CharactersController < ApplicationController
   before_action :plot_find, only: [:index, :create]
-  before_action :character_and_plot_find, only: [:update, :destroy]
+  before_action :character_and_plot_find, only: [:show, :edit, :update, :destroy]
   before_action :check_plot_owner
 
   def index
     @current_page = "tab5"
     @characters = @plot.characters.order(created_at: :asc)
     @character = Character.new
+  end
 
+  def show
+    @characters = @plot.characters.order(created_at: :asc)
+  end
+
+  def edit
   end
   
   def create
@@ -35,7 +41,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :body).merge(plot_id: params[:plot_id])
+    params.require(:character).permit(:name, :body, :age, :appearance, :occupation, :personality, :motivation, :relationship, :role, :avatar).merge(plot_id: params[:plot_id])
   end
 
   def character_and_plot_find

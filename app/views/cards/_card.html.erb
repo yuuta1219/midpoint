@@ -37,7 +37,7 @@
       <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700 style="overflow-x: auto; white-space: nowrap;">
         <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= l(card.time_start, format: :deluxe) if card.time_start.present? %>~<%= l(card.time_end, format: :deluxe) if card.time_end.present? %></div>
       </div>
-      <% if @plot.length == "長編" && card.scene == 20 %>
+      <% if @plot.length_type == "長編" && card.scene == 20 %>
         <div class="-rotate-6 absolute bottom-3 left-10 text-7xl font-black opacity-10 text-rose-800">MID</br>POINT</div> 
       <% else %>
         <div class="-rotate-12 absolute bottom-12 left-3 text-7xl font-black opacity-5">scene<%= card.scene %></div>

@@ -1,20 +1,20 @@
 module PlotsHelper
   def create_cards(plot)
-    length = plot.length
+    length_type = plot.length_type
     person = plot.person
-    time = plot.time
-    case length
+    timeline = plot.timeline
+    case length_type
     when "長編"
       40.times do |n|
-        plot.cards.create(scene: n + 1, point_of_view: person, time_start: time , time_end: time)
+        plot.cards.create(scene: n + 1, point_of_view: person, time_start: timeline , time_end: timeline)
       end
     when "中編"
       20.times do |n|
-        plot.cards.create(scene: n + 1, point_of_view: person, time_start: time , time_end: time)
+        plot.cards.create(scene: n + 1, point_of_view: person, time_start: timeline , time_end: timeline)
       end
     when "短編"
       8.times do |n|
-        plot.cards.create(scene: n + 1, point_of_view: person, time_start: time , time_end: time)
+        plot.cards.create(scene: n + 1, point_of_view: person, time_start: timeline , time_end: timeline)
       end
     end
     names = [

@@ -2,8 +2,8 @@
 <%= render 'shared/plot_menu', { plot: @plot } %>
 <div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
-    <div class="m-2 col-span-1 grid grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
-      <label for="my-modal" class="btn btn-ghost col-span-1">new card</label>
+    <div class="m-2 col-span-1 grid grid-cols-5 sm:grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
+      <label for="my-modal" class="btn btn-ghost col-span-2 sm:col-span-1">new card</label>
       <div class="flex col-span-1">
         <label class="label cursor-pointer">
           <span class="label-text mr-1 hidden md:block">感情グラフ</span> 

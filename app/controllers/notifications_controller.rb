@@ -15,6 +15,8 @@ class NotificationsController < ApplicationController
     @notification = Notification.new
   end
 
+  def edit; end
+
   def create
     @notification = Notification.new(notification_params)
     if @notification.save
@@ -23,8 +25,6 @@ class NotificationsController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @notification.update(notification_params)
@@ -51,6 +51,6 @@ class NotificationsController < ApplicationController
   end
 
   def notification_params
-    params.require(:notification).permit(:name, :message, :title)
+    params.require(:notification).permit(:name, :body, :title)
   end
 end

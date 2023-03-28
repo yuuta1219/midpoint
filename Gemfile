@@ -23,6 +23,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "rubocop"
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
   gem "factory_bot_rails"
   gem 'byebug'
 end
@@ -41,3 +43,5 @@ gem 'cssbundling-rails'
 gem 'sorcery'
 gem 'ransack'
 gem 'rails-i18n', '~> 7.0.0'
+gem 'mini_magick'
+gem 'carrierwave'
