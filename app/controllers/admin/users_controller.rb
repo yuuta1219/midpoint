@@ -1,6 +1,8 @@
 class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: %i[edit update show destroy]
 
+  def show; end
+
   def edit; end
 
   def update
@@ -11,8 +13,6 @@ class Admin::UsersController < Admin::BaseController
       render :edit
     end
   end
-
-  def show; end
 
   def destroy
     @user.destroy!
