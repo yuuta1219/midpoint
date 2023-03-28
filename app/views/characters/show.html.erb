@@ -1,0 +1,46 @@
+<%= render 'shared/flash_message' %>
+<%= render 'shared/plot_menu', { plot: @plot } %>
+
+<div class="bg-base-200 min-h-screen pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+      <div class="flex">
+        <div class="m-2 h-60 w-60">
+          <%= image_tag(@character.avatar.url.presence || asset_path('default_avatar.png')) %>
+        </div>
+        <div class="m-2 flex-grow">  
+          <div class="text-3xl flex max-w-full border-b border-slate-700">
+            <div class="flex-1 "><%= @character.name %></div>
+            <%= link_to edit_character_path(@character), class: "hover:animate-pulse" do %>
+              <i class="bi bi-pencil-square text-3xl"></i>
+            <% end %>
+            <label for="delete-modal-<%=@character.id%>", class=" ml-2 bi bi-trash text-4xl hover:animate-pulse hover:cursor-pointer">
+          </div>
+          <div class="text-xl my-1">役職: <%= @character.role %></div>
+          <div class="text-xl my-1">年齢: <%= @character.age %></div>
+          <div class="text-xl my-1">職業: <%= @character.occupation %></div>
+          <div class="text-xl mt-5 border-b border-slate-700">外見の特徴</div><%= simple_format(h(@character.appearance)) %>
+          <div class="text-xl mt-4 border-b border-slate-700">性格の特徴</div><%= simple_format(h(@character.personality)) %>
+          <div class="text-xl mt-4 border-b border-slate-700">目的、モチベーション</div><%= simple_format(h(@character.motivation)) %>
+          <div class="text-xl mt-4 border-b border-slate-700">関係性</div><%= simple_format(h(@character.relationship)) %>
+        </div>
+      </div>
+      <div class="text-xl m-2 border-b border-slate-700">メモ</div>
+      <div class="m-2"><%= simple_format(h(@character.body)) %></div>
+    </div>
+      <div class="overflow-x-auto flex m-2 gap-8">
+        <%= render @characters %>
+      </div>
+  </div>
+</div>
+
+<input type="checkbox" id="delete-modal-<%= @character.id %>" class="modal-toggle" />
+<label for="delete-modal-<%= @character.id %>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="delete-modal-<%= @character.id %>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">登場人物を削除。</div>
+    <div class="text-sm m-2 my-4">登場人物のデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
+    <%= button_to "カードを削除する",character_path(@character),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+  </label>
+</label>

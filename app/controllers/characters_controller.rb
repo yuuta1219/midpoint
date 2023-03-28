@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
-  before_action :plot_find, only: [:index, :create, :new]
-  before_action :character_and_plot_find, only: [:edit, :update, :destroy]
+  before_action :plot_find, only: [:index, :create]
+  before_action :character_and_plot_find, only: [:show, :edit, :update, :destroy]
   before_action :check_plot_owner
 
   def index
@@ -9,7 +9,8 @@ class CharactersController < ApplicationController
     @character = Character.new
   end
 
-  def new
+  def show
+    @characters = @plot.characters.order(created_at: :asc)
   end
 
   def edit

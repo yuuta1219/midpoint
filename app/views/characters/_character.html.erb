@@ -1,8 +1,12 @@
-<%= link_to edit_character_path(character), class: "card-link" do %>
-  <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card h-40 w-40 shadow-xl relative">
-    <%= image_tag(character.avatar.url.presence || asset_path('default_avatar.png')) %>
-    <div class="absolute inset-x-0 bottom-0 flex">
-      <div class="font-semibold flex-1 text-gray-100 bg-slate-700 border border-slate-700 break-all"><%= truncate(character.name, length: 14, omission: '...') %></div>
+<%= link_to character_path(character), class: "card-link" do %>
+  <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card h-32 w-80 shadow-xl relative grid grid-cols-5">
+    <div class="col-span-2 h-32 w-32 border border-slate-700 ">
+      <%= image_tag(character.avatar.url.presence || asset_path('default_avatar.png')) %>
+    </div>
+    <div class="col-span-3">
+      <div class="border-b border-slate-700 break-all"><%= truncate(character.name, length: 14, omission: '...') %></div>
+      <div class="border-b border-slate-700 break-all">役職:<%= truncate(character.role, length: 14, omission: '...') %></div>
+      <div class="text-sm break-all"><%= truncate(character.body, length: 20, omission: '...') %></div>  
     </div>
   </div>
 <% end %>
