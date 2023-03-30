@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_214956) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_212639) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -121,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_214956) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "tutorial_completed"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
