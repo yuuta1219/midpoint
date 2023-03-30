@@ -1,6 +1,6 @@
 <%= render 'shared/login_check' %>
 <%= render 'shared/flash_message' %>
-
+<%= button_to  'チュートリアルを完了する', complete_tutorial_user_path(current_user), method: :patch %>
 <div class="bg-base-200 text-gray-700">
   <div class="flex border-b-4 border-base-300">
     <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "プロット一覧", plots_path, class: "text-3xl" %></div>
