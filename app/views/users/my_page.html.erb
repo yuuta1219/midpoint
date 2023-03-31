@@ -1,7 +1,5 @@
 <%= render 'shared/login_check' %>
 
-
-
 <div class="bg-base-200 min-h-screen">
   <div class="grid grid-cols-1 ">
     <div class="m-4 col-span-1 shadow-xl bg-white">
@@ -10,6 +8,8 @@
       <div class="mx-4 border-b border-gray-500 text-xl">ご登録情報</div>
       <div class="mx-4 mt-1 mb-4 text-md">名前 <%= @user.name %></div>
       <div class="mx-4 mt-1 mb-4 text-md">メールアドレス <%= @user.email %></div>
+      <div class="mx-4 border-b border-gray-500 text-xl">チュートリアル</div>
+      <div class="mx-4 mt-1 mb-4 text-md"><%= button_to  'チュートリアルを行う', start_tutorial_path(current_user), class: "btn m-2" , method: :patch %></div>
       <div class="mx-4 border-b border-gray-500 text-xl">ログアウト</div>
       <div class="mx-4 mt-1 mb-4 text-sm">ログアウトする場合は、下記のボタンを押してください。</div>
       <% if current_user.guest? %>

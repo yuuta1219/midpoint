@@ -23,7 +23,7 @@ class PlotsController < ApplicationController
   def create
     @plot = current_user.plots.build(plot_params)
     if @plot.save
-      create_cards(@plot)
+      current_user.running? ? tutorials_create_cards(@plot) : create_cards(@plot)
       redirect_to plot_path(@plot), success: "作成しました！"
     else
       flash.now[:danger] = "作成できませんでした。"
