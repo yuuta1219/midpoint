@@ -48,7 +48,7 @@ const Card  = ({ data }: Props) => {
                 dataKey="foreshadowing_id"
                 name={name}
                 stroke={colors[index]}
-                strokeWidth={10}
+                strokeWidth={5}
                 isAnimationActive={false}
                 dot
                 legendType="line"
