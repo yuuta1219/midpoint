@@ -3,7 +3,6 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 
 interface DataPoint {
   scene: number;
-  foreshadowing_id: number;
   name: string;
 }
 
@@ -13,46 +12,48 @@ interface Props {
 
 const randomColor = () => `rgb(${Math.floor(Math.random() * 156) + 100},${Math.floor(Math.random() * 156) + 100},${Math.floor(Math.random() * 156) + 100})`;
 
-const Card  = ({ data }: Props) => {
-  const uniqueIds = [...new Set(data.map((d) => d.foreshadowing_id))];
-  const colors = uniqueIds.map(randomColor);
+const Card = ({ data }: Props) => {
+  const uniqueNames = [...new Set(data.map((d) => d.name))];
+  const nameToId = new Map(uniqueNames.map((name, index) => [name, index + 1]));
+  const colors = uniqueNames.map(randomColor);
+
+  const xAxisTicks = Array.from({ length: 40 }, (_, i) => i + 1);
 
   return (
     <div className='-ml-8'>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
-          data={data}
+          data={data.map((d) => ({ ...d, nameId: nameToId.get(d.name) }))}
           style={{ backgroundColor: 'transparent' }}
         >
           <CartesianGrid strokeDasharray="5 5" />
-          <XAxis type="number" dataKey="scene" />
+          <XAxis type="number" dataKey="scene" ticks={xAxisTicks} />
           <YAxis type="number" />
           <Tooltip
             content={({ active, payload }) => {
               if (active && payload && payload.length) {
-                const { scene, foreshadowing_id } = payload[0].payload;
-                const foreshadowingName = data.find((d) => d.foreshadowing_id === foreshadowing_id)?.name;
+                const { scene, nameId } = payload[0].payload;
+                const foreshadowingName = data.find((d) => nameToId.get(d.name) === nameId)?.name;
                 return `Scene: ${scene}, ${foreshadowingName}`;
               }
               return null;
             }}
           />
           <Legend />
-          {uniqueIds.map((id, index) => {
-            const dataSubset = data.filter((d) => d.foreshadowing_id === id);
-            const name = dataSubset[0].name;
+          {uniqueNames.map((name, index) => {
+            const dataSubset = data.filter((d) => d.name === name);
             return (
               <Line
-                key={id}
+                key={name}
                 type="linear"
-                dataKey="foreshadowing_id"
+                dataKey="nameId"
                 name={name}
                 stroke={colors[index]}
-                strokeWidth={10}
+                strokeWidth={5}
                 isAnimationActive={false}
                 dot
                 legendType="line"
-                data={dataSubset}
+                data={dataSubset.map((d) => ({ ...d, nameId: nameToId.get(d.name) }))}
               />
             );
           })}
