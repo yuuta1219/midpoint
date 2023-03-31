@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_212639) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "tutorial_completed"
+    t.integer "tutorial_status", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

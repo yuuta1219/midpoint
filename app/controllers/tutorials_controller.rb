@@ -1,23 +1,10 @@
 class TutorialsController < ApplicationController
-  def post
-    current_user.update(tutorial_completed: true)
+  def complete
+    current_user.update(tutorial_status: 2)
+    redirect_to plots_path, notice: 'チュートリアルが完了しました。'
   end
-
-  def plots_new
-  end
-
-  def post_show
-  end
-
-  def eighteen_lines
-  end
-
-  def card
-  end
-
-  def foreshadowings
-  end
-
-  def characters
+  def start
+    current_user.update(tutorial_status: 1)
+    redirect_to plots_path, notice: 'チュートリアルを開始しました。'
   end
 end

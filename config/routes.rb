@@ -13,11 +13,7 @@ Rails.application.routes.draw do
 
   get 'new_guest', to: 'users#new_guest'
   
-  resources :users, only: %i[new create destroy]do
-    member do
-      patch :complete_tutorial
-    end
-  end
+  resources :users, only: %i[new create destroy]
   resources :plots, shallow: true do
     resources :eighteen_lines, only: %i[index create update destroy]
     resources :cards, only: %i[index edit new create update destroy]
@@ -29,5 +25,10 @@ Rails.application.routes.draw do
     root to: 'dashboards#index'
     resources :users, only: %i[index edit update show destroy]
   end
-  resources :tutorials
+  resources :tutorials do
+    member do
+      patch :complete
+      patch :start
+    end
+  end
 end

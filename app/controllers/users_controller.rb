@@ -33,11 +33,6 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: "アカウントを削除しました。"
   end
 
-  def complete_tutorial
-    current_user.update(tutorial_completed: true)
-    redirect_to plots_path, notice: 'チュートリアルが完了しました。'
-  end
-
   private
 
   def user_params
