@@ -43,3 +43,64 @@
     </div>
   </div>
 </div>
+
+<% if current_user.running? %>
+<div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'おめでとう！新しいプロットが作成できたよ！　さっき決めきれなかった部分は後からここで決められるよ！',
+  '次はフッターのプロットボタンを押してみよう！'
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    incrementBtn.removeAttribute('disabled');
+    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    decrementBtn.removeAttribute('disabled');
+    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+}
+</script>
+<% end %>
