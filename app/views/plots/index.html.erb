@@ -1,7 +1,6 @@
 <%= render 'shared/login_check' %>
 <%= render 'shared/flash_message' %>
-<%= button_to  'チュートリアルを完了する', complete_tutorial_user_path(current_user), method: :patch %>
-<div class="bg-base-200 text-gray-700">
+<div class="bg-base-200 min-h-screen text-gray-700 <%= 'brightness-75' unless current_user.tutorial_completed %>">
   <div class="flex border-b-4 border-base-300">
     <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "プロット一覧", plots_path, class: "text-3xl" %></div>
   </div>
@@ -23,6 +22,7 @@
     </div>
   </div>
 </div>
+<%= render 'shared/footer' %>
 
 <div class="fixed bottom-0 right-0 m-8 z-20">
   <%= link_to new_plot_path, class: "shadow-2xl rounded-full bg-neutral-400 hover:bg-neutral-500 text-white font-bold p-10 flex items-center justify-center" do %>
@@ -30,4 +30,17 @@
   <% end %>
 </div>
 
-<%= render 'shared/footer' %>
+<% unless current_user.tutorial_completed %>
+<input type="checkbox" id="my-modal" class="modal-toggle" checked />
+<div class="modal">
+  <div class="modal-box">
+    <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500 text-gray-700">アカウント作成ありがとうございます！🎉</div>
+    <div class="text-sm m-2 my-4 text-gray-700">Midpointでは、皆さんがスムーズかつ楽しくプロット制作アプリを利用できるよう、チュートリアルを用意しています。</div>
+    <div class="text-sm m-2 my-4 text-gray-700">※今回スキップした場合でも、マイページから再度チュートリアルを実行することができます。</div>
+    <div class="flex justify-between mt-5">
+      <%= button_to  'スキップ', complete_tutorial_user_path(current_user), class: "btn m-2" , method: :patch %>
+      <%= link_to 'チュートリアルへ', tutorials_path, class: "btn m-2"  %>
+    </div>
+  </div>
+</div>
+<% end %>

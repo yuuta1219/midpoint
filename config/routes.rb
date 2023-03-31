@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     root to: 'dashboards#index'
     resources :users, only: %i[index edit update show destroy]
   end
-  resources :tutorial
+  resources :tutorials
 end
