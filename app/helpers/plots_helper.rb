@@ -54,4 +54,7 @@ module PlotsHelper
       plot.eighteen_lines.create(number: index+1, name: name, explanation: explanations[index])
     end
   end
+
+  def tutorials_create_cards(plot)
+  end
 end
