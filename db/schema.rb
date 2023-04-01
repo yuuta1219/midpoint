@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_212639) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_01_053859) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -51,6 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_212639) do
     t.string "role"
     t.string "avatar"
     t.index ["plot_id"], name: "index_characters_on_plot_id"
+  end
+
+  create_table "chat_logs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "input"
+    t.text "output"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chat_logs_on_user_id"
   end
 
   create_table "eighteen_lines", force: :cascade do |t|
@@ -129,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_212639) do
   add_foreign_key "character_knows", "cards"
   add_foreign_key "character_knows", "characters"
   add_foreign_key "characters", "plots"
+  add_foreign_key "chat_logs", "users"
   add_foreign_key "eighteen_lines", "plots"
   add_foreign_key "foreshadowing_cards", "cards"
   add_foreign_key "foreshadowing_cards", "foreshadowings"

@@ -10,6 +10,7 @@ class PlotsController < ApplicationController
 
   def show
     @current_page = "tab1"
+    @chat_logs = current_user.chat_logs.order(created_at: :asc)
     @plot = Plot.find(params[:id])
     check_plot_owner
     @eighteen_line = EighteenLine.new
