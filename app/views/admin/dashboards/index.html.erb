@@ -39,3 +39,34 @@
     </table>
   </div>
 </div>
+<div id="chat-container">
+  <%# チャット表示部分 %>
+</div>
+
+<%= form_with(url: "#", method: "get", id: "chat-form", local: true) do %>
+  <%= label_tag :query, "Your input:" %>
+  <%= text_field_tag :query %>
+  <%= submit_tag "Send" %>
+<% end %>
+
+<script>
+  document.getElementById("chat-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = document.getElementById("query").value;
+
+    // ユーザー入力を表示
+    const userMessage = document.createElement("div");
+    userMessage.textContent = `User: ${query}`;
+    document.getElementById("chat-container").appendChild(userMessage);
+
+    // APIリクエスト
+    const response = await fetch("/chats/chat_emotional_value?query=" + encodeURIComponent(query));
+    const jsonResponse = await response.json();
+    const generatedText = jsonResponse.generated_text;
+
+    // APIからの応答を表示
+    const apiMessage = document.createElement("div");
+    apiMessage.textContent = `AI: ${generatedText}`;
+    document.getElementById("chat-container").appendChild(apiMessage);
+  });
+</script>

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'user_sessions#destroy'
 
   get 'new_guest', to: 'users#new_guest'
+
+  get 'chats/chat_emotional_value', to: 'chats#chat_emotional_value', defaults: { format: :json }
   
   resources :users, only: %i[new create destroy]
   resources :plots, shallow: true do
