@@ -3,7 +3,7 @@
 </div>
 
 
-<div id="chat-log-wrapper" class="fixed bottom-0 right-0 card overflow-auto bg-base-100 shadow-xl z-20 h-3/6 sm:h-5/6 max-w-md border-2 rounded-lg border-stone-800 mb-12 mx-2 sm:m-12">
+<div id="chat-log-wrapper" class="hidden fixed bottom-0 right-0 card overflow-auto bg-base-100 shadow-xl z-20 h-3/6 sm:h-5/6 max-w-md border-2 rounded-lg border-stone-800 mb-12 mx-2 sm:m-12">
   <div class="flex text-xl bg-neutral border-b border-gray-500 text-neutral-content backdrop-blur backdrop-brightness-50">
     <div class="flex-1 m-2">MidpointAI ChatLog</div>
     <button id="close-button" class="flex-no btn btn-circle">
@@ -82,18 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatLogWrapper = document.querySelector("#chat-log-wrapper");
   const chatContainer = document.getElementById("chat-container");
 
-  // 最初にチャットログを非表示にする
-  chatLogWrapper.style.display = "none";
-
   aiButton.addEventListener("click", () => {
     aiWrapper.style.display = "none";
-    chatLogWrapper.style.display = "block";
+    chatLogWrapper.classList.remove("hidden"); 
     scrollToBottom(chatContainer); // この行を追加
   });
 
   closeButton.addEventListener("click", () => {
     aiWrapper.style.display = "block";
-    chatLogWrapper.style.display = "none";
+    chatLogWrapper.classList.add("hidden"); 
   });
 });
 

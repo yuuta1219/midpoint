@@ -1,4 +1,7 @@
 class ChatsController < ApplicationController
+  def open_ai
+    @client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
+  end
   def chat_emotional_value
     open_ai
     case

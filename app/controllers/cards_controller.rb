@@ -3,6 +3,7 @@ class CardsController < ApplicationController
   before_action :card_and_plot_find, only: [:edit, :update, :destroy]
   before_action :check_plot_owner
   before_action :foreshadowing_cards, only: [:index, :edit]
+  before_action :chat_ai
 
   def index
     @current_page = "tab3"

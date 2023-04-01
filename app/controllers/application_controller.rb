@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_notifications
-    @notifications = Notification.all
+    @notifications = Notification.all.order(created_at: :desc)
     @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
 
@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless @plot.user == current_user
   end
 
-  def open_ai
-    @client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
+  def chat_ai
+    @chat_logs = current_user.chat_logs.order(created_at: :asc)
+    current_user.chat_logs.first.destroy if current_user.chat_logs.count > 10
   end
 end

@@ -2,6 +2,7 @@ class EighteenLinesController < ApplicationController
   before_action :plot_find, only: [:index, :create]
   before_action :eighteen_line_and_plot_find, only: [:update, :destroy]
   before_action :check_plot_owner
+  before_action :chat_ai
 
   def index
     @current_page = "tab2"
