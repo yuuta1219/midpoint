@@ -45,3 +45,5 @@ gem 'ransack'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'mini_magick'
 gem 'carrierwave'
+gem "ruby-openai"
+gem 'dotenv-rails', groups: [:development, :test]
