@@ -5,7 +5,7 @@
 
 <div id="chat-log-wrapper" class="hidden fixed bottom-0 right-0 card overflow-auto bg-base-100 shadow-xl z-20 h-3/6 sm:h-5/6 max-w-md border-2 rounded-lg border-stone-800 mb-12 mx-2 sm:m-12">
   <div class="flex text-xl bg-neutral border-b border-gray-500 text-neutral-content backdrop-blur backdrop-brightness-50">
-    <div class="flex-1 m-2">MidpointAI ChatLog</div>
+    <div class="flex-1 m-2">MidPlotAI ChatLog</div>
     <button id="close-button" class="flex-no btn btn-circle">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
@@ -21,7 +21,7 @@
           <div class="chat-image">
             <%= image_tag("booknekosan.png", width: '50px', height: '50px') %>
           </div>
-          <div class="chat-header">MidpointAI</div>
+          <div class="chat-header">MidPlotAI</div>
           <div class="chat-bubble chat-bubble-secondary text-xs"><%= log.output %></div>
         </div>
       <% end %>
@@ -30,7 +30,7 @@
         <div class="chat-image">
           <%= image_tag("booknekosan.png", width: '50px', height: '50px') %>
         </div>
-        <div class="chat-header">MidpointAI</div>
+        <div class="chat-header">MidPlotAI</div>
         <div class="chat-bubble chat-bubble-secondary text-xs">感情値について聞いてください。</div>
       </div>
     <% end %>
@@ -121,7 +121,7 @@ function displayChatLog(input, output) {
   apiImage.innerHTML = `<img src="/assets/booknekosan.png" width="50" height="50" />`;
   const apiHeader = document.createElement("div");
   apiHeader.className = "chat-header";
-  apiHeader.textContent = "MidpointAI";
+  apiHeader.textContent = "MidPlotAI";
   const apiOutput = document.createElement("div");
   apiOutput.className = "chat-bubble chat-bubble-secondary text-xs";
   apiOutput.textContent = output;

@@ -1,6 +1,6 @@
 <div class="z-30 font-fancy <%= 'bg-neutral border-b border-gray-500 text-neutral-content' if @color != 'normal' %> navbar top-0 sticky backdrop-blur backdrop-brightness-50">
   <% if  logged_in? %>
-    <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), plots_path %></div>
+    <div class="flex-1"><%= link_to image_tag("logo.png", :size => '200x200'), plots_path %></div>
     <div class="dropdown dropdown-end">
       <div class="indicator">
       <% unless @read_confirmation %><span class="indicator-item indicator-center p-1 rounded-full bg-sky-500 animate-pulse opacity-75"></span><% end %>
@@ -12,7 +12,7 @@
     </div>
     <div class='flex-none'><%= link_to "My_page", my_page_path %></div>
   <% else %>
-    <div class="flex-1"><%= link_to image_tag("logo.png", :size => '150x150'), root_path %></div>
+    <div class="flex-1"><%= link_to image_tag("logo.png", :size => '200x200'), root_path %></div>
     <div class="hidden sm:block"><%= link_to "SignUp",new_user_path, class: "btn btn-ghost btn-sm " %></div>
     <div><label for="my-modal-1" class="btn btn-ghost btn-sm">Guest</label></div>
     <div><label for="my-modal-2" class="btn btn-ghost btn-sm">Login</label></div>

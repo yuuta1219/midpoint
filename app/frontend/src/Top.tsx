@@ -119,7 +119,7 @@ function Top() {
         <div ref={myElement7} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 backdrop-brightness-50"></div>  
         <div ref={myElement8} style={{ whiteSpace: 'pre' }} className="my-text transition duration-1000 backdrop-brightness-50"></div>  
       </div>
-      <div className="my-text-second hidden absolute bottom-2 text-neutral-content transition duration-1000 text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-8xl backdrop-brightness-50"><Fade right cascade>さあ、<br></br>Midpointで<br></br>物語を作ろう。</Fade></div>
+      <div className="my-text-second hidden absolute bottom-2 text-neutral-content transition duration-1000 text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-8xl backdrop-brightness-50"><Fade right cascade>さあ、<br></br>MidPlotで<br></br>物語を作ろう。</Fade></div>
     </div>
     </>
   );
