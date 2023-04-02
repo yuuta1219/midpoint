@@ -11,7 +11,7 @@ class ForeshadowingsController < ApplicationController
   end
   
   def create
-    @foreshadowing = Foreshadowing.new(foreshadowing_params)
+    @foreshadowing = @plot.foreshadowings.build(foreshadowing_params)
     if @foreshadowing.save
       redirect_to plot_foreshadowings_path(@plot), success: "作成しました！"
     else

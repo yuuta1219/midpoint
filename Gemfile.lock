@@ -105,6 +105,8 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -299,6 +301,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
+  friendly_id
   mini_magick
   pg
   puma (~> 5.0)

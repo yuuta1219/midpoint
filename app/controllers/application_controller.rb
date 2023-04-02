@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def plot_find
-    @plot = Plot.find(params[:plot_id])
+    @plot = Plot.friendly.find(params[:plot_id])
   end
 
   def check_plot_owner

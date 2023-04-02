@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_01_053859) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_045824) do
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -119,6 +119,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_053859) do
     t.integer "length_type", default: 0, null: false
     t.datetime "timeline"
     t.integer "person", default: 0, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_plots_on_slug", unique: true
     t.index ["user_id"], name: "index_plots_on_user_id"
   end
 

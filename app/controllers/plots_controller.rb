@@ -11,7 +11,7 @@ class PlotsController < ApplicationController
 
   def show
     @current_page = "tab1"
-    @plot = Plot.find(params[:id])
+    @plot = Plot.friendly.find(params[:id])
     check_plot_owner
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
@@ -33,7 +33,7 @@ class PlotsController < ApplicationController
   end
   
   def update
-    @plot = current_user.plots.find(params[:id])
+    @plot = current_user.plots.friendly.find(params[:id])
     if @plot.update(plot_params)
       redirect_to plot_path(@plot), success: "更新しました！"
     else
@@ -42,7 +42,7 @@ class PlotsController < ApplicationController
   end
 
   def destroy
-    @plot = current_user.plots.find(params[:id])
+    @plot = current_user.plots.friendly.find(params[:id])
     @plot.destroy!
     redirect_to plots_path, status: :see_other, success: "削除しました！"
   end

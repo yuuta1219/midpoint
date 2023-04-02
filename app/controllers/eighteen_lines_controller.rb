@@ -11,8 +11,8 @@ class EighteenLinesController < ApplicationController
   end
 
   def create
-    @eighteen_line = EighteenLine.new(eighteen_line_params)
-    if eighteen_line.save
+    @eighteen_line = @plot.eighteen_lines.build(eighteen_line_params)
+    if @eighteen_line.save
       redirect_to plot_eighteen_lines_path(@eighteen_line.plot), success: "作成しました！"
     else
       redirect_to plot_eighteen_lines_path(@eighteen_line.plot), danger: "作成できませんでした"

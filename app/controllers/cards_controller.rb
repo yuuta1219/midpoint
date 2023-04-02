@@ -20,7 +20,7 @@ class CardsController < ApplicationController
   def edit; end
 
   def create
-    @card = Card.new(card_params)
+    @card = @plot.cards.build(card_params)
     if @card.save
       redirect_to plot_cards_path(@plot), success: "作成しました！"
     else
