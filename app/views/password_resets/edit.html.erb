@@ -1,0 +1,19 @@
+<h1>パスワードリセット</h1>
+
+<%= form_with model: @user, url: password_reset_path(params[:id]), local: true do |f| %>
+  <div class="field">
+    <%= f.label :password, "新しいパスワード" %><br>
+    <%= f.password_field :password %>
+  </div>
+
+<div class="field">
+  <%= f.label :password_confirmation, "新しいパスワードの確認" %><br>
+  <%= f.password_field :password_confirmation %>
+</div>
+
+<div class="actions">
+  <%= f.submit "パスワードを更新" %>
+</div>
+<% end %>
+
+<%= link_to '戻る', root_path %>

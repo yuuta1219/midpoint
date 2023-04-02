@@ -32,6 +32,7 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :production do
@@ -48,3 +49,5 @@ gem 'carrierwave'
 gem "ruby-openai"
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'friendly_id'
+gem 'config'
+gem 'actionmailer'
