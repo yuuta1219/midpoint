@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'chats/chat_emotional_value', to: 'chats#chat_emotional_value', defaults: { format: :json }
   
   resources :users, only: %i[new create destroy]
+  resources :password_resets, only: %i[new create edit update]
   resources :plots, shallow: true do
     resources :eighteen_lines, only: %i[index create update destroy]
     resources :cards, only: %i[index edit new create update destroy]
@@ -33,4 +34,7 @@ Rails.application.routes.draw do
       patch :start
     end
   end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
 end
