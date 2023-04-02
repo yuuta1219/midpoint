@@ -18,11 +18,13 @@ class CharactersController < ApplicationController
   end
   
   def create
-    @character = Character.new(character_params)
+    @character = @plot.characters.build(character_params)
     if @character.save
       redirect_to plot_characters_path(@plot), success: "作成しました！"
     else
       redirect_to plot_characters_path(@plot), danger: "作成できませんでした"
+      Rails.logger.error @character.errors.full_messages
+ 
     end
   end
 

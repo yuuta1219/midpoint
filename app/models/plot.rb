@@ -13,6 +13,13 @@ class Plot < ApplicationRecord
   enum length_type: { '長編': 0, '中編': 1, '短編': 2 }
   enum person: { '一人称': 0, '二人称': 1, '三人称': 2 }
 
+  extend FriendlyId
+  friendly_id :generate_slug, use: :slugged
+
+  def generate_slug
+    SecureRandom.hex(10)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["name", "theme", "one_line", "created_at", "updated_at"]
   end
