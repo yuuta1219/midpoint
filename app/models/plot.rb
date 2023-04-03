@@ -10,7 +10,7 @@ class Plot < ApplicationRecord
   validates :one_line, length: { maximum: 255 }
 
   enum color: { ホワイト: 0, ブルー: 1, オレンジ: 2, ピンク: 3, グリーン: 4, グレイ: 5 }
-  enum length_type: { '長編': 0, '中編': 1, '短編': 2, '超短編' }
+  enum length_type: { '長編': 0, '中編': 1, '短編': 2 }
   enum person: { '一人称': 0, '二人称': 1, '三人称': 2 }
   enum accessibility: { plot_private: 0, plot_public: 1 }
 
