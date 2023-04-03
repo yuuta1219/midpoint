@@ -51,3 +51,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'friendly_id'
 gem 'config'
 gem 'actionmailer'
+gem 'omniauth-google-oauth2'

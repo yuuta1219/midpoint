@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
 
+  get 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
+
   get 'new_guest', to: 'users#new_guest'
 
   get 'chats/chat_emotional_value', to: 'chats#chat_emotional_value', defaults: { format: :json }

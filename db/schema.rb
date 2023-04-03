@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_071735) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_03_015332) do
+  create_table "authentications", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
   create_table "cards", force: :cascade do |t|
     t.integer "scene", default: 0, null: false
     t.string "current_location"
@@ -141,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_071735) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "authentications", "users"
   add_foreign_key "cards", "plots"
   add_foreign_key "character_knows", "cards"
   add_foreign_key "character_knows", "characters"

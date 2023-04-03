@@ -2,7 +2,9 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :set_notifications, only: [:new, :create]
 
-  def new; end
+  def new
+    @user = User.new
+   end
 
   def create
     @user = login(params[:email], params[:password])

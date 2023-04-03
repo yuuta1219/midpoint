@@ -28,7 +28,9 @@
     <meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : 'MidPlot' %>">
     <meta name="twitter:description" content="<%= content_for?(:description) ? yield(:description) : 'プロット制作アプリ' %>">
     <meta name="twitter:image" content="<%= content_for?(:image) ? yield(:image) :  image_url('MidPlot.png')  %>">
-
+    <meta name="google-signin-client_id" content="<%= ENV['GOOGLE_CLIENT_ID'] %>">
+    <meta name="google-signin-callback_url" content="<%= ENV['GOOGLE_CALLBACK_URL'] %>">
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H8WR2Y40LC"></script>
     <script>
