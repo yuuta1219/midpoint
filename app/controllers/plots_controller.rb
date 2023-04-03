@@ -12,7 +12,7 @@ class PlotsController < ApplicationController
   def show
     @current_page = "tab1"
     @plot = Plot.friendly.find(params[:id])
-    check_plot_owner
+    check_plot_accessibility
     @eighteen_line = EighteenLine.new
     @eighteen_lines = @plot.eighteen_lines.order(created_at: :asc)
   end
@@ -50,7 +50,7 @@ class PlotsController < ApplicationController
   private
 
   def plot_params
-    params.require(:plot).permit(:name, :theme, :one_line, :color, :length_type, :timeline, :person)
+    params.require(:plot).permit(:name, :theme, :one_line, :color, :length_type, :timeline, :person, :accessibility)
   end
 
 end

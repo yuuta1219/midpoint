@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
   before_action :plot_find, only: [:index, :create]
   before_action :card_and_plot_find, only: [:edit, :update, :destroy]
-  before_action :check_plot_owner
+  before_action :check_plot_owner, only: [:create, :edit, :update, :destroy]
+  before_action :check_plot_accessibility, only: [:index]
   before_action :foreshadowing_cards, only: [:index, :edit]
   before_action :chat_ai
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_03_015332) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_03_105341) do
   create_table "authentications", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_015332) do
     t.datetime "timeline"
     t.integer "person", default: 0, null: false
     t.string "slug"
+    t.integer "accessibility", default: 0
     t.index ["slug"], name: "index_plots_on_slug", unique: true
     t.index ["user_id"], name: "index_plots_on_user_id"
   end

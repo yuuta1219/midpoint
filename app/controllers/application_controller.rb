@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless @plot.user == current_user
   end
 
+  def check_plot_accessibility
+    redirect_to root_path unless (@plot.user == current_user || @plot.open?)
+  end
+
   def chat_ai
     @chat_logs = current_user.chat_logs.order(created_at: :asc)
     current_user.chat_logs.first.destroy if current_user.chat_logs.count > 10
