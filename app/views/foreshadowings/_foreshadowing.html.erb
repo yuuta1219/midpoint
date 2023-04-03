@@ -27,7 +27,7 @@
         <%= f.label :伏線の内容, class: 'my-1 text-xl' %>
         <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "内容を入力" %>
         <div class="flex flex-wrap flex-row">
-          <%= f.collection_check_boxes :card_ids, @plot.cards.all, :id, :scene do |cb| %>
+          <%= f.collection_check_boxes :card_ids, @plot.cards.order(:scene), :id, :scene do |cb| %>
             <div class="relative flex my-1">
               <%= cb.check_box(class: 'checkbox mr-16') %>
               <div class="ml-7 label-text absolute inset-0">scene<%= cb.label%></div>
