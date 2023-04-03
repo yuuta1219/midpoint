@@ -11,4 +11,6 @@
     </div>
     <%= f.submit 'ログイン', class: 'btn text-gray-100 bg-gray-900 my-2'%>
   <% end %>
+  <div class="divider">OR</div>
+  <%= link_to image_tag("google_icon.png", :size => '200x200'), auth_at_provider_path(:google) %>
 </div>
