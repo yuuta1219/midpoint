@@ -13,6 +13,8 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
     config.fog_directory  = 'midplot'
+    config.fog_public = false
+    config.fog_attributes = { 'x-amz-acl' => 'private' }
   else
     config.storage :file
     config.enable_processing = Rails.env.development?
