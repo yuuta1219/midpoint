@@ -8,6 +8,7 @@
       <div class="m-4 text-4xl border-b-2 border-gray-500"><%= @notification.title %></div>
       <div class="m-4 text-2xl">著者：<%= @notification.name %></div>
       <div class="m-4 break-all"><%= simple_format(@notification.body) %></div>
+      <div class="m-4 break-all">記事作成日: <%= l(@notification.created_at, format: :mini) %></div>
       <%= link_to "お知らせ一覧へ", notifications_path,class:"m-4 border-b border-gray-500" %>
     </div>
   </div>
