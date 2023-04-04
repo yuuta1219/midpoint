@@ -12,10 +12,12 @@
         <div class="m-2 flex-grow">  
           <div class="text-3xl flex max-w-full border-b border-slate-700">
             <div class="flex-1 "><%= @character.name %></div>
-            <%= link_to edit_character_path(@character), class: "hover:animate-pulse" do %>
-              <i class="bi bi-pencil-square text-3xl"></i>
+            <% unless @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= link_to edit_character_path(@character), class: "hover:animate-pulse" do %>
+                <i class="bi bi-pencil-square text-3xl"></i>
+              <% end %>
+              <label for="delete-modal-<%=@character.id%>", class=" ml-2 bi bi-trash text-4xl hover:animate-pulse hover:cursor-pointer">
             <% end %>
-            <label for="delete-modal-<%=@character.id%>", class=" ml-2 bi bi-trash text-4xl hover:animate-pulse hover:cursor-pointer">
           </div>
           <div class="text-xl my-1">役職: <%= @character.role %></div>
           <div class="text-xl my-1">年齢: <%= @character.age %></div>

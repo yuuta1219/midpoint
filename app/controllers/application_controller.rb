@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_plot_accessibility
-    redirect_to root_path unless (@plot.user == current_user || @plot.open?)
+    redirect_to root_path unless (@plot.user == current_user || @plot.accessibility == '公開')
   end
 
   def chat_ai

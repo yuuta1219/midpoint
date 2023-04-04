@@ -1,46 +1,69 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 min-h-screen pb-10">
-  <div class="grid grid-cols-1">
-    <%= form_with model: @plot, local: true do |f| %>
-    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-      <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
-        <div class="mx-4 border-b border-gray-500 text-xl">タイトル <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('name').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="name">作品のタイトルを決めましょう。</div>
-        <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
-        <div class="mx-4 border-b border-gray-500 text-xl">テーマ <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('theme').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="theme">作品のテーマを設定し、伝えたいことは何かを考えましょう。</div>
-        <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
-        <div class="mx-4 border-b border-gray-500 text-xl">ログライン <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('one_line').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="one_line">作品のログライン（one line）を設定しましょう。</br>ログラインとは、作品を一行で簡潔にまとめたものです。</div>
-        <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost md:textarea-md textarea-lg w-full max-w-full h-24'%>
-        <div class="mx-4 border-b border-gray-500 text-xl">カードカラー <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('color').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="color">プロットカードの色を選択できます。</div>
-        <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }%>
-        <div class="mx-4 border-b border-gray-500 text-x">作品の長さ <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('length_type').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="length_type">作品の長さを決めましょう。</div>
-        <%= f.collection_select :length_type, Plot. length_types.keys, :to_s, :to_s, { prompt: "長編" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" } %>
-        <div class="mx-4 border-b border-gray-500 text-x">作中時間 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('timeline').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="timeline">作品の開始時間を設定しましょう。</br>ここで入力しておくとカード編集画面で全てに適応されます。</div>
-        <%= f.datetime_field :timeline, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
-        <div class="mx-4 border-b border-gray-500 text-x">人称 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('person').classList.toggle('hidden')"></i></div>
-        <div class="mx-4 text-xs hidden" id="person">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</div>
-        <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
-        <div></div>
-        <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
-      <% end %>
-      <label for="my-modal-4" class="btn btn-ghost font-light">プロットを削除</label>
-      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-      <label for="my-modal-4" class="modal cursor-pointer">
-        <label class="modal-box relative" for="">
-          <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
-          <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
-          <%= button_to "プロットを削除する",plot_path(@plot),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+<div class="bg-base-200 pb-10">
+  <div class="grid grid-cols-1 min-h-screen">
+    <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+    <%= render 'show_view_only' %>
+    <% else %>
+      <%= form_with model: @plot, local: true do |f| %>
+      <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+        <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+          
+          <div class="mx-4 border-b border-gray-500 text-xl">タイトル <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('name').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="name">作品のタイトルを決めましょう。</div>
+          <%= f.text_field :name, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
+          
+          <div class="mx-4 border-b border-gray-500 text-xl">テーマ <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('theme').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="theme">作品のテーマを設定し、伝えたいことは何かを考えましょう。</div>
+          <%= f.text_field :theme, class: 'ml-1 my-2 input input-ghost md:input-md input-lg w-full max-w-full'%>
+          
+          <div class="mx-4 border-b border-gray-500 text-xl">ログライン <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('one_line').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="one_line">作品のログライン（one line）を設定しましょう。</br>ログラインとは、作品を一行で簡潔にまとめたものです。</div>
+          <%= f.text_area :one_line, class: 'ml-1 my-2 textarea textarea-ghost md:textarea-md textarea-lg w-full max-w-full h-24'%>
+          
+          <div class="mx-4 border-b border-gray-500 text-xl">カードカラー <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('color').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="color">プロットカードの色を選択できます。</div>
+          <%= f.collection_select :color, Plot.colors.keys, :to_s, :to_s, { prompt: "Select a color"  }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }%>
+          
+          <div class="mx-4 border-b border-gray-500 text-x">作品の長さ <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('length_type').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="length_type">作品の長さを決めましょう。</div>
+          <%= f.collection_select :length_type, Plot.length_types.keys, :to_s, :to_s, { prompt: "長編" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" } %>
+          
+          <div class="mx-4 border-b border-gray-500 text-x">作中時間 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('timeline').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="timeline">作品の開始時間を設定しましょう。</br>ここで入力しておくとカード編集画面で全てに適応されます。</div>
+          <%= f.datetime_field :timeline, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+          
+          <div class="mx-4 border-b border-gray-500 text-x">人称 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('person').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="person">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</div>
+          <%= f.collection_select :person, Plot.people.keys, :to_s, :to_s, { prompt: "三人称" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+          
+          <div class="mx-4 border-b border-gray-500 text-x">公開設定 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('accessibility').classList.toggle('hidden')"></i></div>
+          <div class="mx-4 text-xs hidden" id="accessibility">公開範囲の設定を決めることができます。公開に設定を変更した場合、URLを知る人はプロット全体にアクセスすることができます。</div>
+          <%= f.collection_select :accessibility, Plot.accessibilities.keys, :to_s, :to_s, { prompt: "非公開" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+          <% if @plot.accessibility == '公開' %>
+            <div class="mx-4">
+              <%= link_to "https://twitter.com/share?url=#{request.base_url + plot_path(@plot)}&text=midplotでプロットを書いたよ!見てね!&hashtags=midplot&via=midplot", target: '_blank', class: 'mx-4 twitter-share-button', data: {show_count: 'false'} do %>
+                Tweet
+              <% end %>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <% end %>
+          <div></div>
+          <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
+        <% end %>
+        <label for="my-modal-4" class="btn btn-ghost font-light">プロットを削除</label>
+        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+        <label for="my-modal-4" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
+            <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
+            <%= button_to "プロットを削除する",plot_path(@plot),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+          </label>
         </label>
-      </label>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
