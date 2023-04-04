@@ -3,7 +3,7 @@
 <div class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-5 sm:grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
-      <label for="my-modal" class="btn btn-ghost col-span-2 sm:col-span-1">new card</label>
+      <%= label_tag "my-modal", "new card", class: "btn btn-ghost col-span-2 sm:col-span-1" unless @plot.user != current_user && @plot.accessibility == '公開' %>
       <div class="flex col-span-1">
         <label class="label cursor-pointer">
           <span class="label-text mr-1 hidden md:block">感情グラフ</span> 
@@ -98,33 +98,45 @@
     </label>
   </label>
   <div class="m-2">
-    <% if @cards.present? && @cards.size >= 40 %>
+    <% if @cards.present? && @plot.length_type == '長編' %>
       <% cards_by_act = @cards.group_by { |card| card.scene > 30 ? "ACT THREE" : card.scene > 20 ? "ACT TWO II" : card.scene > 10 ? "ACT TWO I" : "ACT ONE" } %>
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
           </div>
         </div>
       <% end %>
-    <% elsif @cards.size >= 20 %>
+    <% elsif @plot.length_type == '中編' %>
       <% cards_by_act = @cards.group_by { |card| card.scene > 15 ? "ACT THREE" : card.scene > 10 ? "ACT TWO II" : card.scene > 5 ? "ACT TWO I" : "ACT ONE" } %>
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
           </div>
         </div>
       <% end %>
-    <% elsif @cards.size >= 8 %>
+    <% elsif @plot.length_type == '短編' %>
       <% cards_by_act = @cards.group_by { |card| card.scene > 6 ? "ACT THREE" : card.scene > 4 ? "ACT TWO II" : card.scene > 2 ? "ACT TWO I" : "ACT ONE" } %>
       <% cards_by_act.each do |act, cards| %>
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -132,7 +144,11 @@
     <div id="implicit">
       <div class="text-2xl">implicit scene</div>
       <div class="overflow-x-auto flex py-2">
-        <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
+        <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+          <%= render partial: "cards/implicit_card_view_only", collection: @implicit_cards %>
+        <% else %>
+          <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
+        <% end %>
       </div>
     </div>
   </div>

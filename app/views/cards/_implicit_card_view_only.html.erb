@@ -1,0 +1,20 @@
+<div>
+  <div class="bg-slate-800 text-gray-100 hover:bg-slate-900 transition-colors duration-300 card m-4 h-40 w-80 shadow-xl relative">
+    <div class="flex">
+      <div class="mx-3 mt-1 font-semibold flex-1 border-b border-slate-700 break-all"><%= truncate(implicit_card_view_only.title, length: 16, omission: '..') %></div>
+      <div class="text-xl mr-1 mt-1 font-medium border-b border-slate-700"><i class="bi bi-heart-fill"></i><%= implicit_card_view_only.emotional_value %></div>
+    </div>
+    <div class="text-sm my-2 ml-4 mx-3 break-all"><%= truncate(implicit_card_view_only.body, length: 60, omission: '...') %></div>
+    <div class="absolute inset-x-0 bottom-8 ml-3 mx-3" style="overflow-x: auto; white-space: nowrap;">
+      <% implicit_card_view_only.foreshadowing_cards.each do |fc| %>
+        <span class="badge badge-outline badge-sm">
+          <%= fc.foreshadowing.name %>
+        </span>
+      <% end %>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 m-2 flex border-t border-slate-700 style="overflow-x: auto; white-space: nowrap;">
+      <div class="flex-1 text-xs ml-1"><i class="bi bi-calendar3"></i><%= l(implicit_card_view_only.time_start, format: :deluxe) if implicit_card_view_only.time_start.present? %>~<%= l(implicit_card_view_only.time_end, format: :deluxe) if implicit_card_view_only.time_start.present? %></div>
+    </div>
+    <div class="-rotate-12 absolute bottom-4 left-7 text-6xl font-black opacity-5">implicit</br>scene</div>
+  </div>
+</div>
