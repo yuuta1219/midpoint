@@ -4,7 +4,7 @@
 <div class="bg-base-200 min-h-screen pb-20">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-1 shadow-xl <%= render "shared/plot_card_color", { plot: @plot } %>">
-      <label for="my-modal" class="btn btn-ghost">new character</label>
+      <%= label_tag "my-modal", "new character", class: "btn btn-ghost" unless @plot.user != current_user && @plot.accessibility == '公開' %>
     </div>
   </div>
   <input type="checkbox" id="my-modal" class="modal-toggle" />
