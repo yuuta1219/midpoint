@@ -41,6 +41,14 @@
           <div class="mx-4 border-b border-gray-500 text-x">公開設定 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('accessibility').classList.toggle('hidden')"></i></div>
           <div class="mx-4 text-xs hidden" id="accessibility">公開範囲の設定を決めることができます。公開に設定を変更した場合、URLを知る人はプロット全体にアクセスすることができます。</div>
           <%= f.collection_select :accessibility, Plot.accessibilities.keys, :to_s, :to_s, { prompt: "非公開" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
+          <% if @plot.accessibility == '公開' %>
+            <div class="mx-4">
+              <%= link_to "https://twitter.com/share?url=#{request.base_url + plot_path(@plot)}&text=midplotでプロットを書いたよ!見てね!&hashtags=midplot&via=midplot", target: '_blank', class: 'mx-4 twitter-share-button', data: {show_count: 'false'} do %>
+                Tweet
+              <% end %>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <% end %>
           <div></div>
           <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
         <% end %>
