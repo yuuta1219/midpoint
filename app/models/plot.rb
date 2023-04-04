@@ -12,7 +12,7 @@ class Plot < ApplicationRecord
   enum color: { ホワイト: 0, ブルー: 1, オレンジ: 2, ピンク: 3, グリーン: 4, グレイ: 5 }
   enum length_type: { '長編': 0, '中編': 1, '短編': 2 }
   enum person: { '一人称': 0, '二人称': 1, '三人称': 2 }
-  enum accessibility: { plot_private: 0, plot_public: 1 }
+  enum accessibility: { '非公開': 0, '公開': 1 }
 
   extend FriendlyId
   friendly_id :generate_slug, use: :slugged
