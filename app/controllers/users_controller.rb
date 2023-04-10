@@ -17,12 +17,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def new_guest
-    user = User.create_guest
-    auto_login(user)
-    redirect_to plots_path, success: "ゲストユーザーとしてログインしました。"
-  end
-
   def my_page
     @user = current_user
   end
