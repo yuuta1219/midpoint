@@ -16,26 +16,11 @@
       <div class="mx-4 mt-1 mb-4 text-md"><%= button_to 'チュートリアル', start_tutorial_path(current_user), class: "btn" , method: :patch %></div>
       <div class="mx-4 border-b border-gray-500 text-xl">ログアウト</div>
       <div class="mx-4 mt-1 mb-4 text-sm">ログアウトする場合は、下記のボタンを押してください。</div>
-      <% if current_user.guest? %>
-        <label for="my-modal-4" class="mx-4 mb-2 btn text-gray-100 bg-gray-900">Logout</label>
-      <% else %>
-        <%= link_to 'ログアウト', logout_path, class: 'btn text-gray-100 bg-gray-900 mx-4 mb-2' %>
-      <% end %>
+      <%= link_to 'ログアウト', logout_path, class: 'btn text-gray-100 bg-gray-900 mx-4 mb-2' %>
       <div class="mx-4 border-b border-gray-500 text-xl">アカウント削除</div>
       <div class="mx-4 mt-1 mb-4 text-sm">アカウントを削除する場合は、下記のボタンを押してください。</br>アカウントを削除すると、アカウントに関連するすべてのデータが削除されます。削除されたデータは回復できません。</div>
       <label for="my-modal-5" class="mx-4 mb-2 btn btn-error">アカウント削除</label>
 
-      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-      <label for="my-modal-4" class="modal cursor-pointer">
-        <label class="modal-box relative" for="">
-          <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">本当にログアウトしますか？</div>
-          <% if current_user.guest? %>
-            <div class="text-sm m-2 my-4">ゲストユーザーでログアウトした場合、保存したデータは全て消去されます。ご了承ください。</div>
-          <% end %>
-          <%= button_to 'ログアウトする', user_path(@user), class: 'btn text-gray-100 bg-gray-900 m-2', method: :delete %>
-        </label>
-      </label>
       <input type="checkbox" id="my-modal-5" class="modal-toggle" />
       <label for="my-modal-5" class="modal cursor-pointer">
         <label class="modal-box relative" for="">

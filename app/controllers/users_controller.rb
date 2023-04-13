@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create new_guest]
+  skip_before_action :require_login, only: [:new, :create]
   before_action :set_notifications, only: [:my_page]
 
   def new
@@ -15,12 +15,6 @@ class UsersController < ApplicationController
       flash.now[:danger] = "アカウトを作成できませんでした。"
       render :new
     end
-  end
-
-  def new_guest
-    user = User.create_guest
-    auto_login(user)
-    redirect_to plots_path, success: "ゲストユーザーとしてログインしました。"
   end
 
   def my_page

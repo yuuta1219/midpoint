@@ -1,7 +1,8 @@
 class CharactersController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
   before_action :plot_find, only: [:index, :create]
   before_action :character_and_plot_find, only: [:show, :edit, :update, :destroy]
-  before_action :check_plot_owner, only: [:create, :edit, :update, :destroy]
+  before_action :check_plot_owner, only: [:edit]
   before_action :check_plot_accessibility, only: [:index, :show]
   before_action :chat_ai
 
@@ -15,8 +16,7 @@ class CharactersController < ApplicationController
     @characters = @plot.characters.order(created_at: :asc)
   end
 
-  def edit
-  end
+  def edit; end
   
   def create
     @character = @plot.characters.build(character_params)
@@ -24,12 +24,11 @@ class CharactersController < ApplicationController
       redirect_to plot_characters_path(@plot), success: "作成しました！"
     else
       redirect_to plot_characters_path(@plot), danger: "作成できませんでした"
-      Rails.logger.error @character.errors.full_messages
- 
     end
   end
 
   def update
+    @plot = current_user.plots.find(@character.plot_id)
     if @character.update(character_params.merge(plot_id: @character.plot_id))
       redirect_to plot_characters_path(@character.plot), notice: '更新しました'
     else
@@ -38,6 +37,7 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    @plot = current_user.plots.find(@character.plot_id)
     @character.destroy!
     redirect_to plot_characters_path(@character.plot), status: :see_other, success: "削除しました！"
   end

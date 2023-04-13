@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
   def index; end
 
   def show
-    @notifications = Notification.all
+    @notifications = Notification.all.order(created_at: :desc)
     @notification_user = NotificationUser.find_or_create_by(user_id: current_user.id, notification_id: @notification.id)
     @read_confirmation = @notifications.size == NotificationUser.where(user_id: current_user.id).count if logged_in?
   end
