@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create new_guest]
+  skip_before_action :require_login, only: [:new, :create]
   before_action :set_notifications, only: [:my_page]
 
   def new

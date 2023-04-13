@@ -27,7 +27,9 @@ class ApplicationController < ActionController::Base
   end
 
   def chat_ai
-    @chat_logs = current_user.chat_logs.order(created_at: :asc)
-    current_user.chat_logs.first.destroy if current_user.chat_logs.count > 10
+    if logged_in?
+      @chat_logs = current_user.chat_logs.order(created_at: :asc)
+      current_user.chat_logs.first.destroy if current_user.chat_logs.count > 10
+    end
   end
 end

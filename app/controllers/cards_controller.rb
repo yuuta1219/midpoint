@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
+  skip_before_action :require_login, only: [:index]
   before_action :plot_find, only: [:index, :create]
   before_action :card_and_plot_find, only: [:edit, :update, :destroy]
-  before_action :check_plot_owner, only: [:create, :edit, :update, :destroy]
+  before_action :check_plot_owner, only: [:edit]
   before_action :check_plot_accessibility, only: [:index]
   before_action :foreshadowing_cards, only: [:index, :edit]
   before_action :chat_ai
@@ -30,6 +31,7 @@ class CardsController < ApplicationController
   end
 
   def update
+    @plot = current_user.plots.find(@card.plot_id)
     if @card.update(card_params.merge(plot_id: @card.plot_id))
       redirect_to plot_cards_path(@card.plot), notice: 'カードを更新しました'
     else
@@ -38,6 +40,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @plot = current_user.plots.find(@card.plot_id)
     @card.destroy!
     redirect_to plot_cards_path(@card.plot), status: :see_other, success: "削除しました！"
   end

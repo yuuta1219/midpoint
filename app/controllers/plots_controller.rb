@@ -1,5 +1,6 @@
 class PlotsController < ApplicationController
   include PlotsHelper
+  skip_before_action :require_login, only: [:show]
   add_flash_types :success, :info, :warning, :danger
   before_action :set_notifications, only: [:index, :new, :create]
   before_action :chat_ai, only: [:index, :show, :new, :create]

@@ -22,6 +22,8 @@ class User < ApplicationRecord
   enum role: { general: 0, admin: 1}
   enum tutorial_status: { not_started: 0, running: 1, completed: 2 }
 
+  ADMIN_USER_ID = 1
+
   def own?(object)
     id == object.user_id
   end

@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <div id="ai-wrapper" class="fixed bottom-0 right-0 mb-12 mx-2 sm:m-12 z-20">
   <button id="ai-button" class="btn btn-circle">AI</button>
 </div>
@@ -192,3 +193,4 @@ document.getElementById("synonym-tab").addEventListener("click", () => {
 });
 
 </script>
+<% end %>

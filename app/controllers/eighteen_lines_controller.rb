@@ -1,7 +1,7 @@
 class EighteenLinesController < ApplicationController
+  skip_before_action :require_login, only: [:index]
   before_action :plot_find, only: [:index, :create]
   before_action :eighteen_line_and_plot_find, only: [:update, :destroy]
-  before_action :check_plot_owner, only: [:create, :update, :destroy]
   before_action :check_plot_accessibility, only: [:index]
   before_action :chat_ai
 
@@ -21,6 +21,7 @@ class EighteenLinesController < ApplicationController
   end
 
   def update
+    @plot = current_user.plots.find(@eighteen_line.plot_id)
     if @eighteen_line.update(eighteen_line_params.merge(plot_id: @eighteen_line.plot_id))
       redirect_to plot_eighteen_lines_path(@eighteen_line.plot), notice: '更新しました'
     else
@@ -29,6 +30,7 @@ class EighteenLinesController < ApplicationController
   end
 
   def destroy
+    @plot = current_user.plots.find(@eighteen_line.plot_id)
     @eighteen_line.destroy!
     redirect_to plot_eighteen_lines_path(@eighteen_line.plot), status: :see_other, success: "削除しました！"
   end
