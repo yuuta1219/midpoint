@@ -1,0 +1,155 @@
+<%= render 'shared/flash_message' %>
+<%= render 'shared/plot_menu', { plot: @plot } %>
+<div class="bg-base-200 min-h-screen pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 grid grid-cols-5 sm:grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
+      <%= label_tag "my-modal", "new card", class: "btn btn-ghost col-span-2 sm:col-span-1" unless @plot.user != current_user && @plot.accessibility == '公開' %>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">感情グラフ</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('card').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">伏線グラフ</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('foreshadowing').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">時系列表</span> 
+          <input type="checkbox" class="toggle" onclick="document.getElementById('timelines').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT ONE</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT ONE').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT TWO I</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT TWO I').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT TWO II</span> 
+          <input type="checkbox" class="toggle" checked onclick="document.getElementById('ACT TWO II').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">ACT THREE</span> 
+          <input type="checkbox" class="toggle"checked onclick="document.getElementById('ACT THREE').classList.toggle('hidden')"/>
+        </label>
+      </div>
+      <div class="flex col-span-1">
+        <label class="label cursor-pointer">
+          <span class="label-text mr-1 hidden md:block">implicit</span> 
+          <input type="checkbox" class="toggle"checked onclick="document.getElementById('implicit').classList.toggle('hidden')"/>
+        </label>
+      </div>
+    </div>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <div id="card" class="hidden col-span-1">
+      <div class="text-2xl m-2">感情値グラフ</div>
+        <%= content_tag :div, "", id: "root", data: { cards: @cards_json || '[]' } %>
+        <%= vite_javascript_tag 'board.tsx' %>
+      </div>
+    </div>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <div id="foreshadowing" class="hidden col-span-1">
+        <div class="text-2xl m-2">伏線グラフ</div>
+        <%= content_tag :div, "", id: "graph", data: { foreshadowings: @cards_json_foreshadowing || '[]' } %>
+        <%= vite_javascript_tag 'card.tsx' %>
+      </div> 
+    </div>
+    <div class="m-2 pr-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <div id="timelines" class="hidden col-span-1">  
+        <div class="text-2xl m-2">時系列表</div>
+        <div class="h-80 m-2 overflow-y-auto overscroll-none">
+          <table class="w-full">
+            <thead class="sticky top-0 bg-neutral text-neutral-content">
+              <tr>
+                <th>時間</th>
+                <th>シーン</th>
+                <th>シーンタイトル</th>
+                <th>シーン内容</th>
+                <th>シーンタイプ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "cards/timeline", collection: @timelines %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="checkbox" id="my-modal" class="modal-toggle" />
+  <label for="my-modal" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+      <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      <%= render 'cards/form', { card: @card } %>
+    </label>
+  </label>
+  <div class="m-2">
+    <% if @cards.present? && @plot.length_type == '長編' %>
+      <% cards_by_act = @cards.group_by { |card| card.scene > 30 ? "ACT THREE" : card.scene > 20 ? "ACT TWO II" : card.scene > 10 ? "ACT TWO I" : "ACT ONE" } %>
+      <% cards_by_act.each do |act, cards| %>
+        <div id="<%= act %>">
+          <div class="text-2xl"><%= act %></div>
+          <div class="overflow-x-auto flex py-2">
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% elsif @plot.length_type == '中編' %>
+      <% cards_by_act = @cards.group_by { |card| card.scene > 15 ? "ACT THREE" : card.scene > 10 ? "ACT TWO II" : card.scene > 5 ? "ACT TWO I" : "ACT ONE" } %>
+      <% cards_by_act.each do |act, cards| %>
+        <div id="<%= act %>">
+          <div class="text-2xl"><%= act %></div>
+          <div class="overflow-x-auto flex py-2">
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% elsif @plot.length_type == '短編' %>
+      <% cards_by_act = @cards.group_by { |card| card.scene > 6 ? "ACT THREE" : card.scene > 4 ? "ACT TWO II" : card.scene > 2 ? "ACT TWO I" : "ACT ONE" } %>
+      <% cards_by_act.each do |act, cards| %>
+        <div id="<%= act %>">
+          <div class="text-2xl"><%= act %></div>
+          <div class="overflow-x-auto flex py-2">
+            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+              <%= render partial: "cards/card_view_only", collection: cards %>
+            <% else %>
+              <%= render partial: "cards/card", collection: cards %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div id="implicit">
+      <div class="text-2xl">implicit scene</div>
+      <div class="overflow-x-auto flex py-2">
+        <% if @plot.user != current_user && @plot.accessibility == '公開' %>
+          <%= render partial: "cards/implicit_card_view_only", collection: @implicit_cards %>
+        <% else %>
+          <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
