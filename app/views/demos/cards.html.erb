@@ -104,7 +104,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -114,7 +114,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -124,7 +124,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card", collection: cards %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -132,7 +132,7 @@
     <div id="implicit">
       <div class="text-2xl">implicit scene</div>
       <div class="overflow-x-auto flex py-2">
-        <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
+        <%= render partial: "demos/cards/implicit_card", collection: @implicit_cards  %>
       </div>
     </div>
   </div>
@@ -146,7 +146,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <%= link_to 'デモを終了する', root_path, class: "btn btn-sm m-2"%>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>

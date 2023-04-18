@@ -5,10 +5,7 @@
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
     <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
-    <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-      <%= render partial: "eighteen_lines/eighteen_line_view_only", collection: @eighteen_lines %>
-    <% else %>
-      <%= render @eighteen_lines %>
+      <%= render partial: "demos/eighteen_lines/eighteen_line", collection: @eighteen_lines %>
       <label for="my-modal" class="btn btn-ghost">new plot point</label>
       <input type="checkbox" id="my-modal" class="modal-toggle" />
       <label for="my-modal" class="modal cursor-pointer">
@@ -17,13 +14,9 @@
           <%= render 'eighteen_lines/form', { eighteen_line: @eighteen_line } %>
         </label>
       </label>
-    <% end %>
   </div>
 </div>
 
-<%= render 'chats/chat' %>
-
-<% if logged_in? && current_user.running? %>
 <div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
   <div class="chat chat-start mt-2">
     <div class="chat-image">
@@ -32,7 +25,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <%= link_to 'デモを終了する', root_path, class: "btn btn-sm m-2"%>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>
@@ -85,4 +78,3 @@ function updateButtonVisibility() {
   }
 }
 </script>
-<% end %>
