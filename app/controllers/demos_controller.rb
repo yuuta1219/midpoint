@@ -13,6 +13,8 @@ class DemosController < ApplicationController
   end
   def eighteen_lines
     @current_page = "tab2"
+    @eighteen_lines = @plot.eighteen_lines.order(number: :asc)
+    @eighteen_line = EighteenLine.new
   end
   def cards
     @current_page = "tab3"
@@ -26,11 +28,16 @@ class DemosController < ApplicationController
   end
   def foreshadowings
     @current_page = "tab4"
+    @foreshadowings = @plot.foreshadowings.order(created_at: :asc)
+    @foreshadowing = Foreshadowing.new
   end
   def characters
     @current_page = "tab5"
+    @characters = @plot.characters.order(created_at: :asc)
+    @character = Character.new
   end
   def characters_show
+    @characters = @plot.characters.order(created_at: :asc)
   end
 
   private

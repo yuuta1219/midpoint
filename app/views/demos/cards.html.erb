@@ -104,7 +104,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card_view_only", collection: cards %>
+            <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -114,7 +114,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card_view_only", collection: cards %>
+            <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -124,7 +124,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <%= render partial: "cards/card_view_only", collection: cards %>
+            <%= render partial: "cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -132,8 +132,75 @@
     <div id="implicit">
       <div class="text-2xl">implicit scene</div>
       <div class="overflow-x-auto flex py-2">
-        <%= render partial: "cards/implicit_card_view_only", collection: @implicit_cards %>
+        <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
       </div>
     </div>
   </div>
 </div>
+
+<div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'このページでは基本40枚カードを使って、本格的にプロット管理をしていくよ！',
+  'カードを一度タップするとカードの情報が編集できるよ！ゴミ箱をクリックすると消せるよ！',
+  '画面の上部にあるトグルを一度クリックすると、グラフが表示されるよ！やってみよう！',
+  '感情グラフは、ストーリー進行によって起こる感情の変化を見ることができるよ！',
+  '伏線グラフは、シーンと伏線の関連を一目でチェックすることができるよ！',
+  '時系列表では、シーンの順番ではなく、作中の時系列にそって並べられているよ！',
+  '次は伏線ページをクリックしてみよう！',
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    incrementBtn.removeAttribute('disabled');
+    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    decrementBtn.removeAttribute('disabled');
+    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+
+
+}
+</script>
