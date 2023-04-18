@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         fancy: ["Sawarabi Mincho"],
       },
+      backgroundColor: {
+        'custom-gray': '#727272',
+      },
     },
   },
   plugins: [require("daisyui")],

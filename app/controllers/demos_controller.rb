@@ -4,19 +4,16 @@ class DemosController < ApplicationController
   before_action :foreshadowing_cards, only: [:cards]
   ADMIN_USER_ID = 1
 
-  def plots; end
-  def plots_new; end
+  def plots
+  end
+  def plots_new
+  end
   def plots_show
+    @current_page = "tab1"
   end
   def eighteen_lines
+    @current_page = "tab2"
   end
-  def foreshadowings
-  end
-  def characters
-  end
-  def characters_show
-  end
-
   def cards
     @current_page = "tab3"
     @card = Card.new
@@ -26,6 +23,14 @@ class DemosController < ApplicationController
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name').to_json
+  end
+  def foreshadowings
+    @current_page = "tab4"
+  end
+  def characters
+    @current_page = "tab5"
+  end
+  def characters_show
   end
 
   private

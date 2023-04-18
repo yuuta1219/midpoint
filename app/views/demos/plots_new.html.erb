@@ -1,49 +1,51 @@
-<%= render 'shared/login_check' %>
-<%= render 'shared/flash_message' %>
+<div id="demo1", class="">
+  <%= render 'shared/login_check' %>
+  <%= render 'shared/flash_message' %>
+</div>
 
-<div class="bg-base-200 text-gray-700 pb-52">
- <div class="flex border-b-4 border-base-300">
-  <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "プロットを作成する", new_plot_path, class: "text-3xl"  %></div>
+<div id="demo2", class="bg-base-200 text-gray-700">
+  <div class="flex border-b-4 border-base-300">
+    <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "プロットを作成する", new_plot_path, class: "text-3xl"  %></div>
   </div>
-    <div class="mx-4">
-      <div class="flex flex-col">
-        <label class="my-1 text-xl">プロットタイトル</label>
-        <p class="text-sm">作品のタイトルを決めましょう。</p>
-        <p class="text-sm">思い浮かばない場合や後で決めたい場合は、仮プロットを作成することができます。</p>
-        <input type="text" value="猫さんの冒険" class="my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full">
-        <label class="my-1 text-xl">テーマ</label>
-        <p class="text-sm">作品のテーマを設定し、伝えたいことは何かを考えましょう。</p>
-        <input type="text" value="自由とは何か" class="my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full">
-        <label class="my-1 text-xl">ログライン</label>
-        <p class="text-sm">作品のログライン（one line）を設定しましょう。</p>
-        <p class="text-sm">ログラインとは、作品を一行で簡潔にまとめたものです。</p>
-        <textarea class="my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24">気ままに生活している猫さんたちが色々な職業に挑戦していく物語</textarea>
-        <label class="my-1 text-xl">プロットカラー</label>
-        <p class="text-sm">プロットカードの色を選択できます。</p>
-        <select class="select select-secondary select-lg md:select-md font-light">
-          <option>ホワイト</option>
-        </select>
-        <label class="my-1 text-xl">作品の長さ</label>
-        <p class="text-sm">作品の長さを決めましょう。</p>
-        <select class="select select-secondary select-lg md:select-md font-light">
-          <option>長編</option>
-        </select>
-        <label class="my-1 text-xl">作中時期</label>
-        <p class="text-sm">作品の開始時間を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
-        <input type="datetime" value="2023-03-31 00:00:00" class="select select-secondary select-lg md:select-md font-light">
-        <label class="my-1 text-xl">基本人称</label>
-        <p class="text-sm">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
-        <select class="select select-secondary select-lg md:select-md font-light">
-        <option>三人称</option>
-        </select>
-        <%= link_to "プロットを作成する",demos_plots_demoplots_path ,class: 'btn text-gray-100 bg-gray-900 my-2' %>
-      </div>
+  <div class="mx-4">
+    <div class="flex flex-col">
+      <label class="my-1 text-xl">プロットタイトル</label>
+      <p class="text-sm">作品のタイトルを決めましょう。</p>
+      <p class="text-sm">思い浮かばない場合や後で決めたい場合は、仮プロットを作成することができます。</p>
+      <input type="text" value="猫さんの冒険" class="my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full">
+      <label class="my-1 text-xl">テーマ</label>
+      <p class="text-sm">作品のテーマを設定し、伝えたいことは何かを考えましょう。</p>
+      <input type="text" value="自由とは何か" class="my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full">
+      <label class="my-1 text-xl">ログライン</label>
+      <p class="text-sm">作品のログライン（one line）を設定しましょう。</p>
+      <p class="text-sm">ログラインとは、作品を一行で簡潔にまとめたものです。</p>
+      <textarea class="my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24">気ままに生活している猫さんたちが色々な職業に挑戦していく物語</textarea>
+      <label class="my-1 text-xl">プロットカラー</label>
+      <p class="text-sm">プロットカードの色を選択できます。</p>
+      <select class="select select-secondary select-lg md:select-md font-light">
+        <option>ホワイト</option>
+      </select>
+      <label class="my-1 text-xl">作品の長さ</label>
+      <p class="text-sm">作品の長さを決めましょう。</p>
+      <select class="select select-secondary select-lg md:select-md font-light">
+        <option>長編</option>
+      </select>
+      <label class="my-1 text-xl">作中時期</label>
+      <p class="text-sm">作品の開始時間を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
+      <input type="datetime" value="2023-03-31 00:00:00" class="select select-secondary select-lg md:select-md font-light">
+      <label class="my-1 text-xl">基本人称</label>
+      <p class="text-sm">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
+      <select class="select select-secondary select-lg md:select-md font-light">
+      <option>三人称</option>
+      </select>
     </div>
   </div>
 </div>
+<div id="demo3",class="bg-base-200 pb-52">
+  <%= link_to "プロットを作成する",demos_plots_demoplots_path , id: 'demo5', class: 'btn btn-wide text-gray-100 bg-gray-900 m-4' %>
+</div>
 
-
-<%= render 'shared/footer' %>
+<div id="demo4", class=""><%= render 'shared/footer' %></div>
 
 <div class="fixed bg-base-100 shadow-xl bottom-0 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
   <div class="chat chat-start mt-2">
@@ -62,6 +64,12 @@
 <script>
 const incrementBtn = document.getElementById('increment-btn');
 const decrementBtn = document.getElementById('decrement-btn');
+const demo1 = document.getElementById('demo1');
+const demo2 = document.getElementById('demo2');
+const demo3 = document.getElementById('demo3');
+const demo4 = document.getElementById('demo4');
+const demo5 = document.getElementById('demo5');
+
 const textDiv = document.getElementById('text');
 
 const texts = [
@@ -89,9 +97,21 @@ function updateButtonVisibility() {
   if (currentIndex === 0) {
     incrementBtn.setAttribute('disabled', true);
     incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    demo1.classList.remove('brightness-50');
+    demo2.classList.remove('brightness-50');
+    demo4.classList.remove('brightness-50');
+    demo3.classList.add('bg-base-200', 'pb-52');
+    demo3.classList.remove('bg-custom-gray');
+    demo5.classList.remove('animate-pulse');
   } else {
     incrementBtn.removeAttribute('disabled');
     incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    demo1.classList.add('brightness-50');
+    demo2.classList.add('brightness-50');
+    demo4.classList.add('brightness-50');
+    demo3.classList.remove('bg-base-200');
+    demo3.classList.add('bg-custom-gray', 'pb-52');
+    demo5.classList.add('animate-pulse');
   }
 
   if (currentIndex === texts.length - 1) {
