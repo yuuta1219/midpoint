@@ -61,7 +61,11 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <% if current_user.running? %>
+      <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <% else %>
+      <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <% end %>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>
@@ -76,8 +80,8 @@ const texts = [
   'このページでは登場人物の詳細情報を管理することができるよ！',
   '編集アイコンをクリックすると設定を変更できるよ！',
   '人物カードをタップすると、詳細画面が表示されるよ！',
-  'これで、デモは終了だよ！ここまで読んでくれてありがとう！',
-  'プロットを作りたくなったなら、アカウント登録をして自分好みのプロットを作成してみませんか？',
+  'これで、解説は終わりだよ！ここまで読んでくれてありがとう！',
+  'プロットを作りたくなったら、アカウント登録をして自分好みのプロットを作成してみよう！',
 ];
 let currentIndex = 0;
 

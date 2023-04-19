@@ -37,7 +37,11 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <% if current_user.running? %>
+      <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
+    <% else %>
+      <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <% end %>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>
@@ -49,7 +53,7 @@ const decrementBtn = document.getElementById('decrement-btn');
 const textDiv = document.getElementById('text');
 
 const texts = [
-  'デモを始めてくれてありがとう。まずは、＋カードをクリックして新しいプロットを作成しよう！',
+  'デモ又はチュートリアルを始めてくれてありがとう。まずは、＋カードをクリックして新しいプロットを作成しよう！',
   '右下の丸い＋ボタンでも作成できるよ！'
 ];
 let currentIndex = 0;
