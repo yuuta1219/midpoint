@@ -7,7 +7,7 @@
 </div>
   <div class="bg-custom-gray min-h-screen">
     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-      <div class="stack animate-pulse">
+      <div class="stack animate-pulsate-fwd">
         <%= link_to demos_plots_new_path, class: "card-link" do %>
           <div class="card m-2 sm:m-4 h-40 bg-gradient-to-b from-white to-amber-50 shadow-2xl relative flex flex-col justify-center items-center hover:rotate-6">
             <p class="text-sm"><i class="bi bi-plus-lg " style="font-size: 2rem;"></i></p>
@@ -24,7 +24,7 @@
 <div class="brightness-50"><%= render 'shared/footer' %></div>
 
 <div class="fixed bottom-0 right-0 m-8 z-20">
-  <%= link_to demos_plots_new_path, class: "animate-pulse shadow-2xl rounded-full bg-neutral-400 hover:bg-neutral-500 text-white font-bold p-10 flex items-center justify-center" do %>
+  <%= link_to demos_plots_new_path, class: "animate-pulsate-fwd shadow-2xl rounded-full bg-neutral-400 hover:bg-neutral-500 text-white font-bold p-10 flex items-center justify-center" do %>
     <i class="bi bi-plus-lg fixed" style="font-size: 1.5rem;"></i>
   <% end %>
 </div>

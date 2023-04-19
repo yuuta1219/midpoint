@@ -102,7 +102,7 @@ function updateButtonVisibility() {
     demo4.classList.remove('brightness-50');
     demo3.classList.add('bg-base-200', 'pb-52');
     demo3.classList.remove('bg-custom-gray');
-    demo5.classList.remove('animate-pulse');
+    demo5.classList.remove('animate-pulsate-fwd');
   } else {
     incrementBtn.removeAttribute('disabled');
     incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -111,7 +111,7 @@ function updateButtonVisibility() {
     demo4.classList.add('brightness-50');
     demo3.classList.remove('bg-base-200');
     demo3.classList.add('bg-custom-gray', 'pb-52');
-    demo5.classList.add('animate-pulse');
+    demo5.classList.add('animate-pulsate-fwd');
   }
 
   if (currentIndex === texts.length - 1) {
