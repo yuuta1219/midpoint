@@ -38,14 +38,6 @@
           <div class="mx-4 border-b border-gray-500 text-x">公開設定 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('accessibility').classList.toggle('hidden')"></i></div>
           <div class="mx-4 text-xs hidden" id="accessibility">公開範囲の設定を決めることができます。公開に設定を変更した場合、URLを知る人はプロット全体にアクセスすることができます。</div>
           <%= f.collection_select :accessibility, Plot.accessibilities.keys, :to_s, :to_s, { prompt: "非公開" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
-          <% if @plot.accessibility == '公開' %>
-            <div class="mx-4">
-              <%= link_to "https://twitter.com/share?url=#{request.base_url + demos_plots_demoplots_path}&text=midplotでプロットを書いたよ!見てね!&hashtags=midplot&via=midplot", target: '_blank', class: 'mx-4 twitter-share-button', data: {show_count: 'false'} do %>
-                Tweet
-              <% end %>
-            </div>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <% end %>
           <div></div>
           <%= link_to "変更を保存",demos_plots_demoplots_path ,class: 'btn btn-ghost font-light my-2' %>
         <% end %>
@@ -55,8 +47,8 @@
           <label class="modal-box relative" for="">
             <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
-            <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
-            <%= link_to "プロットを削除する",demos_plots_demoplots_path,class: 'btn text-gray-100 bg-gray-900 m-2 right-0' %>  
+            <div class="text-sm m-2 my-4">※デモでは削除することはできません！</div>
+            <%= link_to "閉じる",demos_plots_demoplots_path,class: 'btn text-gray-100 bg-gray-900 m-2 right-0' %>  
           </label>
         </label>
       </div>
@@ -116,15 +108,12 @@ decrementBtn.addEventListener('click', () => {
 function updateButtonVisibility() {
   if (currentIndex === 0) {
     incrementBtn.setAttribute('disabled', true);
-    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
   } else {
     incrementBtn.removeAttribute('disabled');
-    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
   }
 
   if (currentIndex === texts.length - 1) {
     decrementBtn.setAttribute('disabled', true);
-    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
     demo1.classList.add('brightness-50');
     menu1.classList.add('brightness-50');
     menu2.classList.add('brightness-50');
@@ -134,7 +123,6 @@ function updateButtonVisibility() {
     menu6.classList.add('brightness-50');
   } else {
     decrementBtn.removeAttribute('disabled');
-    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     demo1.classList.remove('brightness-50');
     menu1.classList.remove('brightness-50');
     menu2.classList.remove('brightness-50');

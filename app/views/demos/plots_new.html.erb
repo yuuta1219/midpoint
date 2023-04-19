@@ -96,7 +96,6 @@ decrementBtn.addEventListener('click', () => {
 function updateButtonVisibility() {
   if (currentIndex === 0) {
     incrementBtn.setAttribute('disabled', true);
-    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
     demo1.classList.remove('brightness-50');
     demo2.classList.remove('brightness-50');
     demo4.classList.remove('brightness-50');
@@ -105,7 +104,6 @@ function updateButtonVisibility() {
     demo5.classList.remove('animate-pulsate-fwd');
   } else {
     incrementBtn.removeAttribute('disabled');
-    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     demo1.classList.add('brightness-50');
     demo2.classList.add('brightness-50');
     demo4.classList.add('brightness-50');
@@ -116,10 +114,8 @@ function updateButtonVisibility() {
 
   if (currentIndex === texts.length - 1) {
     decrementBtn.setAttribute('disabled', true);
-    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
   } else {
     decrementBtn.removeAttribute('disabled');
-    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
   }
 }
 </script>

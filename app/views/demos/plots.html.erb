@@ -72,18 +72,14 @@ decrementBtn.addEventListener('click', () => {
 function updateButtonVisibility() {
   if (currentIndex === 0) {
     incrementBtn.setAttribute('disabled', true);
-    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
   } else {
     incrementBtn.removeAttribute('disabled');
-    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
   }
 
   if (currentIndex === texts.length - 1) {
     decrementBtn.setAttribute('disabled', true);
-    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
   } else {
     decrementBtn.removeAttribute('disabled');
-    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
   }
 }
 </script>
