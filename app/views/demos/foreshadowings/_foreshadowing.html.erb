@@ -34,9 +34,10 @@
             </div>
           <% end %>
         </div>
-        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2'  %>
+        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2', disabled: true %>
       </div>
+      デモでは伏線を変更することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+      <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
     <% end %>
-    <%= button_to "伏線を削除する",foreshadowing_path(foreshadowing),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %> 
   </label>
 </label>

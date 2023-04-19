@@ -25,7 +25,7 @@
         <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-sm textarea-lg w-full max-w-full h-24', placeholder: "シーンの内容を入力してください。" %>
         <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2 opacity-50 cursor-not-allowed', disabled: true %>
         デモでは新しくプロットを変更することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
-        <div class="hidden sm:block"><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
+        <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
       </div>
     <% end %>
   </label>
