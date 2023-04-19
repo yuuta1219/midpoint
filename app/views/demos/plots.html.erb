@@ -1,0 +1,85 @@
+<div class="bg-base-200 text-gray-700 brightness-50">
+  <%= render 'shared/login_check' %>
+  <%= render 'shared/flash_message' %>
+  <div class="flex border-b-4 border-base-300">
+    <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "プロット一覧", plots_path, class: "text-3xl" %></div>
+  </div>
+</div>
+  <div class="bg-custom-gray min-h-screen">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div class="stack animate-pulsate-fwd">
+        <%= link_to demos_plots_new_path, class: "card-link" do %>
+          <div class="card m-2 sm:m-4 h-40 bg-gradient-to-b from-white to-amber-50 shadow-2xl relative flex flex-col justify-center items-center hover:rotate-6">
+            <p class="text-sm"><i class="bi bi-plus-lg " style="font-size: 2rem;"></i></p>
+          </div>
+        <% end %>
+        <div class="card m-2 xs:m-4 h-40 bg-pink-100"></div>
+        <div class="card m-2 xs:m-4 h-40 bg-cyan-100"></div>
+        <div class="card m-2 xs:m-4 h-40 bg-orange-100"></div>
+        <div class="card m-2 xs:m-4 h-40 bg-teal-100"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="brightness-50"><%= render 'shared/footer' %></div>
+
+<div class="fixed bottom-0 right-0 m-8 z-20">
+  <%= link_to demos_plots_new_path, class: "animate-pulsate-fwd shadow-2xl rounded-full bg-neutral-400 hover:bg-neutral-500 text-white font-bold p-10 flex items-center justify-center" do %>
+    <i class="bi bi-plus-lg fixed" style="font-size: 1.5rem;"></i>
+  <% end %>
+</div>
+
+<div class="fixed bg-base-100 shadow-xl bottom-28 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'デモを始めてくれてありがとう。まずは、＋カードをクリックして新しいプロットを作成しよう！',
+  '右下の丸い＋ボタンでも作成できるよ！'
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+  } else {
+    incrementBtn.removeAttribute('disabled');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+  } else {
+    decrementBtn.removeAttribute('disabled');
+  }
+}
+</script>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
 
   get 'chats/chat_emotional_value', to: 'chats#chat_emotional_value', defaults: { format: :json }
-  
+
   resources :users, only: %i[new create destroy]
   resources :password_resets, only: %i[new create edit update]
   resources :plots, shallow: true do
@@ -35,6 +35,18 @@ Rails.application.routes.draw do
       patch :start
     end
   end
+  resources :demos, only: [] do
+    collection do
+      get :plots
+      get :cards
+      get :eighteen_lines
+      get :foreshadowings
+      get :characters
+    end
+  end
+  get 'demos/plots/new', to: 'demos#plots_new'
+  get 'demos/plots/demoplots', to: 'demos#plots_show'
+  get 'demos/characters/demoneko', to: 'demos#characters_show'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 

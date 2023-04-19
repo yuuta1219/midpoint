@@ -1,0 +1,43 @@
+<label for="my-modal-<%= foreshadowing.id %>", class="cursor-pointer">
+  <div class="carousel-item <%= render "shared/plot_card_color", { plot: @plot } %> card m-2 shadow-xl ">
+    <div class="grid grid-cols-1">
+      <div class="mx-3 mt-1 font-semibold border-b border-slate-700 break-all"><%= foreshadowing.name  %></div>
+      <div class="text-sm mb-12 mt-2 ml-4 mx-3 break-all"><%= simple_format(h(foreshadowing.body)) %></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 mx-3 flex " style="overflow-x: auto; white-space: nowrap;">
+      <% foreshadowing.foreshadowing_cards.each do |fc| %>
+        <span class="badge badge-outline badge-sm my-2 mr-2">
+          scene<%= fc.card.scene %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</label>
+
+
+<input type="checkbox" id="my-modal-<%= foreshadowing.id %>" class="modal-toggle" />
+<label for="my-modal-<%= foreshadowing.id %>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="my-modal-<%= foreshadowing.id %>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <%= form_with model: foreshadowing, local: true do |f| %>
+      <div class="text-xl border-b border-gray-500 ">伏線を更新する</div>
+      <div class="grid grid-cols-1">
+        <%= f.label :タイトル, class: 'my-1 text-xl' %>
+        <%= f.text_field :name, class: 'my-1 input input-bordered input-secondary md:input-md input-lg w-full max-w-full', placeholder: "伏線タイトルを入力" %>
+        <%= f.label :伏線の内容, class: 'my-1 text-xl' %>
+        <%= f.text_area :body, class: 'my-1 textarea textarea-secondary md:textarea-md textarea-lg w-full max-w-full h-24',  placeholder: "内容を入力" %>
+        <div class="flex flex-wrap flex-row">
+          <%= f.collection_check_boxes :card_ids, @plot.cards.order(:scene), :id, :scene do |cb| %>
+            <div class="relative flex my-1">
+              <%= cb.check_box(class: 'checkbox mr-16') %>
+              <div class="ml-7 label-text absolute inset-0">scene<%= cb.label%></div>
+            </div>
+          <% end %>
+        </div>
+        <%= f.submit '更新する', class: 'btn text-gray-100 bg-gray-900 my-2', disabled: true %>
+      </div>
+      デモでは伏線を変更することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+      <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
+    <% end %>
+  </label>
+</label>

@@ -1,6 +1,6 @@
 <%= render 'shared/flash_message' %>
-<%= render 'shared/plot_menu', { plot: @plot } %>
-<div class="bg-base-200 min-h-screen pb-10">
+<%= render 'demos/shared/plot_menu', { plot: @plot } %>
+<div id="demo1", class="bg-base-200 min-h-screen pb-10">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-5 sm:grid-cols-9 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>" >
       <%= label_tag "my-modal", "new card", class: "btn btn-ghost col-span-2 sm:col-span-1" unless @plot.user != current_user && @plot.accessibility == '公開' %>
@@ -94,7 +94,8 @@
   <label for="my-modal" class="modal cursor-pointer">
     <label class="modal-box relative" for="">
       <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-      <%= render 'cards/form', { card: @card } %>
+      デモではカードを作成することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+    <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
     </label>
   </label>
   <div class="m-2">
@@ -104,11 +105,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-              <%= render partial: "cards/card_view_only", collection: cards %>
-            <% else %>
-              <%= render partial: "cards/card", collection: cards %>
-            <% end %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -118,11 +115,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-              <%= render partial: "cards/card_view_only", collection: cards %>
-            <% else %>
-              <%= render partial: "cards/card", collection: cards %>
-            <% end %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -132,11 +125,7 @@
         <div id="<%= act %>">
           <div class="text-2xl"><%= act %></div>
           <div class="overflow-x-auto flex py-2">
-            <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-              <%= render partial: "cards/card_view_only", collection: cards %>
-            <% else %>
-              <%= render partial: "cards/card", collection: cards %>
-            <% end %>
+            <%= render partial: "demos/cards/card", collection: cards %>
           </div>
         </div>
       <% end %>
@@ -144,14 +133,93 @@
     <div id="implicit">
       <div class="text-2xl">implicit scene</div>
       <div class="overflow-x-auto flex py-2">
-        <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-          <%= render partial: "cards/implicit_card_view_only", collection: @implicit_cards %>
-        <% else %>
-          <%= render partial: "cards/implicit_card", collection: @implicit_cards  %>
-        <% end %>
+        <%= render partial: "demos/cards/implicit_card", collection: @implicit_cards  %>
       </div>
     </div>
   </div>
 </div>
 
-<%= render 'chats/chat' %>
+<div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+
+const demo1 = document.getElementById('demo1');
+
+const menu1 = document.getElementById('menu1');
+const menu2 = document.getElementById('menu2');
+const menu3 = document.getElementById('menu3');
+const menu4 = document.getElementById('menu4');
+const menu5 = document.getElementById('menu5');
+const menu6 = document.getElementById('menu6');
+
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'このページでは基本40枚カードを使って、本格的にプロット管理をしていくよ！',
+  'カードを一度タップするとカードの情報が編集できるよ！ゴミ箱をクリックすると消せるよ！',
+  '画面の上部にあるトグルを一度クリックすると、グラフが表示されるよ！やってみよう！',
+  '感情グラフは、ストーリー進行によって起こる感情の変化を見ることができるよ！',
+  '伏線グラフは、シーンと伏線の関連を一目でチェックすることができるよ！',
+  '時系列表では、シーンの順番ではなく、作中の時系列にそって並べられているよ！',
+  '次は伏線ページをクリックしてみよう！',
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+  } else {
+    incrementBtn.removeAttribute('disabled');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+    demo1.classList.add('brightness-50');
+    menu1.classList.add('brightness-50');
+    menu2.classList.add('brightness-50');
+    menu3.classList.add('brightness-50');
+    menu4.classList.add('brightness-50');
+    menu5.classList.add('animate-pulsate-fwd');
+    menu6.classList.add('brightness-50');
+  } else {
+    decrementBtn.removeAttribute('disabled');
+    demo1.classList.remove('brightness-50');
+    menu1.classList.remove('brightness-50');
+    menu2.classList.remove('brightness-50');
+    menu3.classList.remove('brightness-50');
+    menu4.classList.remove('brightness-50');
+    menu5.classList.remove('animate-pulsate-fwd');
+    menu6.classList.remove('brightness-50');
+  }
+}
+</script>

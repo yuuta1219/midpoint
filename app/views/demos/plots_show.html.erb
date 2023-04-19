@@ -1,11 +1,8 @@
 <%= render 'shared/flash_message' %>
-<%= render 'shared/plot_menu', { plot: @plot } %>
+<%= render 'demos/shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 pb-10">
+<div id="demo1", class="bg-base-200 pb-10">
   <div class="grid grid-cols-1 min-h-screen">
-    <% if @plot.user != current_user && @plot.accessibility == '公開' %>
-    <%= render 'show_view_only' %>
-    <% else %>
       <%= form_with model: @plot, local: true do |f| %>
       <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
         <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
@@ -41,16 +38,8 @@
           <div class="mx-4 border-b border-gray-500 text-x">公開設定 <i class="text-xs bi bi-question-circle hover:cursor-pointer" onclick="document.getElementById('accessibility').classList.toggle('hidden')"></i></div>
           <div class="mx-4 text-xs hidden" id="accessibility">公開範囲の設定を決めることができます。公開に設定を変更した場合、URLを知る人はプロット全体にアクセスすることができます。</div>
           <%= f.collection_select :accessibility, Plot.accessibilities.keys, :to_s, :to_s, { prompt: "非公開" }, { class: "font-light ml-3 select select-ghost select-sm max-w-xs my-2" }  %>
-          <% if @plot.accessibility == '公開' %>
-            <div class="mx-4">
-              <%= link_to "https://twitter.com/share?url=#{request.base_url + plot_path(@plot)}&text=midplotでプロットを書いたよ!見てね!&hashtags=midplot&via=midplot", target: '_blank', class: 'mx-4 twitter-share-button', data: {show_count: 'false'} do %>
-                Tweet
-              <% end %>
-            </div>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <% end %>
           <div></div>
-          <%= f.submit '変更を保存', class: 'btn btn-ghost font-light my-2' %>
+          <%= link_to "変更を保存",demos_plots_demoplots_path ,class: 'btn btn-ghost font-light my-2' %>
         <% end %>
         <label for="my-modal-4" class="btn btn-ghost font-light">プロットを削除</label>
         <input type="checkbox" id="my-modal-4" class="modal-toggle" />
@@ -58,13 +47,89 @@
           <label class="modal-box relative" for="">
             <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">プロットを削除。</div>
-            <div class="text-sm m-2 my-4">プロットのデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
-            <%= button_to "プロットを削除する",plot_path(@plot),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+            <div class="text-sm m-2 my-4">※デモでは削除することはできません！</div>
+            <%= link_to "閉じる",demos_plots_demoplots_path,class: 'btn text-gray-100 bg-gray-900 m-2 right-0' %>  
           </label>
         </label>
       </div>
-    <% end %>
   </div>
 </div>
 
-<%= render 'chats/chat' %>
+<div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+
+const demo1 = document.getElementById('demo1');
+
+const menu1 = document.getElementById('menu1');
+const menu2 = document.getElementById('menu2');
+const menu3 = document.getElementById('menu3');
+const menu4 = document.getElementById('menu4');
+const menu5 = document.getElementById('menu5');
+const menu6 = document.getElementById('menu6');
+
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'おめでとう！新しいプロットが作成できたよ！　さっき決めきれなかった部分は後からここで決められるよ！',
+  '次はフッターのプロットボタンを押してみよう！'
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+  } else {
+    incrementBtn.removeAttribute('disabled');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+    demo1.classList.add('brightness-50');
+    menu1.classList.add('brightness-50');
+    menu2.classList.add('brightness-50');
+    menu3.classList.add('animate-pulsate-fwd');
+    menu4.classList.add('brightness-50');
+    menu5.classList.add('brightness-50');
+    menu6.classList.add('brightness-50');
+  } else {
+    decrementBtn.removeAttribute('disabled');
+    demo1.classList.remove('brightness-50');
+    menu1.classList.remove('brightness-50');
+    menu2.classList.remove('brightness-50');
+    menu3.classList.remove('animate-pulsate-fwd');
+    menu4.classList.remove('brightness-50');
+    menu5.classList.remove('brightness-50');
+    menu6.classList.remove('brightness-50');
+  }
+}
+</script>

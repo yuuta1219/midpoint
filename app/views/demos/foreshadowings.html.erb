@@ -1,0 +1,103 @@
+<%= render 'shared/flash_message' %>
+<%= render 'demos/shared/plot_menu', { plot: @plot } %>
+
+<div id="demo1", class="bg-base-200 min-h-screen pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 grid grid-cols-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+      <%= label_tag "my-modal", "new foreshadowing", class: "btn btn-ghost" unless @plot.user != current_user && @plot.accessibility == '公開' %>
+    </div>
+  </div>
+  <input type="checkbox" id="my-modal" class="modal-toggle" />
+  <label for="my-modal" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+      <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      デモではカードを作成することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+    <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
+    </label>
+  </label>
+  <div class="text-2xl m-3">伏線一覧</div>
+  <div class="m-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    <%= render partial: "demos/foreshadowings/foreshadowing", collection: @foreshadowings %>
+  </div>
+</div>
+
+<div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
+  <div class="chat chat-start mt-2">
+    <div class="chat-image">
+      <%= image_tag("booknekosan.png", width: '120px', height: '120px', class: "bottom-0") %>
+    </div>
+    <div id="text", class="chat-bubble chat-bubble-secondary"></div>
+  </div>
+  <div class="-my-8 m-2 flex justify-end items-end">
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
+    <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
+    <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
+  </div>
+</div>
+
+<script>
+const incrementBtn = document.getElementById('increment-btn');
+const decrementBtn = document.getElementById('decrement-btn');
+
+const demo1 = document.getElementById('demo1');
+
+const menu1 = document.getElementById('menu1');
+const menu2 = document.getElementById('menu2');
+const menu3 = document.getElementById('menu3');
+const menu4 = document.getElementById('menu4');
+const menu5 = document.getElementById('menu5');
+const menu6 = document.getElementById('menu6');
+
+const textDiv = document.getElementById('text');
+
+const texts = [
+  'このページでは伏線を管理することができるよ！',
+  'NEW FORESHADOWINGをクリックして新しい伏線を作成してみよう！',
+  '伏線をタップすると、編集画面が表示されるよ！',
+  '次は人物ページをクリックしてみよう！',
+];
+let currentIndex = 0;
+
+textDiv.textContent = texts[currentIndex];
+updateButtonVisibility();
+
+incrementBtn.addEventListener('click', () => {
+  currentIndex = Math.max(currentIndex - 1, 0);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+decrementBtn.addEventListener('click', () => {
+  currentIndex = Math.min(currentIndex + 1, texts.length - 1);
+  textDiv.textContent = texts[currentIndex];
+  updateButtonVisibility();
+});
+
+function updateButtonVisibility() {
+  if (currentIndex === 0) {
+    incrementBtn.setAttribute('disabled', true);
+  } else {
+    incrementBtn.removeAttribute('disabled');
+  }
+
+  if (currentIndex === texts.length - 1) {
+    decrementBtn.setAttribute('disabled', true);
+    demo1.classList.add('brightness-50');
+    menu1.classList.add('brightness-50');
+    menu2.classList.add('brightness-50');
+    menu3.classList.add('brightness-50');
+    menu4.classList.add('brightness-50');
+    menu5.classList.add('brightness-50');
+    menu6.classList.add('animate-pulsate-fwd');
+  } else {
+    decrementBtn.removeAttribute('disabled');
+    demo1.classList.remove('brightness-50');
+    menu1.classList.remove('brightness-50');
+    menu2.classList.remove('brightness-50');
+    menu3.classList.remove('brightness-50');
+    menu4.classList.remove('brightness-50');
+    menu5.classList.remove('brightness-50');
+    menu6.classList.remove('animate-pulsate-fwd');
+  }
+}
+</script>

@@ -16,7 +16,6 @@ class CardsController < ApplicationController
 
     @cards_json = @cards.to_json(only: [:scene, :emotional_value])
     @cards_json_foreshadowing = @plot.foreshadowings.joins(:card).select('cards.scene, foreshadowings.name').to_json
-    
   end
   
   def edit; end

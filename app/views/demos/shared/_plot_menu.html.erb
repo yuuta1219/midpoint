@@ -1,0 +1,8 @@
+<div class="btm-nav btm-nav-xs flex fixed inset-x-0 bottom-0 bg-neutral-700 text-neutral-content z-10", id='menu'>
+  <%= link_to "ホーム", plots_demos_path, id: 'menu1', class: "flex-1 border-r border-color-white place-self-center" %> 
+  <%= link_to "詳細", demos_plots_demoplots_path, id: 'menu2', class: "#{'bg-neutral-900' if @current_page == 'tab1'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "プロット", eighteen_lines_demos_path, id: 'menu3', class: "#{' bg-neutral-900' if @current_page == 'tab2'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "カード", cards_demos_path, id: 'menu4', class: "#{'bg-neutral-900' if @current_page == 'tab3'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "伏線", foreshadowings_demos_path, id: 'menu5', class: "#{'bg-neutral-900' if @current_page == 'tab4'} flex-1 border-r border-color-white"  %> 
+  <%= link_to "人物", characters_demos_path, id: 'menu6', class: "#{'bg-neutral-900' if @current_page == 'tab5'} flex-1"  %> 
+</div>
