@@ -37,6 +37,7 @@ class DemosController < ApplicationController
     @character = Character.new
   end
   def characters_show
+    @character = @plot.characters.first
     @characters = @plot.characters.order(created_at: :asc)
   end
 

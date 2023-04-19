@@ -1,25 +1,26 @@
 <%= render 'shared/flash_message' %>
 <%= render 'demos/shared/plot_menu', { plot: @plot } %>
 
-<div class="bg-base-200 min-h-screen pb-20">
+<div class="bg-base-200 min-h-screen pb-20", id="color">
   <div class="grid grid-cols-1">
     <div class="m-2 col-span-1 grid grid-cols-1 shadow-xl <%= render "shared/plot_card_color", { plot: @plot } %>">
-      <%= label_tag "my-modal", "new character", class: "btn btn-ghost" unless @plot.user != current_user && @plot.accessibility == '公開' %>
+      <%= label_tag "my-modal", "new character", id:"newcolor", class: "btn btn-ghost" unless @plot.user != current_user && @plot.accessibility == '公開' %>
     </div>
   </div>
   <input type="checkbox" id="my-modal" class="modal-toggle" />
   <label for="my-modal" class="modal cursor-pointer">
     <label class="modal-box relative" for="">
       <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-      <%= render 'characters/form', { character: @character } %>
+      デモでは新しく登場人物を作成することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+      <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
     </label>
   </label>
-    <div class="text-2xl m-3">登場人物一覧</div>
-    <div class="container mx-auto">
-      <div class="flex flex-wrap gap-8 justify-center">
-        <%= render @characters %>
-      </div>
+  <div class="text-2xl m-3">登場人物一覧</div>
+  <div class="container mx-auto">
+    <div class="flex flex-wrap gap-8 justify-center">
+      <%= render partial: "demos/characters/character", collection: @characters %>
     </div>
+  </div>
 </div>
 
 
@@ -31,7 +32,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= link_to 'デモを終了する', root_path, class: "btn btn-sm m-2"%>
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>
@@ -40,6 +41,13 @@
 <script>
 const incrementBtn = document.getElementById('increment-btn');
 const decrementBtn = document.getElementById('decrement-btn');
+
+const menu = document.getElementById('menu');
+
+const color = document.getElementById('color');
+
+const newcolor = document.getElementById('newcolor');
+
 const textDiv = document.getElementById('text');
 
 const texts = [
@@ -68,18 +76,22 @@ decrementBtn.addEventListener('click', () => {
 function updateButtonVisibility() {
   if (currentIndex === 0) {
     incrementBtn.setAttribute('disabled', true);
-    incrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
   } else {
     incrementBtn.removeAttribute('disabled');
-    incrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
   }
 
   if (currentIndex === texts.length - 1) {
     decrementBtn.setAttribute('disabled', true);
-    decrementBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    menu.classList.add('brightness-50');
+    color.classList.add('bg-custom-gray');
+    color.classList.remove('bg-base-200');
+    newcolor.classList.add('bg-base-300');
   } else {
     decrementBtn.removeAttribute('disabled');
-    decrementBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    menu.classList.remove('brightness-50');
+    color.classList.remove('bg-custom-gray');
+    color.classList.add('bg-base-200');
+    newcolor.classList.remove('bg-base-300');
   }
 }
 </script>

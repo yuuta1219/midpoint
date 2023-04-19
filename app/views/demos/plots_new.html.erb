@@ -24,11 +24,18 @@
       <p class="text-sm">プロットカードの色を選択できます。</p>
       <select class="select select-secondary select-lg md:select-md font-light">
         <option>ホワイト</option>
+        <option>ブルー</option>
+        <option>オレンジ</option>
+        <option>ピンク</option>
+        <option>グリーン</option>
+        <option>グレイ</option>
       </select>
       <label class="my-1 text-xl">作品の長さ</label>
       <p class="text-sm">作品の長さを決めましょう。</p>
       <select class="select select-secondary select-lg md:select-md font-light">
         <option>長編</option>
+        <option>中編</option>
+        <option>短編</option>
       </select>
       <label class="my-1 text-xl">作中時期</label>
       <p class="text-sm">作品の開始時間を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
@@ -36,6 +43,8 @@
       <label class="my-1 text-xl">基本人称</label>
       <p class="text-sm">基本の人称を設定しましょう。ここで入力しておくとカード編集画面で全てに適応されます。</p>
       <select class="select select-secondary select-lg md:select-md font-light">
+      <option>一人称</option>
+      <option>二人称</option>
       <option>三人称</option>
       </select>
     </div>
@@ -55,7 +64,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= link_to 'デモを終了する', root_path, class: "btn btn-sm m-2"%>
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>

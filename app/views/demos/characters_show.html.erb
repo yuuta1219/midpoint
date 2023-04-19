@@ -12,12 +12,8 @@
         <div class="m-2 flex-grow">  
           <div class="text-3xl flex max-w-full border-b border-slate-700">
             <div class="flex-1 "><%= @character.name %></div>
-            <% unless @plot.user != current_user && @plot.accessibility == '公開' %>
-              <%= link_to edit_character_path(@character), class: "hover:animate-pulse" do %>
-                <i class="bi bi-pencil-square text-3xl"></i>
-              <% end %>
+              <label for="edit-modal-<%=@character.id%>", class=" ml-2 bi bi-pencil-square text-4xl hover:animate-pulse hover:cursor-pointer">
               <label for="delete-modal-<%=@character.id%>", class=" ml-2 bi bi-trash text-4xl hover:animate-pulse hover:cursor-pointer">
-            <% end %>
           </div>
           <div class="text-xl my-1">役職: <%= @character.role %></div>
           <div class="text-xl my-1">年齢: <%= @character.age %></div>
@@ -37,19 +33,26 @@
   </div>
 </div>
 
+<input type="checkbox" id="edit-modal-<%= @character.id %>" class="modal-toggle" />
+<label for="edit-modal-<%= @character.id %>" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <label for="edit-modal-<%= @character.id %>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">登場人物を編集する。</div>
+    デモでは登場人物を編集することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+      <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
+  </label>
+</label>
+
 <input type="checkbox" id="delete-modal-<%= @character.id %>" class="modal-toggle" />
 <label for="delete-modal-<%= @character.id %>" class="modal cursor-pointer">
   <label class="modal-box relative" for="">
     <label for="delete-modal-<%= @character.id %>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <div class="text-xl font-bold m-2 mb-4 border-b border-gray-500">登場人物を削除。</div>
-    <div class="text-sm m-2 my-4">登場人物のデータを削除しても本当によろしいですか？</br>削除後に元に戻すことはできません。ご了承ください。</div>
-    <%= button_to "カードを削除する",character_path(@character),class: 'btn text-gray-100 bg-gray-900 m-2 right-0', method: :delete %>  
+    デモでは新しく登場人物を削除することはできません！</br>アカウント登録をして自分好みのプロットを作成してみませんか？
+      <div><%= link_to "SignUp",new_user_path, class: "btn animate-pulsate-fwd" %></div>
   </label>
 </label>
 
-<%= render 'chats/chat' %>
-
-<% if logged_in? && current_user.running? %>
 <div class="fixed bg-base-100 shadow-xl bottom-20 m-8 z-20 h-52 sm:h-40 w-11/12 max-w-5xl border-2 rounded-lg border-stone-800">
   <div class="chat chat-start mt-2">
     <div class="chat-image">
@@ -58,7 +61,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <%= link_to 'デモを終了する', root_path, class: "btn btn-sm m-2"%>
+    <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
     <div id="increment-btn", class="btn btn-sm m-2">前へ</div>
     <div id="decrement-btn", class="btn btn-sm m-2">次へ</div>
   </div>
@@ -73,8 +76,8 @@ const texts = [
   'このページでは登場人物の詳細情報を管理することができるよ！',
   '編集アイコンをクリックすると設定を変更できるよ！',
   '人物カードをタップすると、詳細画面が表示されるよ！',
-  'これで、チュートリアルは終了だよ！',
-  'ここまで読んでくれてありがとう！チュートリアルを終了するボタンをクリックしてね！',
+  'これで、デモは終了だよ！ここまで読んでくれてありがとう！',
+  'プロットを作りたくなったなら、アカウント登録をして自分好みのプロットを作成してみませんか？',
 ];
 let currentIndex = 0;
 
@@ -111,4 +114,3 @@ function updateButtonVisibility() {
   }
 }
 </script>
-<% end %>

@@ -1,4 +1,4 @@
-<%= link_to character_path(character), class: "card-link" do %>
+<%= link_to demos_characters_demoneko_path, class: "card-link" do %>
   <div class="<%= render "shared/plot_card_color", { plot: @plot } %> card h-32 w-80 shadow-xl relative grid grid-cols-5">
     <div class="col-span-2 h-32 w-32 border border-slate-700 ">
       <%= image_tag(character.avatar.url.presence || asset_path('default_avatar.png')) %>
