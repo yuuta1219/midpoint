@@ -63,7 +63,7 @@
     <div id="text", class="chat-bubble chat-bubble-secondary"></div>
   </div>
   <div class="-my-8 m-2 flex justify-end items-end">
-    <% if current_user.running? %>
+    <% if current_user && current_user.running? %>
       <%= button_to  'チュートリアルを終了する', complete_tutorial_path(current_user), class: "btn btn-sm m-2" , method: :patch %>
     <% else %>
       <%= link_to "SignUp",new_user_path, class: "btn btn-sm m-2" %>
