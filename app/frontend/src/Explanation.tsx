@@ -76,9 +76,14 @@ const Explanation = () => {
         トグルを利用することで、画面上に表示したいものを自由に選択できます。
         </Fade>
       </div>
-      <div className="col-span-2 sm:col-span-4 border-b border-neutral-700 text-neutral text-2xl xl:text-5xl mt-10 mx-2 drop-shadow-2xl">
+      <div className="col-span-2 mt-20 text-neutral text-xl xl:text-3xl my-5 mx-3">
+        <a href="https://midplot.com/demos/plots" rel="noopener noreferrer">
+          <button className="btn btn-wide animate-pulsate-fwd">デモを体験してみる</button>
+        </a>
+      </div>
+      <div className="col-span-2 mt-20 text-neutral text-xl xl:text-3xl my-5 mx-3">
         <a href="https://midplot.com/users/new" rel="noopener noreferrer">
-        アカウント登録はこの文章をクリック
+          <button className="btn btn-wide animate-pulsate-fwd">アカウトを作成する</button>
         </a>
       </div>
       <div className="col-span-2 mt-10 mx-2 drop-shadow-2xl">
