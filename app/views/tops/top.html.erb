@@ -14,25 +14,11 @@
 
 <script>
 setTimeout(() => {
-  const elements = document.querySelectorAll('.my-text');
-  elements.forEach((element) => {
-    const firstLetter = element.innerHTML.charAt(0);
-    element.classList.remove('my-text');
-    element.classList.add('animate-ping');
-  });
-  setTimeout(() => {
-    elements.forEach((element) => {
-      element.classList.add('hidden');
-    });
-  }, 600);
-}, 13000);
-
-setTimeout(() => {
   const elements = document.querySelectorAll('.my-text-second');
   elements.forEach((element) => {
     const firstLetter = element.innerHTML.charAt(0);
     element.classList.remove('hidden');
   });
-}, 13800);
+}, 1000);
 </script>
 <%= render 'shared/footer' %>
