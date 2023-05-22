@@ -4,6 +4,7 @@ class Plot < ApplicationRecord
   has_many  :foreshadowings, dependent: :destroy
   has_many  :cards, dependent: :destroy
   has_many  :characters, dependent: :destroy
+  has_many  :notes, dependent: :destroy
 
   validates :name, length: { maximum: 255 }
   validates :theme, length: { maximum: 255 }

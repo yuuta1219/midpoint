@@ -3,6 +3,7 @@ module PlotsHelper
     length_type = plot.length_type
     person = plot.person
     timeline = plot.timeline
+    plot.notes.create(title: plot.name, content: "" )
     names = [
               "ACT1[オープニング]",
               "ACT1[テーマの提示]",

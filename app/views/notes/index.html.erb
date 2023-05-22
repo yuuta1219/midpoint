@@ -1,0 +1,21 @@
+<%= render 'shared/flash_message' %>
+<%= render 'shared/plot_menu', { plot: @plot } %>
+
+<div class="bg-base-200 pb-10">
+  <div class="grid grid-cols-1">
+    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+    <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+    <div class="tabs flex">
+      <%= render partial: "notes/note_menu", collection: @notes %>
+      <%= button_to "+", plot_notes_path(@plot), method: :post, class: "tab tab-lg tab-lifted" %>
+      <a class="tab tab-lg tab-lifted flex-grow"></a>
+    </div>
+    <%= form_with model: @note, local: true do |f| %>
+      <div class="m-2">
+        <%= f.text_area :content, class: 'textarea min-h-screen w-full h-full' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'chats/chat' %>

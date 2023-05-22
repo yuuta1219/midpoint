@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :cards, only: %i[index edit new create update destroy]
     resources :characters
     resources :foreshadowings, only: %i[index create update destroy]
+    resources :notes
   end
   resources :notifications
   namespace :admin do
