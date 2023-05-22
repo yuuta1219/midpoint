@@ -1,24 +1,28 @@
 class NotesController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :show]
   before_action :plot_find, only: [:index, :create]
-  before_action :note_and_plot_find, only: [:edit, :update, :destroy]
+  before_action :note_and_plot_find, only: [:show, :edit, :update, :destroy]
   before_action :check_plot_owner, only: [:edit]
-  before_action :check_plot_accessibility, only: [:index]
+  before_action :check_plot_accessibility, only: [:index, :show]
   before_action :chat_ai
 
   def index
     @current_page = "tab6"
-    @notes = Note.all
+    @current_note = @plot.notes.order(:created_at).pluck(:id).first
+    @notes = @plot.notes.order(:created_at)
+    @note = @plot.notes.order(:created_at).first
   end
 
   def show
-    @note = Note.find(params[:id])
+    @current_page = "tab6"
+    @current_note = @note.id
+    @notes = @plot.notes.order(:created_at)
   end
 
   def create
-    @note = @plot.notes.create(title: "", content: "" )
+    @note = @plot.notes.create(title: "メモ", content: "" )
     if @note.save
-      redirect_to plot_notes_path
+      redirect_to note_path(@note)
     else
       render :index
     end
