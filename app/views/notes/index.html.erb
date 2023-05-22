@@ -10,11 +10,11 @@
       <%= button_to "+", plot_notes_path(@plot), method: :post, class: "tab tab-lg tab-lifted" %>
       <a class="tab tab-lg tab-lifted flex-grow"></a>
     </div>
-    <div class="">
-      <%= form_with model: @note, local: true do |f| %>
+    <%= form_with model: @note, local: true do |f| %>
+      <div class="m-2">
         <%= f.text_area :content, class: 'textarea min-h-screen w-full h-full' %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
