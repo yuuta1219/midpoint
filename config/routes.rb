@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :characters
     resources :foreshadowings, only: %i[index create update destroy]
   end
+  resources :notes
   resources :notifications
   namespace :admin do
     root to: 'dashboards#index'
