@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_03_105341) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_022702) do
   create_table "authentications", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -100,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_105341) do
     t.index ["plot_id"], name: "index_foreshadowings_on_plot_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "plot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plot_id"], name: "index_notes_on_plot_id"
+  end
+
   create_table "notification_users", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "notification_id", null: false
@@ -161,6 +170,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_105341) do
   add_foreign_key "foreshadowing_cards", "cards"
   add_foreign_key "foreshadowing_cards", "foreshadowings"
   add_foreign_key "foreshadowings", "plots"
+  add_foreign_key "notes", "plots"
   add_foreign_key "notification_users", "notifications"
   add_foreign_key "notification_users", "users"
   add_foreign_key "plots", "users"
