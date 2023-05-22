@@ -7,7 +7,7 @@ class NotesController < ApplicationController
   before_action :chat_ai
 
   def index
-    @current_page = "tab7"
+    @current_page = "tab6"
     @notes = Note.all
   end
 
