@@ -15,21 +15,13 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
-  def new
-    @note = Note.new
-  end
-
   def create
-    @note = Note.new(note_params)
+    @note = @plot.notes.create(title: "", content: "" )
     if @note.save
-      redirect_to @note
+      redirect_to plot_notes_path
     else
-      render :new
+      render :index
     end
-  end
-
-  def edit
-    @note = Note.find(params[:id])
   end
 
   def update
