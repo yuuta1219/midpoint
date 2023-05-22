@@ -1,5 +1,13 @@
 class NotesController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+  before_action :plot_find, only: [:index, :create]
+  before_action :note_and_plot_find, only: [:edit, :update, :destroy]
+  before_action :check_plot_owner, only: [:edit]
+  before_action :check_plot_accessibility, only: [:index]
+  before_action :chat_ai
+
   def index
+    @current_page = "tab7"
     @notes = Note.all
   end
 
@@ -43,5 +51,10 @@ class NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:title, :content)
+  end
+
+  def note_and_plot_find
+    @note = Note.find(params[:id])
+    @plot = @note.plot
   end
 end
