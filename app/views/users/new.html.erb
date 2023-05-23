@@ -2,9 +2,9 @@
 <%= render 'shared/login_check' %>
 
 <div class="bg-base-200 text-gray-700">
-  <div class="grid grid-cols-5">
+  <div class="grid grid-cols-12">
     <div class="m-4 col-span-1"></div>
-    <div class="m-4 col-span-3 shadow-xl bg-white">
+    <div class="m-4 col-span-10 shadow-xl bg-white">
       <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
       <div class="flex border-b border-gray-500">
         <div class="flex-1 font-light mx-4 m-2 text-4xl drop-shadow-2xl"><%= link_to "アカウント作成", new_user_path %></div>
@@ -20,7 +20,9 @@
             <%= f.password_field :password, class: 'my-1 input input-bordered input-secondary input-lg md:input-md w-full max-w-full' %>
             <%= f.label :確認用パスワード, class: 'my-1 text-xl' %>
             <%= f.password_field :password_confirmation, class: 'my-1 input input-bordered input-secondary input-lg md:input-md w-full max-w-full' %>
-            <%= f.submit '登録', class: 'btn text-gray-100 bg-gray-900 my-2' %>
+            <div class="flex my-2">会員登録時には<%= link_to "利用規約", terms_path, class:"text-cyan-600 hover:border-b hover:border-cyan-600" , target: "_blank" %>と<%= link_to "プライバシーポリシー", privacy_policy_path, class:"text-cyan-600 hover:border-b hover:border-cyan-600", target: "_blank" %>に同意が必要です。</div>
+            <div class="flex my-2"><input type="checkbox" class="checkbox mr-2" id="agreeCheckbox" /><label for="agreeCheckbox">同意する。</label></div>
+            <%= f.submit '登録', id: "submitButton", class: 'btn text-gray-100 bg-gray-900 my-2', disabled: true %>
           </div>
         <% end %>
       </div>
@@ -33,3 +35,14 @@
   </div>
 </div>
 <%= render 'shared/footer' %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const agreeCheckbox = document.querySelector('#agreeCheckbox');
+  const submitButton = document.querySelector('#submitButton');
+
+  agreeCheckbox.addEventListener('change', function() {
+    submitButton.disabled = !this.checked;
+  });
+});
+</script>
