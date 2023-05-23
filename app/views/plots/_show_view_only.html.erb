@@ -13,7 +13,7 @@
   <div class="mx-4 mb-8"><%= @plot.length_type %></div>
 
   <div class="mx-4 mb-2 border-b border-gray-500 text-x">作中時間</div>
-  <div class="mx-4 mb-8"><%= l(@plot.timeline , format: :deluxe) %></div>
+  <div class="mx-4 mb-8"><%= l(@plot.timeline , format: :deluxe) if @plot.timeline.present? %></div>
 
   <div class="mx-4 mb-2 border-b border-gray-500 text-x">人称</div>
   <div class="mx-4 mb-8"><%= @plot.person %></div>
