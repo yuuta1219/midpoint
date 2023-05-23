@@ -1,1 +1,1 @@
-<%= link_to note_menu.title, note_path(note_menu), class: "tab tab-lg tab-lifted #{'tab-active' if @current_note == note_menu.id} " %>
+<li><%= link_to note_menu.title, note_path(note_menu), class: "break-all #{'active' if @current_note == note_menu.id} " %></li>
