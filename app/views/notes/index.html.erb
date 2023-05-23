@@ -1,21 +1,35 @@
 <%= render 'shared/flash_message' %>
 <%= render 'shared/plot_menu', { plot: @plot } %>
-
-<div class="bg-base-200 pb-10">
-  <div class="grid grid-cols-1">
-    <div class="m-2 col-span-1 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
-    <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
-    <div class="tabs flex">
-      <%= render partial: "notes/note_menu", collection: @notes %>
-      <%= button_to "+", plot_notes_path(@plot), method: :post, class: "tab tab-lg tab-lifted" %>
-      <a class="tab tab-lg tab-lifted flex-grow"></a>
+<div class="bg-base-200">
+  <div class="drawer">
+    <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
+    <div class="drawer-content">
+      <div class="m-2 shadow-xl <%= render "shared/plot_color", { plot: @plot } %>">
+        <%= image_tag("pushpin.png", alt: "pin icon", class: "mx-auto", width: '30px', height: '30px') %>
+        <div class="w-full border-b border-gray-500 navbar top-0 sticky <%= render "shared/plot_color", { plot: @plot } %>">
+          <div class="flex-1">
+            <label for="my-drawer-3" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </label>
+            <%= form_with model: @note, local: true do |f| %>
+              <%= f.text_field :title, class: 'mx-2 input w-full'%>
+          </div>
+              <%= f.submit '保存する', class: 'btn btn-ghost' %>
+        </div>
+          <div class="m-2">
+            <%= f.text_area :content, class: 'textarea min-h-screen w-full h-full' %>
+          </div>
+            <% end %>
+      </div> 
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer-3" class="drawer-overlay"></label> 
+      <ul class="menu p-4 w-80 bg-base-100">
+        <%= render partial: "notes/note_menu", collection: @notes %>
+        <li><%= link_to "+", new_plot_note_path(@plot) %></li>
+      </ul>
     </div>
-    <%= form_with model: @note, local: true do |f| %>
-      <div class="m-2">
-        <%= f.text_area :content, class: 'textarea min-h-screen w-full h-full' %>
-      </div>
-    <% end %>
   </div>
-</div>
+</div> 
 
 <%= render 'chats/chat' %>

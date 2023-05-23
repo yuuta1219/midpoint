@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :plot_find, only: [:index, :create]
+  before_action :plot_find, only: [:index, :new]
   before_action :note_and_plot_find, only: [:show, :edit, :update, :destroy]
   before_action :check_plot_owner, only: [:edit]
   before_action :check_plot_accessibility, only: [:index, :show]
@@ -19,7 +19,7 @@ class NotesController < ApplicationController
     @notes = @plot.notes.order(:created_at)
   end
 
-  def create
+  def new
     @note = @plot.notes.create(title: "メモ", content: "" )
     if @note.save
       redirect_to note_path(@note)
