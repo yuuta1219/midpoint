@@ -40,7 +40,7 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
-    redirect_to notes_path
+    redirect_to plot_notes_path(@plot)
   end
 
   private
